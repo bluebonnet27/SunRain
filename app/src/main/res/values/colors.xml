@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- My Own Colors from materialize  -->
+    <color name="light_blue">#03a9f4</color>
+    <color name="light_blue_darken_2">#0288d1</color>
+    <color name="light_blue_darken_4">#01579b</color>
+
+    <color name="amber">#ffc107</color>
+    <color name="amber_darken_2">#ffa000</color>
+    <color name="amber_darken_4">#ff6f00</color>
+    
+    <color name="grey_darken_3">#424242</color>
+    <color name="grey_darken_2">#616161</color>
+    <color name="grey_darken_1">#757575</color>
 </resources>
