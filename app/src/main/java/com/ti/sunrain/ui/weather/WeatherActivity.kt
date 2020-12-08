@@ -101,10 +101,15 @@ class WeatherActivity : AppCompatActivity() {
 
     private fun showWeatherInfo(weather: Weather){
 
-        //获取ViewModel中的数据
+        //获取ViewModel中的数据,以及toolbar数据填充
         weatherToolBar.title = viewModel.placeName
         val realtime = weather.realtime
         val daily = weather.daily
+        val responseForRealtime = weather.realtimeResponse
+
+        val serverTime = responseForRealtime.getServerTime()
+        val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
+        weatherToolBar.subtitle = "刷新于：${serverTimeText}"
 
         //now.xml数据注入
         val currentTempText = "${realtime.temperature.toInt()}"

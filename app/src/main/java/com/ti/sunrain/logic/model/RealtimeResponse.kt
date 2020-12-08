@@ -11,7 +11,14 @@ import com.google.gson.annotations.SerializedName
  * 彩云天气实时返回接口2.5
  */
 data class RealtimeResponse(val status:String,
-                            val result:Result){
+                            val result:Result,
+                            val server_time:Long){
+
+    /**
+     * kotlin不是很牛逼吗？为什么这么基础的函数要自己写？
+     */
+    fun getServerTime()= this.server_time
+
     /**
      * Result,父类为RealtimeResponse
      */

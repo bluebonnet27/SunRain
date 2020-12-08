@@ -28,4 +28,9 @@ class WeatherViewModel:ViewModel() {
     fun refreshWeather(lng:String,lat:String){
         locationLiveData.value=com.ti.sunrain.logic.model.Location(lng, lat)
     }
+
+    /**
+     * Change UNIX time into Real time
+     */
+    fun changeUNIXIntoString(unixTime:Long) = Repository.changeUNIXIntoString(unixTime)
 }

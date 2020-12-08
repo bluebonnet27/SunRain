@@ -1,4 +1,4 @@
-package com.ti.sunnyweather.logic.network
+package com.ti.sunrain.logic.network
 
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.DailyResponse

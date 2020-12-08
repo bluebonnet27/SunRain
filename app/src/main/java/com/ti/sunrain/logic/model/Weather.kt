@@ -5,4 +5,6 @@ package com.ti.sunrain.logic.model
  * @date: 2020/12/7
  * @description:
  */
-data class Weather(val realtime:RealtimeResponse.Realtime,val daily:DailyResponse.Daily)
+data class Weather(val realtime:RealtimeResponse.Realtime,
+                   val daily:DailyResponse.Daily,
+                    val realtimeResponse:RealtimeResponse)
