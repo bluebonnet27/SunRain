@@ -52,6 +52,12 @@
 
                     <include layout="@layout/air"/>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/caiyun"/>
+
                 </LinearLayout>
 
             </ScrollView>

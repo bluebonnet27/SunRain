@@ -45,6 +45,7 @@ class WeatherActivity : AppCompatActivity() {
             it.setHomeAsUpIndicator(R.drawable.baseline_location_city_white_24dp)
         }
 
+
         drawerLayout.addDrawerListener(object:DrawerLayout.DrawerListener{
             override fun onDrawerOpened(drawerView: View) {}
 
@@ -175,15 +176,20 @@ class WeatherActivity : AppCompatActivity() {
         dirtyData.add(PieEntry(aq.co,"CO"))
 
         val dirtyDataSet = PieDataSet(dirtyData,"")
-        dirtyDataSet.setColors(Color.RED,Color.GREEN,Color.BLUE,Color.YELLOW,Color.GRAY,Color.BLACK)
+        dirtyDataSet.setColors(Color.parseColor("#D50000"),
+                                Color.parseColor("#0091EA"),
+                                Color.parseColor("#00c853"),
+                                Color.parseColor("#FFD600"),
+                                Color.parseColor("#00897b"),
+                                Color.parseColor("#3e2723"))
         airPie.holeRadius = 0f
         airPie.description.isEnabled = false
         airPie.transparentCircleRadius = 0f
 
         //设置描述的字体大小（图中的  男性  女性）
-        airPie.setEntryLabelTextSize(5f);
+        airPie.setEntryLabelTextSize(7f)
         //设置数据的字体大小  （图中的  44     56）
-        dirtyDataSet.valueTextSize = 5f;
+        dirtyDataSet.valueTextSize = 7f
 
         val dirtyDataUse = PieData(dirtyDataSet)
         airPie.data = dirtyDataUse
@@ -192,6 +198,9 @@ class WeatherActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+
+            R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+            R.id.aboutIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
         }
         return true
     }
