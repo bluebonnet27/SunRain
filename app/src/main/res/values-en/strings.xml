@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">SunRain</string>
+
+    <!--  places  -->
+    <string name="search_hint">Input the city you want to search for weather…</string>
+    <string name="search_blank_intro">SORRY! There is nothing here.</string>
+
+    <!--  Forecast  -->
+    <string name="forecast_info">Forecast</string>
+
+    <!-- Life Index   -->
+    <string name="lifeIndex">Life Index</string>
+    <string name="coldRisk">Cold</string>
+    <string name="wear">Wear</string>
+    <string name="ultraviolet">Ultraviolet</string>
+    <string name="carWashing">Washing Car</string>
+    
+    <!--  Air description  -->
+    <string name="aircast_info">Air Quality(μg/m3)</string>
+    <string name="pm25">PM 2.5：</string>
+    <string name="pm10">PM 10：</string>
+    <string name="o3">O3：</string>
+    <string name="no2">NO2：</string>
+    <string name="so2">SO2：</string>
+    <string name="co">CO：</string>
+
+    <!--  menu  -->
+    <string name="settingsIcon">Settings</string>
+    <string name="aboutIcon">About</string>
+
+    <!--  introduction of weather information producer  -->
+    <string name="caiyun">The weather data is from caiyunapp.com</string>
+</resources>

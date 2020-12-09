@@ -6,17 +6,17 @@
     <string name="search_blank_intro">这里什么也没有哇！</string>
 
     <!--  Forecast  -->
-    <string name="forecast_info">预报喵~</string>
+    <string name="forecast_info">预报</string>
 
     <!-- Life Index   -->
-    <string name="lifeIndex">生活指数喵~</string>
+    <string name="lifeIndex">生活指数</string>
     <string name="coldRisk">感冒</string>
     <string name="wear">穿衣</string>
     <string name="ultraviolet">实时紫外线</string>
     <string name="carWashing">洗车</string>
     
     <!--  Air description  -->
-    <string name="aircast_info">空气指数喵~</string>
+    <string name="aircast_info">空气指数(μg/m3)</string>
     <string name="pm25">PM 2.5：</string>
     <string name="pm10">PM 10：</string>
     <string name="o3">臭氧：</string>
