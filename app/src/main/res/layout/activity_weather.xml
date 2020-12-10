@@ -6,29 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/weatherToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="选择城市"
-                app:titleTextColor="@color/white"
-                app:subtitle="更新时间"
-                app:subtitleTextColor="@color/white"/>
+                app:subtitle="更新时间"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="0dp"
             android:id="@+id/swipeRefresh">
 
             <ScrollView
@@ -48,9 +47,13 @@
 
                     <include layout="@layout/forecast"/>
 
-                    <include layout="@layout/life_index"/>
+                    <include layout="@layout/life_index" />
 
                     <include layout="@layout/air"/>
+
+                    <include layout="@layout/wind"/>
+
+                    <include layout="@layout/forecast_chart"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -63,7 +66,7 @@
             </ScrollView>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

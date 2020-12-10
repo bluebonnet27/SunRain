@@ -24,9 +24,41 @@
     <string name="so2">二氧化硫：</string>
     <string name="co">一氧化碳：</string>
 
+    <!--  wind  -->
+    <string name="wind_info">风力和风向</string>
+
     <!--  menu  -->
     <string name="settingsIcon">设置</string>
     <string name="aboutIcon">关于</string>
+    <string name="shareIcon">分享天气</string>
+
+    <!--  weather  -->
+    <string name="clear_day">晴</string>
+    <string name="cloudy">多云</string>
+    <string name="overcast">阴</string>
+
+    <string name="mild_haze">轻度雾霾</string>
+    <string name="moderate_haze">中度雾霾</string>
+    <string name="severe_haze">重度雾霾</string>
+
+    <string name="light_rain">小雨</string>
+    <string name="moderate_rain">中雨</string>
+    <string name="heavy_rain">大雨</string>
+    <string name="storm_rain">暴雨</string>
+
+    <string name="fog">雾</string>
+
+    <string name="light_snow">小雪</string>
+    <string name="moderate_snow">中雪</string>
+    <string name="heavy_snow">大雪</string>
+    <string name="storm_snow">暴雪</string>
+
+    <string name="dust">浮尘</string>
+    <string name="wind">大风</string>
+
+    <string name="thunder_shower">雷阵雨</string>
+    <string name="sleet">雨夹雪</string>
+    <string name="hail">冰雹</string>
 
     <!--  introduction of weather information producer  -->
     <string name="caiyun">天气数据由彩云天气提供</string>

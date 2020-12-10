@@ -12,4 +12,9 @@
         android:id="@+id/aboutIcon"
         android:title="@string/aboutIcon"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/shareIcon"
+        android:title="@string/shareIcon"
+        app:showAsAction="never"/>
 </menu>

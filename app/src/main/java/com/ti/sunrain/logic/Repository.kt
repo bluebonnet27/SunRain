@@ -53,7 +53,9 @@ object Repository {
 
             if(realtimeResponse.status == "ok" && dailyResponse.status == "ok"){
                 val weather = Weather(realtimeResponse.result.realtime,
-                    dailyResponse.result.daily,realtimeResponse)
+                                        dailyResponse.result.daily,
+                                        realtimeResponse,
+                                        realtimeResponse.result.realtime.wind)
                 Result.success(weather)
             }else{
                 Result.failure(

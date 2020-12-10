@@ -2,34 +2,34 @@ package com.ti.sunrain.ui.weather
 
 import android.content.Context
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.R
-import com.ti.sunrain.logic.model.Weather
-import com.ti.sunrain.logic.model.getSky
+import com.ti.sunrain.logic.model.*
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
+import kotlinx.android.synthetic.main.forecast_chart.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
+import kotlinx.android.synthetic.main.wind.*
+import kotlinx.android.synthetic.main.wind.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -104,9 +104,11 @@ class WeatherActivity : AppCompatActivity() {
 
         //获取ViewModel中的数据,以及toolbar数据填充
         weatherToolBar.title = viewModel.placeName
+
         val realtime = weather.realtime
         val daily = weather.daily
         val responseForRealtime = weather.realtimeResponse
+        val windReturn = weather.wind
 
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
@@ -125,6 +127,11 @@ class WeatherActivity : AppCompatActivity() {
         //forecast.xml数据注入
         forecastLayout.removeAllViews()
         val days = daily.skyconDaylight.size
+
+        val listHigh = ArrayList<Entry>()
+        val listLow = ArrayList<Entry>()
+
+
         for(i in 0 until days){
             val skycon = daily.skyconDaylight[i]
             val temperature = daily.temperature[i]
@@ -143,11 +150,41 @@ class WeatherActivity : AppCompatActivity() {
             skyIcon.setImageResource(sky.weather_icon)
             skyInfo.text = sky.info
 
+            listHigh.add(Entry(i.toFloat(),temperature.max))
+            listLow.add(Entry(i.toFloat(),temperature.min))
+
             val tempText = "${temperature.min.toInt()}~${temperature.max.toInt()}℃"
             temperatureInfo.text = tempText
 
             forecastLayout.addView(view)
         }
+
+        //temperatureChart
+        val setHigh = LineDataSet(listHigh,"High")
+        setHigh.mode = LineDataSet.Mode.CUBIC_BEZIER
+        setHigh.color = Color.parseColor("#D50000")
+
+        val setLow = LineDataSet(listLow,"Low")
+        setLow.mode = LineDataSet.Mode.CUBIC_BEZIER
+        setLow.color = Color.parseColor("#0091EA")
+
+        val dataSets = ArrayList<ILineDataSet>()
+        dataSets.add(setHigh)
+        dataSets.add(setLow)
+        val dataTemp = LineData(dataSets)
+
+        temperatureChart.apply {
+            xAxis.setDrawAxisLine(false)
+            xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
+            axisLeft.setDrawAxisLine(false)
+        }
+        temperatureChart.data = dataTemp
+
+
+        //wind.xml
+        windIconInfo.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
+        windDirectionInfo.text = "${getWindDirection(windReturn.direction)}风"
+        windSpeedInfo.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
 
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
@@ -164,7 +201,7 @@ class WeatherActivity : AppCompatActivity() {
         no2Num.text = "${aq.no2}"
         o3Num.text = "${aq.o3}"
         so2Num.text = "${aq.so2}"
-        coNum.text = "${aq.co}"
+        coNum.text = "${aq.co*1000}"
 
         //air.xml 图绘制
         val dirtyData = ArrayList<PieEntry>()
@@ -173,7 +210,7 @@ class WeatherActivity : AppCompatActivity() {
         dirtyData.add(PieEntry(aq.no2,"NO2"))
         dirtyData.add(PieEntry(aq.o3,"O3"))
         dirtyData.add(PieEntry(aq.so2,"SO2"))
-        dirtyData.add(PieEntry(aq.co,"CO"))
+        dirtyData.add(PieEntry(aq.co*1000,"CO"))
 
         val dirtyDataSet = PieDataSet(dirtyData,"")
         dirtyDataSet.setColors(Color.parseColor("#D50000"),
@@ -201,6 +238,7 @@ class WeatherActivity : AppCompatActivity() {
 
             R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
             R.id.aboutIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+            R.id.shareIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
         }
         return true
     }

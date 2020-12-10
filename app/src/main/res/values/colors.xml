@@ -20,4 +20,8 @@
     <color name="grey_darken_3">#424242</color>
     <color name="grey_darken_2">#616161</color>
     <color name="grey_darken_1">#757575</color>
+    
+    <color name="brown_darken_1">#6d4c41</color>
+    <color name="brown_darken_2">#5d4037</color>
+    <color name="brown_darken_3">#4d342e</color>
 </resources>

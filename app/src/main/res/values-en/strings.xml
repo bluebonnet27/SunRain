@@ -24,9 +24,41 @@
     <string name="so2">SO2：</string>
     <string name="co">CO：</string>
 
+    <!--  wind  -->
+    <string name="wind_info">Wind</string>
+
     <!--  menu  -->
     <string name="settingsIcon">Settings</string>
     <string name="aboutIcon">About</string>
+    <string name="shareIcon">Share weather</string>
+
+    <!--  weather  -->
+    <string name="clear_day">clear day</string>
+    <string name="cloudy">partly cloudy</string>
+    <string name="overcast">overcast</string>
+
+    <string name="mild_haze">mild haze</string>
+    <string name="moderate_haze">moderate haze</string>
+    <string name="severe_haze">severe haze</string>
+
+    <string name="light_rain">light rain</string>
+    <string name="moderate_rain">moderate rain</string>
+    <string name="heavy_rain">heavy rain</string>
+    <string name="storm_rain">storm rain</string>
+
+    <string name="fog">fog</string>
+
+    <string name="light_snow">light snow</string>
+    <string name="moderate_snow">moderate snow</string>
+    <string name="heavy_snow">heavy snow</string>
+    <string name="storm_snow">storm snow</string>
+
+    <string name="dust">dust</string>
+    <string name="wind">wind</string>
+
+    <string name="thunder_shower">thunder shower</string>
+    <string name="sleet">sleet</string>
+    <string name="hail">hail</string>
 
     <!--  introduction of weather information producer  -->
     <string name="caiyun">The weather data is from caiyunapp.com</string>
