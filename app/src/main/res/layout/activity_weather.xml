@@ -27,7 +27,8 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/new_sunny"
             android:id="@+id/swipeRefresh">
 
             <ScrollView

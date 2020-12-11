@@ -1,6 +1,7 @@
 package com.ti.sunrain.ui.weather
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
@@ -8,16 +9,21 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.R
+import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.*
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
@@ -90,6 +96,13 @@ class WeatherActivity : AppCompatActivity() {
             Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
             refreshWeather()
         }
+
+        tempChartCard.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setMessage("这个功能还在开发中")
+                .setPositiveButton(this.getString(R.string.know),null)
+                .show()
+        }
     }
 
     /**
@@ -122,7 +135,7 @@ class WeatherActivity : AppCompatActivity() {
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = currentAQIDescInfor
-        nowLayout.setBackgroundResource(getSky(realtime.skycon).bg)
+        //nowLayout.setBackgroundResource(getSky(realtime.skycon).bg)
 
         //forecast.xml数据注入
         forecastLayout.removeAllViews()
@@ -174,10 +187,24 @@ class WeatherActivity : AppCompatActivity() {
         val dataTemp = LineData(dataSets)
 
         temperatureChart.apply {
-            xAxis.setDrawAxisLine(false)
-            xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
+            setTouchEnabled(false)
             axisLeft.setDrawAxisLine(false)
+            description.isEnabled = false
         }
+
+        val xAxis = temperatureChart.xAxis
+        xAxis.setDrawAxisLine(false)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
+
+        class MyXAxisFormatter : ValueFormatter() {
+            private val daysMe = arrayOf("Today","Tomorrow","3","4","5")
+            override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+                return daysMe.getOrNull(value.toInt()) ?: value.toString()
+            }
+        }
+        
+        xAxis.valueFormatter = MyXAxisFormatter()
+
         temperatureChart.data = dataTemp
 
 
@@ -196,37 +223,41 @@ class WeatherActivity : AppCompatActivity() {
 
         //air.xml 数据注入
         val aq = realtime.airQuality
-        pm25Num.text = "${aq.pm25}"
-        pm10Num.text = "${aq.pm10}"
-        no2Num.text = "${aq.no2}"
-        o3Num.text = "${aq.o3}"
-        so2Num.text = "${aq.so2}"
-        coNum.text = "${aq.co*1000}"
+        pm25Num.text = "${aq.pm25} μg/m3"
+        pm10Num.text = "${aq.pm10} μg/m3"
+        no2Num.text = "${aq.no2} μg/m3"
+        o3Num.text = "${aq.o3} μg/m3"
+        so2Num.text = "${aq.so2} μg/m3"
+        coNum.text = "${aq.co} mg/m3"
 
         //air.xml 图绘制
         val dirtyData = ArrayList<PieEntry>()
-        dirtyData.add(PieEntry(aq.pm25,"PM2.5"))
-        dirtyData.add(PieEntry(aq.pm10,"PM10"))
-        dirtyData.add(PieEntry(aq.no2,"NO2"))
-        dirtyData.add(PieEntry(aq.o3,"O3"))
-        dirtyData.add(PieEntry(aq.so2,"SO2"))
-        dirtyData.add(PieEntry(aq.co*1000,"CO"))
+        dirtyData.add(PieEntry(aq.aqi.chn,""))
+        dirtyData.add(PieEntry(600-aq.aqi.chn,""))
 
         val dirtyDataSet = PieDataSet(dirtyData,"")
-        dirtyDataSet.setColors(Color.parseColor("#D50000"),
-                                Color.parseColor("#0091EA"),
-                                Color.parseColor("#00c853"),
-                                Color.parseColor("#FFD600"),
-                                Color.parseColor("#00897b"),
-                                Color.parseColor("#3e2723"))
-        airPie.holeRadius = 0f
-        airPie.description.isEnabled = false
-        airPie.transparentCircleRadius = 0f
+        dirtyDataSet.setColors(Color.parseColor(viewModel.getAQIColor(aq.aqi.chn.toInt())),
+                                Color.parseColor("#eeeeee"))
+        dirtyDataSet.valueTextSize = 0f
 
-        //设置描述的字体大小（图中的  男性  女性）
-        airPie.setEntryLabelTextSize(7f)
-        //设置数据的字体大小  （图中的  44     56）
-        dirtyDataSet.valueTextSize = 7f
+        airPie.holeRadius = 90f
+        airPie.description.isEnabled = false
+
+        airPie.transparentCircleRadius = 0f
+        airPie.centerText = "AQI:${aq.aqi.chn}"
+        airPie.setCenterTextSize(20f)
+
+        if(isDarkTheme(SunRainApplication.context)){
+            airPie.setCenterTextColor(Color.WHITE)
+            airPie.setHoleColor(Color.BLACK)
+        }else{
+            airPie.setCenterTextColor(Color.BLACK)
+            airPie.setHoleColor(Color.WHITE)
+        }
+
+        airPie.animateXY(4000,4000)
+
+        airPie.legend.isEnabled = false
 
         val dirtyDataUse = PieData(dirtyDataSet)
         airPie.data = dirtyDataUse
@@ -246,5 +277,13 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu,menu)
         return true
+    }
+
+    /**
+     * Judge is dark theme or not
+     */
+    fun isDarkTheme(context:Context):Boolean{
+        val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return flag == Configuration.UI_MODE_NIGHT_YES
     }
 }

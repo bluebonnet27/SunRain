@@ -33,4 +33,30 @@ class WeatherViewModel:ViewModel() {
      * Change UNIX time into Real time
      */
     fun changeUNIXIntoString(unixTime:Long) = Repository.changeUNIXIntoString(unixTime)
+
+    /**
+     * get AQI color
+     */
+    fun getAQIColor(aqiValue:Int):String{
+        when (aqiValue) {
+            in 0..50 -> {
+                return "#7cb342"
+            }
+            in 51..100 -> {
+                return "#ffff8d"
+            }
+            in 101..150 -> {
+                return "#f9a825"
+            }
+            in 151..200 -> {
+                return "#e53935"
+            }
+            in 201..300 -> {
+                return "#880e4f"
+            }
+            else -> {
+                return "#212121"
+            }
+        }
+    }
 }

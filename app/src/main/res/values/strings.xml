@@ -16,7 +16,7 @@
     <string name="carWashing">洗车</string>
     
     <!--  Air description  -->
-    <string name="aircast_info">空气指数(μg/m3)</string>
+    <string name="aircast_info">空气指数</string>
     <string name="pm25">PM 2.5：</string>
     <string name="pm10">PM 10：</string>
     <string name="o3">臭氧：</string>
@@ -31,6 +31,7 @@
     <string name="settingsIcon">设置</string>
     <string name="aboutIcon">关于</string>
     <string name="shareIcon">分享天气</string>
+    <string name="know">我知道了</string>
 
     <!--  weather  -->
     <string name="clear_day">晴</string>
