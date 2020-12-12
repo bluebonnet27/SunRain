@@ -2,23 +2,27 @@ package com.ti.sunrain.ui.weather
 
 import android.content.Context
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.marginTop
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.github.matteobattilana.weather.PrecipType
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
@@ -32,7 +36,6 @@ import kotlinx.android.synthetic.main.forecast_chart.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
 import kotlinx.android.synthetic.main.wind.*
-import kotlinx.android.synthetic.main.wind.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -50,7 +53,6 @@ class WeatherActivity : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_location_city_white_24dp)
         }
-
 
         drawerLayout.addDrawerListener(object:DrawerLayout.DrawerListener{
             override fun onDrawerOpened(drawerView: View) {}
@@ -97,12 +99,6 @@ class WeatherActivity : AppCompatActivity() {
             refreshWeather()
         }
 
-        tempChartCard.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setMessage("这个功能还在开发中")
-                .setPositiveButton(this.getString(R.string.know),null)
-                .show()
-        }
     }
 
     /**
@@ -128,7 +124,7 @@ class WeatherActivity : AppCompatActivity() {
         weatherToolBar.subtitle = "刷新于：${serverTimeText}"
 
         //now.xml数据注入
-        val currentTempText = "${realtime.temperature.toInt()}"
+        val currentTempText = "${realtime.temperature.toInt()}°"
         currentTemperature.text = currentTempText
         currentSky.text = getSky(realtime.skycon).info
         val currentPM25Text = "空气指数${realtime.airQuality.aqi.chn.toInt()}"
@@ -213,6 +209,9 @@ class WeatherActivity : AppCompatActivity() {
         windDirectionInfo.text = "${getWindDirection(windReturn.direction)}风"
         windSpeedInfo.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
 
+        //animation
+        weatherAnimation.setWeatherData(PrecipType.RAIN)
+
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
         coldRiskText.text = lifeIndex.coldRisk[0].desc //今天数据就是一组数据里的第一个
@@ -244,7 +243,7 @@ class WeatherActivity : AppCompatActivity() {
         airPie.description.isEnabled = false
 
         airPie.transparentCircleRadius = 0f
-        airPie.centerText = "AQI:${aq.aqi.chn}"
+        airPie.centerText = "AQI:${aq.aqi.chn},${realtime.airQuality.description.chn}"
         airPie.setCenterTextSize(20f)
 
         if(isDarkTheme(SunRainApplication.context)){
@@ -286,4 +285,5 @@ class WeatherActivity : AppCompatActivity() {
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return flag == Configuration.UI_MODE_NIGHT_YES
     }
+    
 }
