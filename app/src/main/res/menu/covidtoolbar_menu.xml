@@ -4,15 +4,15 @@
 
     <item
         android:id="@+id/refreshCovidPage"
-        android:title="刷新"
+        android:title="@string/refreshPage"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/openInBrowser"
-        android:title="浏览器打开"
+        android:title="@string/openPageInBRowser"
         app:showAsAction="never"/>
     <item
         android:id="@+id/clearHistoryMe"
-        android:title="清除缓存"
+        android:title="@string/clearPageCache"
         app:showAsAction="never"/>
 </menu>

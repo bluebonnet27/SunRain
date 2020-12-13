@@ -60,6 +60,14 @@
     <string name="sleet">sleet</string>
     <string name="hail">hail</string>
 
+    <string name="COVID19_shortcut">COVID19</string>
+
+    <!--  Webview About  -->
+    <string name="refreshPage">Refresh</string>
+    <string name="openPageInBRowser">Open in browser</string>
+    <string name="clearPageCache">Clear cache</string>
+
+
     <!--  introduction of weather information producer  -->
     <string name="caiyun">The weather data is from caiyunapp.com</string>
     <string name="know">know</string>

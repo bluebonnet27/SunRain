@@ -61,6 +61,14 @@
     <string name="sleet">雨夹雪</string>
     <string name="hail">冰雹</string>
 
+    <!-- COVID 19 Special   -->
+    <string name="COVID19_shortcut">COVID19</string>
+
+    <!--  Webview About  -->
+    <string name="refreshPage">刷新</string>
+    <string name="openPageInBRowser">在浏览器打开</string>
+    <string name="clearPageCache">清理缓存</string>
+
     <!--  introduction of weather information producer  -->
     <string name="caiyun">天气数据由彩云天气提供</string>
 </resources>
