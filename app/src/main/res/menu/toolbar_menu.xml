@@ -2,7 +2,11 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item
+        android:id="@+id/COVIDExplorer"
+        android:title="COVID"
+        android:icon="@drawable/baseline_error_outline_white_24dp"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/settingsIcon"
         android:title="@string/settingsIcon"

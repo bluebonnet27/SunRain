@@ -1,6 +1,7 @@
 package com.ti.sunrain.ui.weather
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
@@ -26,6 +27,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
+import com.ti.sunrain.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.*
@@ -121,7 +123,7 @@ class WeatherActivity : AppCompatActivity() {
 
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
-        weatherToolBar.subtitle = "刷新于：${serverTimeText}"
+        weatherToolBar.subtitle = "${serverTimeText} 刷新"
 
         //now.xml数据注入
         val currentTempText = "${realtime.temperature.toInt()}°"
@@ -210,7 +212,7 @@ class WeatherActivity : AppCompatActivity() {
         windSpeedInfo.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
 
         //animation
-        weatherAnimation.setWeatherData(PrecipType.RAIN)
+        weatherAnimation.setWeatherData(PrecipType.SNOW)
 
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
@@ -248,7 +250,7 @@ class WeatherActivity : AppCompatActivity() {
 
         if(isDarkTheme(SunRainApplication.context)){
             airPie.setCenterTextColor(Color.WHITE)
-            airPie.setHoleColor(Color.BLACK)
+            airPie.setHoleColor(Color.parseColor("#ff3f3f3f"))
         }else{
             airPie.setCenterTextColor(Color.BLACK)
             airPie.setHoleColor(Color.WHITE)
@@ -266,6 +268,10 @@ class WeatherActivity : AppCompatActivity() {
         when(item.itemId){
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
 
+            R.id.COVIDExplorer ->{
+                val intent = Intent(this,CovidSpecial::class.java)
+                startActivity(intent)
+            }
             R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
             R.id.aboutIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
             R.id.shareIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
@@ -281,7 +287,7 @@ class WeatherActivity : AppCompatActivity() {
     /**
      * Judge is dark theme or not
      */
-    fun isDarkTheme(context:Context):Boolean{
+    private fun isDarkTheme(context:Context):Boolean{
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return flag == Configuration.UI_MODE_NIGHT_YES
     }

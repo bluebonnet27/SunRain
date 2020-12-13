@@ -14,7 +14,7 @@
     <string name="wear">穿衣</string>
     <string name="ultraviolet">实时紫外线</string>
     <string name="carWashing">洗车</string>
-    
+
     <!--  Air description  -->
     <string name="aircast_info">空气指数</string>
     <string name="pm25">PM 2.5：</string>

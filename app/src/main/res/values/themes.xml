@@ -18,6 +18,11 @@
     </style>
 
     <style name="toolbarMainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="actionMenuTextColor">@color/white</item>
+<!--        这个方法不知道为什么失效了-->
+<!--        <item name="actionMenuTextColor">@color/white</item>-->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="subtitleTextColor">@color/white</item>
+        <item name="android:colorControlNormal">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>
