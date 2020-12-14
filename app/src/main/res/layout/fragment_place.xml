@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:background="?android:windowBackground">
 
-    <ImageView
+    <TextView
         android:id="@+id/bgImageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/bg_place"/>
+        android:layout_centerInParent="true"
+        android:text="这里空空如也"
+        android:textSize="20sp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/actionBarLayout"

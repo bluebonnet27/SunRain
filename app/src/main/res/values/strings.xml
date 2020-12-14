@@ -30,7 +30,7 @@
     <!--  menu  -->
     <string name="settingsIcon">设置</string>
     <string name="aboutIcon">关于</string>
-    <string name="shareIcon">分享天气</string>
+    <string name="shareIcon">分享APP</string>
     <string name="know">我知道了</string>
 
     <!--  weather  -->

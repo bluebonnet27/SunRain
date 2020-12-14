@@ -25,4 +25,9 @@
         <item name="android:colorControlNormal">@color/white</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="circleImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

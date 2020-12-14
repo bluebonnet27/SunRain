@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SunRain">
-        <activity
-            android:name=".CovidSpecial"></activity>
+        <activity android:name=".ui.about.AboutActivity"></activity>
+        <activity android:name=".CovidSpecial" />
         <activity android:name=".ui.weather.WeatherActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <meta-data android:name="android.app.shortcuts"
+            <meta-data
+                android:name="android.app.shortcuts"
                 android:resource="@xml/launch_shortcuts" />
         </activity>
     </application>

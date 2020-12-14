@@ -20,7 +20,6 @@ import androidx.core.view.marginTop
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.github.matteobattilana.weather.PrecipType
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -31,6 +30,7 @@ import com.ti.sunrain.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.*
+import com.ti.sunrain.ui.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
@@ -97,7 +97,7 @@ class WeatherActivity : AppCompatActivity() {
             swipeRefresh.isRefreshing = false
         })
 
-        swipeRefresh.setColorSchemeResources(R.color.light_blue_darken_4)
+        swipeRefresh.setColorSchemeResources(R.color.light_blue_darken_2)
         refreshWeather()
         swipeRefresh.setOnRefreshListener {
             Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
@@ -115,8 +115,21 @@ class WeatherActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
-            R.id.aboutIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
-            R.id.shareIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+            R.id.aboutIcon -> {
+                val intent = Intent(this,AboutActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.shareIcon -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "我正在使用晴雨，这个APP很好用，可以看天气预报，\n" +
+                            "它的下载地址是：https://bluebonnet27.gitee.io/")
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, "把下载网址发给")
+                startActivity(shareIntent)
+            }
         }
         return true
     }

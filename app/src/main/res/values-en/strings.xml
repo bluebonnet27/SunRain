@@ -30,7 +30,7 @@
     <!--  menu  -->
     <string name="settingsIcon">Settings</string>
     <string name="aboutIcon">About</string>
-    <string name="shareIcon">Share weather</string>
+    <string name="shareIcon">Share me</string>
 
     <!--  weather  -->
     <string name="clear_day">clear day</string>

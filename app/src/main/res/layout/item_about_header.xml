@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/aboutHeader"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iconImageAbout"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_launcher_sp"
+        app:shapeAppearance="@style/circleImageStyle"/>
+    
+    <TextView
+        android:id="@+id/nameTitleAbout"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/iconImageAbout"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="晴雨：一个开源的 Android 天气预报APP"/>
+
+    <TextView
+        android:id="@+id/versionTitleAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/nameTitleAbout"
+        android:text="Version"/>
+
+</RelativeLayout>

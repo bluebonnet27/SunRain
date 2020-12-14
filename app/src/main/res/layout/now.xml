@@ -8,12 +8,6 @@
     android:orientation="vertical">
     <!--  no title  -->
 
-    <com.github.matteobattilana.weather.WeatherView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:id="@+id/weatherAnimation"
-        app:orientationMode="ENABLE"/>
-
     <LinearLayout
         android:id="@+id/informationOfDay"
         android:layout_width="wrap_content"

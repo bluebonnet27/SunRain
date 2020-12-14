@@ -53,7 +53,7 @@ dependencies {
     //chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //weather animation
-    implementation 'com.github.MatteoBattilana:WeatherView:3.0.0'
+    //implementation 'com.github.MatteoBattilana:WeatherView:3.0.0'
     // develop end
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
