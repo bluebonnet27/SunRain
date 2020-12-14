@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.ti.sunrain.logic.Repository
-import com.ti.sunrain.logic.model.Location
+import com.ti.sunrain.logic.model.PlaceResponse.Location
 
 /**
  * @author: tihon
@@ -25,8 +25,11 @@ class WeatherViewModel:ViewModel() {
         Repository.refreshWeather(location.lng,location.lat)
     }
 
+    /**
+     * 刷新天气，在viewmodel层
+     */
     fun refreshWeather(lng:String,lat:String){
-        locationLiveData.value=com.ti.sunrain.logic.model.Location(lng, lat)
+        locationLiveData.value=com.ti.sunrain.logic.model.PlaceResponse.Location(lng, lat)
     }
 
     /**

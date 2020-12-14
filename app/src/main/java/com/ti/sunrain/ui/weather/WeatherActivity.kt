@@ -44,6 +44,8 @@ import kotlin.collections.ArrayList
 
 class WeatherActivity : AppCompatActivity() {
 
+    //2020-12-14 重构代码，UI层优于逻辑层，重写函数优于自定义函数
+    //懒加载 viewmodel
     val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +96,7 @@ class WeatherActivity : AppCompatActivity() {
             }
             swipeRefresh.isRefreshing = false
         })
+
         swipeRefresh.setColorSchemeResources(R.color.light_blue_darken_4)
         refreshWeather()
         swipeRefresh.setOnRefreshListener {
@@ -101,6 +104,26 @@ class WeatherActivity : AppCompatActivity() {
             refreshWeather()
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+
+            R.id.COVIDExplorer ->{
+                val intent = Intent(this,CovidSpecial::class.java)
+                startActivity(intent)
+            }
+            R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+            R.id.aboutIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+            R.id.shareIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+        }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu,menu)
+        return true
     }
 
     /**
@@ -111,6 +134,9 @@ class WeatherActivity : AppCompatActivity() {
         swipeRefresh.isRefreshing = true
     }
 
+    /**
+     * 主要的刷新天气函数
+     */
     private fun showWeatherInfo(weather: Weather){
 
         //获取ViewModel中的数据,以及toolbar数据填充
@@ -123,7 +149,7 @@ class WeatherActivity : AppCompatActivity() {
 
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
-        weatherToolBar.subtitle = "${serverTimeText} 刷新"
+        weatherToolBar.subtitle = "$serverTimeText 刷新"
 
         //now.xml数据注入
         val currentTempText = "${realtime.temperature.toInt()}°"
@@ -133,7 +159,7 @@ class WeatherActivity : AppCompatActivity() {
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = currentAQIDescInfor
-        //nowLayout.setBackgroundResource(getSky(realtime.skycon).bg)
+        drawerLayout.setBackgroundResource(getSky(realtime.skycon).bg)
 
         //forecast.xml数据注入
         forecastLayout.removeAllViews()
@@ -194,17 +220,7 @@ class WeatherActivity : AppCompatActivity() {
         xAxis.setDrawAxisLine(false)
         xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
 
-        class MyXAxisFormatter : ValueFormatter() {
-            private val daysMe = arrayOf("Today","Tomorrow","3","4","5")
-            override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                return daysMe.getOrNull(value.toInt()) ?: value.toString()
-            }
-        }
-        
-        xAxis.valueFormatter = MyXAxisFormatter()
-
         temperatureChart.data = dataTemp
-
 
         //wind.xml
         windIconInfo.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
@@ -222,7 +238,7 @@ class WeatherActivity : AppCompatActivity() {
         carWashingText.text = lifeIndex.carWashing[0].desc
         weatherLayout.visibility = View.VISIBLE
 
-        //air.xml 数据注入
+        //air.xml 数列写入数据
         val aq = realtime.airQuality
         pm25Num.text = "${aq.pm25} μg/m3"
         pm10Num.text = "${aq.pm10} μg/m3"
@@ -235,15 +251,14 @@ class WeatherActivity : AppCompatActivity() {
         val dirtyData = ArrayList<PieEntry>()
         dirtyData.add(PieEntry(aq.aqi.chn,""))
         dirtyData.add(PieEntry(600-aq.aqi.chn,""))
-
         val dirtyDataSet = PieDataSet(dirtyData,"")
+
+        //air.xml 美化
         dirtyDataSet.setColors(Color.parseColor(viewModel.getAQIColor(aq.aqi.chn.toInt())),
                                 Color.parseColor("#eeeeee"))
         dirtyDataSet.valueTextSize = 0f
-
         airPie.holeRadius = 90f
         airPie.description.isEnabled = false
-
         airPie.transparentCircleRadius = 0f
         airPie.centerText = "AQI:${aq.aqi.chn},${realtime.airQuality.description.chn}"
         airPie.setCenterTextSize(20f)
@@ -257,35 +272,14 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         airPie.animateXY(4000,4000)
-
         airPie.legend.isEnabled = false
 
         val dirtyDataUse = PieData(dirtyDataSet)
         airPie.data = dirtyDataUse
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
-
-            R.id.COVIDExplorer ->{
-                val intent = Intent(this,CovidSpecial::class.java)
-                startActivity(intent)
-            }
-            R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
-            R.id.aboutIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
-            R.id.shareIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
-        }
-        return true
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu,menu)
-        return true
-    }
-
     /**
-     * Judge is dark theme or not
+     * 判断是否是深色模式
      */
     private fun isDarkTheme(context:Context):Boolean{
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK

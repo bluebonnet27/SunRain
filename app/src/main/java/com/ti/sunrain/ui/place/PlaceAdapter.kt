@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.ti.sunrain.R
-import com.ti.sunrain.logic.model.Place
+import com.ti.sunrain.logic.model.PlaceResponse.Place
 import com.ti.sunrain.ui.weather.WeatherActivity
 import kotlinx.android.synthetic.main.activity_weather.*
 

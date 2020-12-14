@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.ti.sunrain.logic.Repository
-import com.ti.sunrain.logic.model.Place
+import com.ti.sunrain.logic.model.PlaceResponse.Place
 
 /**
  * @author: tihon

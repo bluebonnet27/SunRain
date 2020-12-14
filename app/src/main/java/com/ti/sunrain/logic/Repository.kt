@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import com.ti.sunrain.SunRainApplication.Companion.context
 import com.ti.sunrain.logic.dao.PlaceDao
 import com.ti.sunrain.logic.dao.WeatherDao
-import com.ti.sunrain.logic.model.Place
+import com.ti.sunrain.logic.model.PlaceResponse.Place
 import com.ti.sunrain.logic.model.Weather
 import com.ti.sunrain.logic.network.SunRainNetWork
 import kotlinx.coroutines.Dispatchers

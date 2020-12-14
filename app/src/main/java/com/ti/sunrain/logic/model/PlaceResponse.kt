@@ -32,15 +32,16 @@ import java.time.temporal.TemporalQuery
 /**
  * 应答地点类
  */
-data class PlaceResponse(val status:String,val places : List<Place>)
+data class PlaceResponse(val status:String,val places : List<Place>){
 
-/**
- * 名称，定位类，具体地址名字
- */
-data class Place(val name:String,val location: Location,
-            @SerializedName("formatted_address") val address:String)
+    /**
+     * 名称，定位类，具体地址名字
+     */
+    data class Place(val name:String,val location: Location,
+                     @SerializedName("formatted_address") val address:String)
 
-/**
- * 经度，纬度
- */
-data class Location(val lng:String,val lat:String)
+    /**
+     * 经度，纬度
+     */
+    data class Location(val lng:String,val lat:String)
+}
