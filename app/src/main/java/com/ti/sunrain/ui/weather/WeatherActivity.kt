@@ -228,7 +228,7 @@ class WeatherActivity : AppCompatActivity() {
         windSpeedInfo.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
 
         //animation
-        weatherAnimation.setWeatherData(PrecipType.SNOW)
+        //weatherAnimation.setWeatherData(PrecipType.SNOW)
 
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
