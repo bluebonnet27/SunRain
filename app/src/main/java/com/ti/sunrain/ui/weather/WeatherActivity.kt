@@ -3,7 +3,6 @@ package com.ti.sunrain.ui.weather
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,14 +15,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.marginTop
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.CovidSpecial
@@ -37,7 +33,6 @@ import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.forecast_chart.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
-import kotlinx.android.synthetic.main.wind.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -171,8 +166,11 @@ class WeatherActivity : AppCompatActivity() {
         val currentPM25Text = "空气指数${realtime.airQuality.aqi.chn.toInt()}"
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
-        currentAQIDesc.text = currentAQIDescInfor
+        currentAQIDesc.text = " "+currentAQIDescInfor
         drawerLayout.setBackgroundResource(getSky(realtime.skycon).bg)
+        nowWindIcon.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
+        windDirection.text = "${getWindDirection(windReturn.direction)}风"
+        windLevel.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
 
         //forecast.xml数据注入
         forecastLayout.removeAllViews()
@@ -235,11 +233,6 @@ class WeatherActivity : AppCompatActivity() {
 
         temperatureChart.data = dataTemp
 
-        //wind.xml
-        windIconInfo.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
-        windDirectionInfo.text = "${getWindDirection(windReturn.direction)}风"
-        windSpeedInfo.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
-
         //animation
         //weatherAnimation.setWeatherData(PrecipType.SNOW)
 
@@ -273,8 +266,8 @@ class WeatherActivity : AppCompatActivity() {
         airPie.holeRadius = 90f
         airPie.description.isEnabled = false
         airPie.transparentCircleRadius = 0f
-        airPie.centerText = "AQI:${aq.aqi.chn},${realtime.airQuality.description.chn}"
-        airPie.setCenterTextSize(20f)
+        airPie.centerText = "AQI:${aq.aqi.chn.toInt()}\n${realtime.airQuality.description.chn}"
+        airPie.setCenterTextSize(18f)
 
         if(isDarkTheme(SunRainApplication.context)){
             airPie.setCenterTextColor(Color.WHITE)

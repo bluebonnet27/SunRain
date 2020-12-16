@@ -52,8 +52,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     //chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    //weather animation
-    //implementation 'com.github.MatteoBattilana:WeatherView:3.0.0'
+    // BRVAH
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     // develop end
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

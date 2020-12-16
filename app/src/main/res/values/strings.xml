@@ -71,4 +71,9 @@
 
     <!--  introduction of weather information producer  -->
     <string name="caiyun">天气数据由彩云天气提供</string>
+
+    <!--  About Page  -->
+    <string name="githubAbout">Github</string>
+    <string name="aboutAbout">关于</string>
+    <string name="APPIntroductionAbout">晴雨：一个开源的 Android 天气预报 APP</string>
 </resources>

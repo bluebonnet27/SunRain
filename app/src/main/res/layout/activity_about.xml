@@ -25,22 +25,181 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:scrollbars="none"
-        android:overScrollMode="never">
-
+        android:layout_marginTop="80dp">
+        
         <LinearLayout
+            android:id="@+id/parentLiner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_height="match_parent">
 
             <include layout="@layout/item_about_header"/>
 
-            <include layout="@layout/item_about_contact"/>
+            <TextView
+                style="@style/about_item_head"
+                android:text="反馈"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/emailMeAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/baseline_email_black_24dp"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="发邮件反馈"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/githubIssuesAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/ic_github_black"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="在 Github 上提 issues"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/about_item_head"
+                android:text="捐赠"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/alipayAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/ic_alipay_black"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="支付宝"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/wechatPayAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/ic_wechat_black"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="微信"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/about_item_head"
+                android:text="图标素材来源"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/icons8About"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/ic_icons8"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="icons8 (https://icons8.com/)"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/about_item_head"
+                android:text="天气数据来源"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/caiyunAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/caiyun"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="彩云天气(http://caiyunapp.com/)"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/about_item_head"
+                android:text="开源感谢"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
         </LinearLayout>
-    </ScrollView>
+        
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

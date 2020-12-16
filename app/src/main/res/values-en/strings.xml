@@ -71,4 +71,9 @@
     <!--  introduction of weather information producer  -->
     <string name="caiyun">The weather data is from caiyunapp.com</string>
     <string name="know">know</string>
+
+    <!--  About Page  -->
+    <string name="githubAbout">Github</string>
+    <string name="aboutAbout">About</string>
+    <string name="APPIntroductionAbout">SunRain:an open source Android weather forecast application</string>
 </resources>

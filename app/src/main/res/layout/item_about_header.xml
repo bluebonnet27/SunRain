@@ -13,6 +13,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:src="@drawable/ic_launcher_sp"
+        android:focusable="true"
+        android:clickable="true"
         app:shapeAppearance="@style/circleImageStyle"/>
     
     <TextView
@@ -22,8 +24,8 @@
         android:layout_marginTop="24dp"
         android:layout_below="@+id/iconImageAbout"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="晴雨：一个开源的 Android 天气预报APP"/>
+        android:textSize="15sp"
+        android:text="@string/APPIntroductionAbout"/>
 
     <TextView
         android:id="@+id/versionTitleAbout"
@@ -31,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/nameTitleAbout"
-        android:text="Version"/>
+        android:layout_below="@+id/nameTitleAbout"/>
 
 </RelativeLayout>
