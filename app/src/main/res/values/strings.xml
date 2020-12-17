@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">晴雨</string>
 
+    <!--  confirm  -->
+    <string name="ok">我知道了</string>
+
     <!--  places  -->
     <string name="search_hint">输入你想要查询天气的城市</string>
     <string name="search_blank_intro">这里什么也没有哇！</string>

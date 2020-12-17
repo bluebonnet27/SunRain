@@ -1,6 +1,7 @@
 package com.ti.sunrain.ui.about
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -31,7 +32,7 @@ class AboutActivity : AppCompatActivity() {
         }
 
         iconImageAbout.setOnClickListener {
-            Toast.makeText(this, getRandomTextForEgg(), Toast.LENGTH_SHORT).show()
+            getRandomForEgg(this)
         }
 
         versionTitleAbout.text = "V" + BuildConfig.VERSION_NAME
@@ -58,6 +59,18 @@ class AboutActivity : AppCompatActivity() {
         alipayAbout.setOnClickListener {
             openAliPay(this)
         }
+
+        icons8About.setOnClickListener {
+            val icons8Intent = Intent(Intent.ACTION_VIEW)
+            icons8Intent.data = Uri.parse("https://icons8.com/")
+            startActivity(icons8Intent)
+        }
+
+        caiyunAbout.setOnClickListener {
+            val caiyunIntent = Intent(Intent.ACTION_VIEW)
+            caiyunIntent.data = Uri.parse("http://caiyunapp.com/")
+            startActivity(caiyunIntent)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,10 +80,13 @@ class AboutActivity : AppCompatActivity() {
         return true
     }
 
-    private fun getRandomTextForEgg():String{
-        return when((0..99).random()){
-            0 -> "1745435713"
-            else -> "别点了，没有彩蛋的"
+    private fun getRandomForEgg(activity: Activity){
+        when((0..99).random()){
+            0 -> AlertDialog.Builder(activity)
+                .setMessage("我是一份涩图")
+                .setPositiveButton(activity.getString(R.string.ok),null)
+                .show()
+            else -> Toast.makeText(activity, "别点了，没有彩蛋的", Toast.LENGTH_SHORT).show()
         }
     }
 

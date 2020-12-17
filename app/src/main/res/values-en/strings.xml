@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">SunRain</string>
 
+    <!--  confirm  -->
+    <string name="ok">OK</string>
+
     <!--  places  -->
     <string name="search_hint">Input the city you want to search for weather…</string>
     <string name="search_blank_intro">SORRY! There is nothing here.</string>
