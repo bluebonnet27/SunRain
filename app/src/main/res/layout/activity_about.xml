@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="80dp">
-        
+
         <LinearLayout
             android:id="@+id/parentLiner"
             android:layout_width="match_parent"
@@ -195,11 +195,54 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <RelativeLayout
+                    android:id="@+id/retrofitAbout"
+                    android:layout_marginBottom="5dp"
+                    style="@style/about_item">
 
+                    <TextView
+                        style="@style/string_text_left_head"
+                        android:text="square/retrofit"/>
+
+                    <TextView
+                        style="@style/string_text_left_context"
+                        android:text="Apache-2.0 License"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/mPAndroidChartAbout"
+                    android:layout_marginBottom="5dp"
+                    style="@style/about_item">
+
+                    <TextView
+                        style="@style/string_text_left_head"
+                        android:text="PhilJay/MPAndroidChart"/>
+
+                    <TextView
+                        style="@style/string_text_left_context"
+                        android:text="Apache-2.0 License"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/brvahAbout"
+                    android:layout_marginBottom="5dp"
+                    style="@style/about_item">
+
+                    <TextView
+                        style="@style/string_text_left_head"
+                        android:text="CymChad/BaseRecyclerViewAdapterHelper"/>
+
+                    <TextView
+                        style="@style/string_text_left_context"
+                        android:text="MIT License"/>
+
+                </RelativeLayout>
             </LinearLayout>
 
         </LinearLayout>
-        
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

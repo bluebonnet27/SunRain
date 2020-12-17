@@ -79,4 +79,7 @@
     <string name="githubAbout">Github</string>
     <string name="aboutAbout">About</string>
     <string name="APPIntroductionAbout">SunRain:an open source Android weather forecast application</string>
+
+    <!--  open source  -->
+    <string name="apache_2">Apache-2.0 License</string>
 </resources>

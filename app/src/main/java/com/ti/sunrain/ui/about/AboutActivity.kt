@@ -7,8 +7,11 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
@@ -18,9 +21,13 @@ import kotlinx.android.synthetic.main.item_about_header.*
 import java.net.URISyntaxException
 
 class AboutActivity : AppCompatActivity() {
+
+    lateinit var viewModel: AboutViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
+        viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
 
         setSupportActionBar(aboutToolbar)
         supportActionBar?.let {
@@ -58,6 +65,15 @@ class AboutActivity : AppCompatActivity() {
             openAliPay(this)
         }
 
+        wechatPayAbout.setOnClickListener {
+            val wechatqrview = ImageView(this)
+            wechatqrview.setImageResource(R.drawable.wechatqrcode)
+            AlertDialog.Builder(this)
+                .setTitle("请截图扫描")
+                .setView(wechatqrview)
+                .show()
+        }
+
         icons8About.setOnClickListener {
             val icons8Intent = Intent(Intent.ACTION_VIEW)
             icons8Intent.data = Uri.parse("https://icons8.com/")
@@ -68,6 +84,24 @@ class AboutActivity : AppCompatActivity() {
             val caiyunIntent = Intent(Intent.ACTION_VIEW)
             caiyunIntent.data = Uri.parse("http://caiyunapp.com/")
             startActivity(caiyunIntent)
+        }
+
+        retrofitAbout.setOnClickListener {
+            val retrofitIntent = Intent(Intent.ACTION_VIEW)
+            retrofitIntent.data = Uri.parse("https://github.com/square/retrofit")
+            startActivity(retrofitIntent)
+        }
+
+        mPAndroidChartAbout.setOnClickListener {
+            val mpAndroidChartIntent = Intent(Intent.ACTION_VIEW)
+            mpAndroidChartIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
+            startActivity(mpAndroidChartIntent)
+        }
+
+        brvahAbout.setOnClickListener {
+            val brvahIntent = Intent(Intent.ACTION_VIEW)
+            brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
+            startActivity(brvahIntent)
         }
     }
 
