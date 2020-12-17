@@ -1,7 +1,6 @@
 package com.ti.sunrain.logic.model
 
 import com.google.gson.annotations.SerializedName
-import java.time.temporal.TemporalQuery
 
 /**
  * @author: tihon

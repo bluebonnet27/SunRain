@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="这里空空如也"
+        android:text="@string/search_blank_intro"
         android:textSize="20sp"/>
 
     <com.google.android.material.textfield.TextInputLayout

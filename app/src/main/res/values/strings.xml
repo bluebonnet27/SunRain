@@ -6,7 +6,7 @@
 
     <!--  places  -->
     <string name="search_hint">输入你想要查询天气的城市</string>
-    <string name="search_blank_intro">这里什么也没有哇！</string>
+    <string name="search_blank_intro">这里空空如也</string>
 
     <!--  Forecast  -->
     <string name="forecast_info">预报</string>

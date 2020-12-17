@@ -5,19 +5,17 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import kotlinx.android.synthetic.main.activity_about.*
-import kotlinx.android.synthetic.main.item_about_contact.*
 import kotlinx.android.synthetic.main.item_about_header.*
 import java.net.URISyntaxException
-import kotlin.random.Random
 
 class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +92,7 @@ class AboutActivity : AppCompatActivity() {
         val url = "intent://platformapi/startapp?saId=10000007&" +
                 "clientVersion=3.7.0.0718&qrcode=https%3A%2F%2Fqr.alipay.com%2Ffkx11810qxcirwaicgedwc6%3F_s" +
                 "%3Dweb-other&_t=1472443966571#Intent;" +
-                "scheme=alipayqr;package=com.eg.android.AlipayGphone;end";
+                "scheme=alipayqr;package=com.eg.android.AlipayGphone;end"
         Toast.makeText(SunRainApplication.context, "感谢您的捐赠！", Toast.LENGTH_SHORT).show()
         if(hasInstalledAlipayClient()){
             try {

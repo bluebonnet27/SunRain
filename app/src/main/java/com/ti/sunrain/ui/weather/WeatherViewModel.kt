@@ -29,7 +29,7 @@ class WeatherViewModel:ViewModel() {
      * 刷新天气，在viewmodel层
      */
     fun refreshWeather(lng:String,lat:String){
-        locationLiveData.value=com.ti.sunrain.logic.model.PlaceResponse.Location(lng, lat)
+        locationLiveData.value=Location(lng, lat)
     }
 
     /**

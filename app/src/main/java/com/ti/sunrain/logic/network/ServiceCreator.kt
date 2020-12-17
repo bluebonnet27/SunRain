@@ -2,7 +2,6 @@ package com.ti.sunrain.logic.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 /**
  * @author: tihon

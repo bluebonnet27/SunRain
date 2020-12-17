@@ -166,11 +166,11 @@ class WeatherActivity : AppCompatActivity() {
         val currentPM25Text = "空气指数${realtime.airQuality.aqi.chn.toInt()}"
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
-        currentAQIDesc.text = " "+currentAQIDescInfor
+        currentAQIDesc.text = " $currentAQIDescInfor"
         drawerLayout.setBackgroundResource(getSky(realtime.skycon).bg)
         nowWindIcon.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
         windDirection.text = "${getWindDirection(windReturn.direction)}风"
-        windLevel.text = "风力${getWindSpeed(windReturn.speed).toString()}级"
+        windLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
 
         //forecast.xml数据注入
         forecastLayout.removeAllViews()

@@ -2,7 +2,6 @@ package com.ti.sunrain.logic
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.ti.sunrain.SunRainApplication.Companion.context
 import com.ti.sunrain.logic.dao.PlaceDao
 import com.ti.sunrain.logic.dao.WeatherDao
 import com.ti.sunrain.logic.model.PlaceResponse.Place
@@ -11,9 +10,7 @@ import com.ti.sunrain.logic.network.SunRainNetWork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import java.lang.RuntimeException
 import kotlin.coroutines.CoroutineContext
-import kotlin.math.ln
 
 /**
  * @author: tihon
