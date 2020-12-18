@@ -36,6 +36,7 @@
     <string name="shareIcon">Share me</string>
 
     <!--  weather  -->
+    <string name="airIndex">Air Index</string>
     <string name="clear_day">clear day</string>
     <string name="cloudy">partly cloudy</string>
     <string name="overcast">overcast</string>
@@ -78,8 +79,23 @@
     <!--  About Page  -->
     <string name="githubAbout">Github</string>
     <string name="aboutAbout">About</string>
-    <string name="APPIntroductionAbout">SunRain:an open source Android weather forecast application</string>
+    <string name="APPIntroductionAbout">SunRain</string>
 
     <!--  open source  -->
     <string name="apache_2">Apache-2.0 License</string>
+    <string name="mit">MIT License</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="emailFeedback">Email me</string>
+    <string name="githubFeedback">Post Issues on GitHub</string>
+
+    <string name="donation">Donation</string>
+    <string name="aliPay">AliPay</string>
+    <string name="wechatPay">Wechat Pay</string>
+
+    <string name="Source_of_icons">Source of icons</string>
+
+    <string name="source_of_weather">Source of weather information</string>
+
+    <string name="opensourceThanks">Open source Thanks</string>
 </resources>

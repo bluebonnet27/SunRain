@@ -2,12 +2,14 @@
     <!-- Base application theme. -->
     <style name="Theme.SunRain" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/amber_darken_2</item>
-        <item name="colorPrimaryVariant">@color/amber_darken_4</item>
+        <!--    12.18 重构APP颜色，日间模式以MD的橙色为主色调，副色为黄色；
+        夜间模式以蓝色为主色调，副色为浅蓝色    -->
+        <item name="colorPrimary">@color/orange500</item>
+        <item name="colorPrimaryVariant">@color/orange700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/light_blue_darken_2</item>
-        <item name="colorSecondaryVariant">@color/light_blue_darken_4</item>
+        <item name="colorSecondary">@color/blue200</item>
+        <item name="colorSecondaryVariant">@color/blue700</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <item name="android:windowTranslucentNavigation">true</item>

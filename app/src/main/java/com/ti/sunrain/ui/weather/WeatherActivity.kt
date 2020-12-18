@@ -27,6 +27,7 @@ import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.ui.about.AboutActivity
+import com.ti.sunrain.ui.daily.DailyinforActivity
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
@@ -92,7 +93,7 @@ class WeatherActivity : AppCompatActivity() {
             swipeRefresh.isRefreshing = false
         })
 
-        swipeRefresh.setColorSchemeResources(R.color.light_blue_darken_2)
+        swipeRefresh.setColorSchemeResources(R.color.blue500)
         refreshWeather()
         swipeRefresh.setOnRefreshListener {
             Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
@@ -163,7 +164,7 @@ class WeatherActivity : AppCompatActivity() {
         val currentTempText = "${realtime.temperature.toInt()}°"
         currentTemperature.text = currentTempText
         currentSky.text = getSky(realtime.skycon).info
-        val currentPM25Text = "空气指数${realtime.airQuality.aqi.chn.toInt()}"
+        val currentPM25Text = resources.getString(R.string.airIndex)+" ${realtime.airQuality.aqi.chn.toInt()}"
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
@@ -192,7 +193,8 @@ class WeatherActivity : AppCompatActivity() {
             val temperatureInfo = view.findViewById<TextView>(R.id.temperatureInfo)
 
             val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
-            dateInfo.text = simpleDateFormat.format(skycon.date)
+            val dateInfoText = simpleDateFormat.format(skycon.date)
+            dateInfo.text = dateInfoText
 
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.weather_icon)
@@ -203,6 +205,13 @@ class WeatherActivity : AppCompatActivity() {
 
             val tempText = "${temperature.min.toInt()}~${temperature.max.toInt()}℃"
             temperatureInfo.text = tempText
+
+            view.setOnClickListener {
+                val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
+                dailyInfoIntent.putExtra("date_information",dateInfoText)
+                dailyInfoIntent.putExtra("temp_information",tempText)
+                startActivity(dailyInfoIntent)
+            }
 
             forecastLayout.addView(view)
         }

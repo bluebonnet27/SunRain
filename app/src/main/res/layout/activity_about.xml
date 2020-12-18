@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="25dp"
-            app:title="关于"
+            app:title="@string/aboutIcon"
             app:titleTextColor="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -40,7 +40,7 @@
 
             <TextView
                 style="@style/about_item_head"
-                android:text="反馈"/>
+                android:text="@string/feedback"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,6 +52,7 @@
                     style="@style/about_item">
 
                     <ImageView
+                        android:id="@+id/emailIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginStart="16dp"
@@ -61,7 +62,7 @@
 
                     <TextView
                         style="@style/setting_text_left"
-                        android:text="发邮件反馈"/>
+                        android:text="@string/emailFeedback"/>
 
                 </RelativeLayout>
 
@@ -70,6 +71,7 @@
                     style="@style/about_item">
 
                     <ImageView
+                        android:id="@+id/githubIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginStart="16dp"
@@ -79,7 +81,7 @@
 
                     <TextView
                         style="@style/setting_text_left"
-                        android:text="在 Github 上提 issues"/>
+                        android:text="@string/githubFeedback"/>
 
                 </RelativeLayout>
 
@@ -87,7 +89,7 @@
 
             <TextView
                 style="@style/about_item_head"
-                android:text="捐赠"/>
+                android:text="@string/donation"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,6 +101,7 @@
                     style="@style/about_item">
 
                     <ImageView
+                        android:id="@+id/alipayIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginStart="16dp"
@@ -108,7 +111,7 @@
 
                     <TextView
                         style="@style/setting_text_left"
-                        android:text="支付宝"/>
+                        android:text="@string/aliPay"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -116,6 +119,7 @@
                     style="@style/about_item">
 
                     <ImageView
+                        android:id="@+id/wechatIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginStart="16dp"
@@ -125,14 +129,14 @@
 
                     <TextView
                         style="@style/setting_text_left"
-                        android:text="微信"/>
+                        android:text="@string/wechatPay"/>
                 </RelativeLayout>
 
             </LinearLayout>
 
             <TextView
                 style="@style/about_item_head"
-                android:text="图标素材来源"/>
+                android:text="@string/Source_of_icons"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -160,7 +164,7 @@
 
             <TextView
                 style="@style/about_item_head"
-                android:text="天气数据来源"/>
+                android:text="@string/source_of_weather"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -181,14 +185,14 @@
 
                     <TextView
                         style="@style/setting_text_left"
-                        android:text="彩云天气(http://caiyunapp.com/)"/>
+                        android:text="彩云天气 (http://caiyunapp.com/)"/>
 
                 </RelativeLayout>
             </LinearLayout>
 
             <TextView
                 style="@style/about_item_head"
-                android:text="开源感谢"/>
+                android:text="@string/opensourceThanks"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -221,7 +225,7 @@
 
                     <TextView
                         style="@style/string_text_left_context"
-                        android:text="Apache-2.0 License"/>
+                        android:text="@string/apache_2"/>
 
                 </RelativeLayout>
 
@@ -236,7 +240,7 @@
 
                     <TextView
                         style="@style/string_text_left_context"
-                        android:text="MIT License"/>
+                        android:text="@string/mit"/>
 
                 </RelativeLayout>
             </LinearLayout>

@@ -2,8 +2,10 @@ package com.ti.sunrain.ui.about
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
@@ -28,6 +30,13 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
+
+        if(isDarkTheme(this)){
+            emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
+            githubIcon.setImageResource(R.drawable.ic_github_white)
+            wechatIcon.setImageResource(R.drawable.ic_wechat_white)
+            alipayIcon.setImageResource(R.drawable.ic_alipay_white)
+        }
 
         setSupportActionBar(aboutToolbar)
         supportActionBar?.let {
@@ -151,5 +160,10 @@ class AboutActivity : AppCompatActivity() {
             e.printStackTrace()
             false
         }
+    }
+
+    private fun isDarkTheme(context: Context):Boolean{
+        val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return flag == Configuration.UI_MODE_NIGHT_YES
     }
 }

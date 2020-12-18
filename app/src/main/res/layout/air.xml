@@ -59,7 +59,7 @@
                         android:id="@+id/pm25Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_blue_darken_4"/>
+                        android:textColor="?android:attr/colorPrimary"/>
                 </LinearLayout>
 
                 <!-- pm10 单项，同级别以此类推 -->
@@ -79,7 +79,7 @@
                         android:id="@+id/pm10Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_blue_darken_4"/>
+                        android:textColor="?android:attr/colorPrimary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -98,7 +98,7 @@
                         android:id="@+id/o3Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_blue_darken_4"/>
+                        android:textColor="?android:attr/colorPrimary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,7 +117,7 @@
                         android:id="@+id/no2Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_blue_darken_4"/>
+                        android:textColor="?android:attr/colorPrimary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -136,7 +136,7 @@
                         android:id="@+id/so2Num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_blue_darken_4"/>
+                        android:textColor="?android:attr/colorPrimary"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -155,7 +155,7 @@
                         android:id="@+id/coNum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_blue_darken_4"/>
+                        android:textColor="?android:attr/colorPrimary"/>
                 </LinearLayout>
 
         </LinearLayout>

@@ -9,14 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- My Own Colors from materialize  -->
-    <color name="light_blue">#03a9f4</color>
-    <color name="light_blue_darken_2">#0288d1</color>
-    <color name="light_blue_darken_4">#01579b</color>
-
-    <color name="amber">#ffc107</color>
-    <color name="amber_darken_2">#ffa000</color>
-    <color name="amber_darken_4">#ff6f00</color>
-    
     <color name="grey_darken_3">#424242</color>
     <color name="grey_darken_2">#616161</color>
     <color name="grey_darken_1">#757575</color>
@@ -24,4 +16,24 @@
     <color name="brown_darken_1">#6d4c41</color>
     <color name="brown_darken_2">#5d4037</color>
     <color name="brown_darken_3">#4d342e</color>
+
+    <!--  12.18 后更新的配色  -->
+    <color name="orange200">#ffcc80</color>
+    <color name="orange400">#ffa726</color>
+    <color name="orange500">#ff9800</color>
+    <color name="orange600">#fb8c00</color>
+    <color name="orange700">#f57c00</color>
+
+    <color name="yellow400">#ffee58</color>
+    <color name="yellow500">#ffeb3b</color>
+    <color name="yellow600">#fdd835</color>
+    <color name="yellow700">#fbc02d</color>
+
+    <color name="blue200">#90caf9</color>
+    <color name="blue500">#2196f3</color>
+    <color name="blue700">#1976d2</color>
+
+    <color name="brown200">#bcaaa4</color>
+    <color name="brown500">#795548</color>
+    <color name="brown700">#5d4037</color>
 </resources>

@@ -37,6 +37,7 @@
     <string name="know">我知道了</string>
 
     <!--  weather  -->
+    <string name="airIndex">空气指数</string>
     <string name="clear_day">晴</string>
     <string name="cloudy">多云</string>
     <string name="overcast">阴</string>
@@ -82,4 +83,19 @@
 
     <!--  open source  -->
     <string name="apache_2">Apache-2.0 License</string>
+    <string name="mit">MIT License</string>
+
+    <string name="feedback">反馈</string>
+    <string name="emailFeedback">发邮件反馈</string>
+    <string name="githubFeedback">在 GitHub 上提 Issues</string>
+
+    <string name="donation">捐赠</string>
+    <string name="aliPay">支付宝</string>
+    <string name="wechatPay">微信支付</string>
+
+    <string name="Source_of_icons">图标来源</string>
+
+    <string name="source_of_weather">天气数据来源</string>
+
+    <string name="opensourceThanks">开源感谢</string>
 </resources>
