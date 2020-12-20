@@ -8,8 +8,24 @@
     <string name="search_hint">Input the city you want to search for weather…</string>
     <string name="search_blank_intro">SORRY! There is nothing here.</string>
 
+    <!--  hourly  -->
+    <string name="hourly_data">Hourly data</string>
+
     <!--  Forecast  -->
     <string name="forecast_info">Forecast</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="day_after_tomorrow">Day after tomorrow</string>
+    <string name="day_2after_tomorrow">3 days later</string>
+    <string name="day_3after_tomorrow">4 days later</string>
+
+    <string name="max_temp">Max</string>
+    <string name="min_temp">Min</string>
+
+    <string name="springSeason">Spring</string>
+    <string name="summerSeason">Summer</string>
+    <string name="autumnSeason">Autumn</string>
+    <string name="winterSeason">Winter</string>
 
     <!-- Life Index   -->
     <string name="lifeIndex">Life Index</string>

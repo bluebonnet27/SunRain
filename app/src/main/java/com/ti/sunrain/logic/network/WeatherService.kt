@@ -2,6 +2,7 @@ package com.ti.sunrain.logic.network
 
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.DailyResponse
+import com.ti.sunrain.logic.model.HourlyResponse
 import com.ti.sunrain.logic.model.RealtimeResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -26,4 +27,11 @@ interface WeatherService {
     @GET("v2.5/${SunRainApplication.TOKEN}/{lng},{lat}/daily.json")
     fun getDailyWeather(@Path("lng")lng:String,
                         @Path("lat")lat:String):Call<DailyResponse>
+
+    /**
+     * 小时预报接口,返回HourlyResponse，来自logic.model
+     */
+    @GET("v2.5/${SunRainApplication.TOKEN}/{lng},{lat}/hourly.json")
+    fun getHourlyWeather(@Path("lng")lng:String,
+                         @Path("lat")lat:String):Call<HourlyResponse>
 }

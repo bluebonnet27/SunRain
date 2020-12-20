@@ -50,6 +50,8 @@
 
                     <include layout="@layout/forecast_chart"/>
 
+                    <include layout="@layout/hourly"/>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

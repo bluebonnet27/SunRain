@@ -18,10 +18,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import com.ti.sunrain.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
@@ -32,6 +35,7 @@ import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.forecast_chart.*
+import kotlinx.android.synthetic.main.hourly.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
@@ -155,6 +159,7 @@ class WeatherActivity : AppCompatActivity() {
         val daily = weather.daily
         val responseForRealtime = weather.realtimeResponse
         val windReturn = weather.wind
+        val hourlyReturn = weather.hourly
 
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
@@ -192,9 +197,7 @@ class WeatherActivity : AppCompatActivity() {
             val skyInfo = view.findViewById(R.id.skyInfo) as TextView
             val temperatureInfo = view.findViewById<TextView>(R.id.temperatureInfo)
 
-            val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
-            val dateInfoText = simpleDateFormat.format(skycon.date)
-            dateInfo.text = dateInfoText
+            dateInfo.text = getDayDesc(i)
 
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.weather_icon)
@@ -208,8 +211,8 @@ class WeatherActivity : AppCompatActivity() {
 
             view.setOnClickListener {
                 val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
-                dailyInfoIntent.putExtra("date_information",dateInfoText)
-                dailyInfoIntent.putExtra("temp_information",tempText)
+                dailyInfoIntent.putExtra("weather",Gson().toJson(weather))
+                dailyInfoIntent.putExtra("dayIndex",i)
                 startActivity(dailyInfoIntent)
             }
 
@@ -291,6 +294,13 @@ class WeatherActivity : AppCompatActivity() {
 
         val dirtyDataUse = PieData(dirtyDataSet)
         airPie.data = dirtyDataUse
+
+        //hourly
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        hourlyLayout.layoutManager = layoutManager
+        val adapter = HourlyAdapter(initHourlyItemList(hourlyReturn))
+        hourlyLayout.adapter = adapter
     }
 
     /**
@@ -300,5 +310,31 @@ class WeatherActivity : AppCompatActivity() {
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return flag == Configuration.UI_MODE_NIGHT_YES
     }
-    
+
+    /**
+     * index转换为日期描述，仓库层缺少resources引用所以就直接复制过来了
+     */
+    fun getDayDesc(index:Int):String{
+        return when(index){
+            0 -> resources.getString(R.string.today)
+            1 -> resources.getString(R.string.tomorrow)
+            2 -> resources.getString(R.string.day_after_tomorrow)
+            3 -> resources.getString(R.string.day_2after_tomorrow)
+            4 -> resources.getString(R.string.day_3after_tomorrow)
+            else -> "ERROR"
+        }
+    }
+
+    fun initHourlyItemList(hourly:HourlyResponse.Result.Hourly):ArrayList<HourlyItem>{
+        val hourlyItems = ArrayList<HourlyItem>(hourly.temperature.size)
+        for(i in hourly.temperature.indices){
+            val skycon = hourly.skycon[i]
+            val temperature = hourly.temperature[i]
+            val wind = hourly.wind[i]
+
+            hourlyItems.add(HourlyItem(skycon,temperature,wind))
+        }
+        return hourlyItems
+    }
+
 }

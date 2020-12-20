@@ -2,8 +2,10 @@ package com.ti.sunrain.logic
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.ti.sunrain.R
 import com.ti.sunrain.logic.dao.PlaceDao
 import com.ti.sunrain.logic.dao.WeatherDao
+import com.ti.sunrain.logic.model.HourlyResponse
 import com.ti.sunrain.logic.model.PlaceResponse.Place
 import com.ti.sunrain.logic.model.Weather
 import com.ti.sunrain.logic.network.SunRainNetWork
@@ -44,15 +46,22 @@ object Repository {
             val deferredDaily = async {
                 SunRainNetWork.getDailyWeather(lng, lat)
             }
+            val deferredHourly = async {
+                SunRainNetWork.getHourlyWeather(lng, lat)
+            }
 
             val realtimeResponse = deferredRealtime.await()
             val dailyResponse = deferredDaily.await()
+            val hourlyResponse = deferredHourly.await()
 
-            if(realtimeResponse.status == "ok" && dailyResponse.status == "ok"){
+            if(realtimeResponse.status == "ok" &&
+                dailyResponse.status == "ok" &&
+                hourlyResponse.status == "ok"){
                 val weather = Weather(realtimeResponse.result.realtime,
                                         dailyResponse.result.daily,
                                         realtimeResponse,
-                                        realtimeResponse.result.realtime.wind)
+                                        realtimeResponse.result.realtime.wind,
+                                        hourlyResponse.result.hourly)
                 Result.success(weather)
             }else{
                 Result.failure(
@@ -96,5 +105,4 @@ object Repository {
      * From WeatherDao,change UNIX time into String
      */
     fun changeUNIXIntoString(unixTime:Long)=WeatherDao.changeUNIXIntoString(unixTime)
-
 }

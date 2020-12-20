@@ -8,8 +8,24 @@
     <string name="search_hint">输入你想要查询天气的城市</string>
     <string name="search_blank_intro">这里空空如也</string>
 
+    <!--  hourly  -->
+    <string name="hourly_data">小时数据</string>
+
     <!--  Forecast  -->
     <string name="forecast_info">预报</string>
+    <string name="today">今天</string>
+    <string name="tomorrow">明天</string>
+    <string name="day_after_tomorrow">后天</string>
+    <string name="day_2after_tomorrow">大后天</string>
+    <string name="day_3after_tomorrow">四天后</string>
+
+    <string name="max_temp">最高</string>
+    <string name="min_temp">最低</string>
+
+    <string name="springSeason">春</string>
+    <string name="summerSeason">夏</string>
+    <string name="autumnSeason">秋</string>
+    <string name="winterSeason">冬</string>
 
     <!-- Life Index   -->
     <string name="lifeIndex">生活指数</string>

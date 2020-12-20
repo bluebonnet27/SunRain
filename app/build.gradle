@@ -12,8 +12,8 @@ android {
         applicationId "com.ti.sunrain"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.4.12.17"
+        versionCode 7
+        versionName "1.4.12.18"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     // BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    // Leak
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
     // develop end
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
