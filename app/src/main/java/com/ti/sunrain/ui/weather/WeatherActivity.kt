@@ -2,6 +2,7 @@ package com.ti.sunrain.ui.weather
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
@@ -133,7 +134,6 @@ class WeatherActivity : AppCompatActivity() {
                 val settingsIntent = Intent(this,SettingsActivity::class.java)
                 startActivity(settingsIntent)
             }
-                //Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
             R.id.aboutIcon -> {
                 val aboutIntent = Intent(this,AboutActivity::class.java)
                 startActivity(aboutIntent)
@@ -159,11 +159,10 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        //settings
-        val preferences = getSharedPreferences("settings",0)
-
         //COVID
+        //preference需要在每次使用时声明，否则会导致多进程错误
         val covidOption = menu?.getItem(0)
+        val preferences = getSharedPreferences("settings",0)
         covidOption?.isVisible = preferences.getBoolean("covid19_switch",true)
         return super.onPrepareOptionsMenu(menu)
     }
@@ -180,7 +179,6 @@ class WeatherActivity : AppCompatActivity() {
      * 主要的刷新天气函数
      */
     private fun showWeatherInfo(weather: Weather){
-
         //获取ViewModel中的数据,以及toolbar数据填充
         weatherToolBar.title = viewModel.placeName
 
@@ -209,14 +207,17 @@ class WeatherActivity : AppCompatActivity() {
 
         //forecast.xml数据注入
         forecastLayout.removeAllViews()
-        val days = daily.skyconDaylight.size
+        val days = daily.skyconSum.size
 
         val listHigh = ArrayList<Entry>()
         val listLow = ArrayList<Entry>()
 
+        //settings
+        val preferences = getSharedPreferences("settings",0)
+        val dateFormatValue = preferences.getString("forecastDateFormat_list","0")
 
         for(i in 0 until days){
-            val skycon = daily.skyconDaylight[i]
+            val skycon = daily.skyconSum[i]
             val temperature = daily.temperature[i]
             val view = LayoutInflater.from(this).inflate(R.layout.forecast_item,
                 forecastLayout,false)
@@ -226,7 +227,13 @@ class WeatherActivity : AppCompatActivity() {
             val skyInfo = view.findViewById(R.id.skyInfo) as TextView
             val temperatureInfo = view.findViewById<TextView>(R.id.temperatureInfo)
 
-            dateInfo.text = getDayDesc(i)
+            if(dateFormatValue=="0"){
+                dateInfo.text = getDayDesc(i)
+            }else{
+                val dateOrigin = skycon.date
+                val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
+                dateInfo.text = simpleDateFormat.format(dateOrigin)
+            }
 
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.weather_icon)

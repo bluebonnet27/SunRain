@@ -6,8 +6,10 @@ import android.view.MenuItem
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.logic.ActivitySet
-import com.ti.sunrain.logic.model.Weather
+import com.ti.sunrain.logic.model.*
 import kotlinx.android.synthetic.main.activity_dailyinfor.*
+import kotlinx.android.synthetic.main.item_daily_day.*
+import kotlinx.android.synthetic.main.item_daily_night.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,18 +32,8 @@ class DailyinforActivity : AppCompatActivity() {
         val weather = Gson().fromJson(weatherJson,Weather::class.java)
         val dayIndex = intent.getIntExtra("dayIndex",0)
 
-        //date
-        val dateOrigin = weather.daily.skyconDaylight[dayIndex].date
-        val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
-        supportActionBar?.title = simpleDateFormat.format(dateOrigin) + "(${getDayDesc(dayIndex)})"
-
-        //temperature
-        val temperatureOrigin = weather.daily.temperature[dayIndex]
-        val tMaxTxt = resources.getString(R.string.max_temp) + ":" + temperatureOrigin.max.toInt()
-        val tMinTxt = resources.getString(R.string.min_temp) + ":" + temperatureOrigin.min.toInt()
-        val tempText = "$tMinTxt℃   $tMaxTxt℃"
-        dailyInforToolbar.subtitle = tempText
-
+        initToolBar(weather,dayIndex)
+        setWeatherDayAndNight(weather,dayIndex)
     }
 
     override fun onDestroy() {
@@ -49,6 +41,46 @@ class DailyinforActivity : AppCompatActivity() {
 
         //set
         ActivitySet.removeActivity(this)
+    }
+
+    private fun initToolBar(weather: Weather,index: Int){
+        //date
+        val dateOrigin = weather.daily.skyconDaylight[index].date
+        val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
+        supportActionBar?.title = simpleDateFormat.format(dateOrigin) + "(${getDayDesc(index)})"
+
+        //temperature
+        val temperatureOrigin = weather.daily.temperature[index]
+        val tMaxTxt = resources.getString(R.string.max_temp) + ":" + temperatureOrigin.max.toInt()
+        val tMinTxt = resources.getString(R.string.min_temp) + ":" + temperatureOrigin.min.toInt()
+        val tempText = "$tMinTxt℃   $tMaxTxt℃"
+        dailyInforToolbar.subtitle = tempText
+    }
+
+    private fun setWeatherDayAndNight(weather: Weather,index:Int){
+        //day-skycon
+        val skyconDay = getSky(weather.daily.skyconDaylight[index].value)
+        daySkyconIcon.setImageResource(skyconDay.weather_icon)
+        daySkyconText.text = skyconDay.info
+
+        //day-wind
+        val windSpeed = weather.daily.wind[index].avgWind.speed
+        val windDirection = weather.daily.wind[index].avgWind.direction
+
+        dayWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
+        dayWindDirection.text = "Wind direction: ${getWindDirection(windDirection)} wind"
+        dayWindSpeed.text = "Wind speed: ${getWindSpeed(windSpeed)} wind"
+
+        //night-skycon
+        val skyconNight = getSky(weather.daily.skyconNight[index].value)
+        nightSkyconIcon.setImageResource(skyconNight.weather_icon)
+        nightSkyconText.text = skyconNight.info
+
+        //night-wind
+        //先将就着用白天的数据吧，等以后有钱了买付费源就换成正式的夜间天气
+        nightWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
+        nightWindDirection.text = "Wind direction: ${getWindDirection(windDirection)} wind"
+        nightWindSpeed.text = "Wind speed: ${getWindSpeed(windSpeed)} wind"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

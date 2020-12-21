@@ -28,7 +28,18 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls"
         android:layout_marginTop="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_daily_day"/>
+
+            <include layout="@layout/item_daily_night"/>
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

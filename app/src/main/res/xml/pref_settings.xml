@@ -13,4 +13,18 @@
             android:summaryOff="关闭"/>
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="天气">
+
+        <ListPreference
+            android:key="forecastDateFormat_list"
+            android:entries="@array/date_formats"
+            android:entryValues="@array/date_formats_value"
+            android:title="预报日期格式"
+            android:dialogTitle="你喜欢哪个格式"
+            android:summary="选择在首页预报中的日期格式"
+            android:defaultValue="0"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>

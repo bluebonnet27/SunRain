@@ -1,15 +1,14 @@
 package com.ti.sunrain.ui.settings
 
-import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
+import android.util.Log
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.R
-import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet.restartAllActivities
 
 /**
@@ -22,6 +21,13 @@ class SettingsFragment : PreferenceFragmentCompat(){
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = "settings"
         addPreferencesFromResource(R.xml.pref_settings)
+
+        val dateFormatPreference : ListPreference? = findPreference("forecastDateFormat_list")
+        dateFormatPreference?.setOnPreferenceChangeListener { _, _ ->
+            Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
+                .show()
+            true
+        }
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
@@ -35,7 +41,8 @@ class SettingsFragment : PreferenceFragmentCompat(){
                     .show()
             }
         }
-
         return true
     }
 }
+
+
