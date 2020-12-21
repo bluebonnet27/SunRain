@@ -114,4 +114,7 @@
     <string name="source_of_weather">天气数据来源</string>
 
     <string name="opensourceThanks">开源感谢</string>
+
+    <!--  settings  -->
+    <string name="settingsInfo">设置</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.gson.Gson
 import com.ti.sunrain.R
+import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.Weather
 import kotlinx.android.synthetic.main.activity_dailyinfor.*
 import java.text.SimpleDateFormat
@@ -14,6 +15,9 @@ class DailyinforActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dailyinfor)
+
+        //set
+        ActivitySet.addActivity(this)
 
         setSupportActionBar(dailyInforToolbar)
         supportActionBar?.let {
@@ -38,6 +42,13 @@ class DailyinforActivity : AppCompatActivity() {
         val tempText = "$tMinTxt℃   $tMaxTxt℃"
         dailyInforToolbar.subtitle = tempText
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        //set
+        ActivitySet.removeActivity(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

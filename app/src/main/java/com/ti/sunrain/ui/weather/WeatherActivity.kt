@@ -18,6 +18,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.preference.Preference
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
@@ -28,9 +30,12 @@ import com.google.gson.Gson
 import com.ti.sunrain.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.ui.about.AboutActivity
 import com.ti.sunrain.ui.daily.DailyinforActivity
+import com.ti.sunrain.ui.settings.SettingsActivity
+import kotlinx.android.synthetic.main.activity_covid_special.*
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
@@ -51,6 +56,9 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
+
+        //set
+        ActivitySet.addActivity(this)
 
         setSupportActionBar(weatherToolBar)
         supportActionBar?.let {
@@ -106,18 +114,29 @@ class WeatherActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        //set
+        ActivitySet.removeActivity(this)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
 
             R.id.COVIDExplorer ->{
-                val intent = Intent(this,CovidSpecial::class.java)
-                startActivity(intent)
+                val covidIntent = Intent(this,CovidSpecial::class.java)
+                startActivity(covidIntent)
             }
-            R.id.settingsIcon -> Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
+            R.id.settingsIcon -> {
+                val settingsIntent = Intent(this,SettingsActivity::class.java)
+                startActivity(settingsIntent)
+            }
+                //Snackbar.make(swipeRefresh,"待开发",Snackbar.LENGTH_SHORT).show()
             R.id.aboutIcon -> {
-                val intent = Intent(this,AboutActivity::class.java)
-                startActivity(intent)
+                val aboutIntent = Intent(this,AboutActivity::class.java)
+                startActivity(aboutIntent)
             }
             R.id.shareIcon -> {
                 val sendIntent: Intent = Intent().apply {
@@ -137,6 +156,16 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu,menu)
         return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        //settings
+        val preferences = getSharedPreferences("settings",0)
+
+        //COVID
+        val covidOption = menu?.getItem(0)
+        covidOption?.isVisible = preferences.getBoolean("covid19_switch",true)
+        return super.onPrepareOptionsMenu(menu)
     }
 
     /**

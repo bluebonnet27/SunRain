@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SunRain">
-        <activity android:name=".ui.daily.DailyinforActivity"></activity>
+        <activity android:name=".ui.settings.SettingsActivity"></activity>
+        <activity android:name=".ui.daily.DailyinforActivity" />
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".CovidSpecial" />
         <activity android:name=".ui.weather.WeatherActivity" />

@@ -39,5 +39,5 @@ object PlaceDao {
      * 读取本地sharepreferences数据以判断城市是否在本地
      */
     private fun sharedPreferences() = SunRainApplication.context.
-            getSharedPreferences("sunny_weather",Context.MODE_PRIVATE)
+            getSharedPreferences("sunrain",Context.MODE_PRIVATE)
 }

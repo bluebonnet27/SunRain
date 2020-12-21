@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_covid_special.*
 
 class CovidSpecial : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_covid_special)
+
+        //set
+        ActivitySet.addActivity(this)
 
         mainPage.loadUrl("https://voice.baidu.com/act/newpneumonia/newpneumonia")
 
@@ -20,6 +24,13 @@ class CovidSpecial : AppCompatActivity() {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        //set
+        ActivitySet.removeActivity(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

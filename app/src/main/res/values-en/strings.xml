@@ -114,4 +114,7 @@
     <string name="source_of_weather">Source of weather information</string>
 
     <string name="opensourceThanks">Open source Thanks</string>
+
+    <!--  settings  -->
+    <string name="settingsInfo">Settings</string>
 </resources>

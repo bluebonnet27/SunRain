@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.item_about_header.*
 import java.net.URISyntaxException
@@ -29,6 +30,10 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
+
+        //set
+        ActivitySet.addActivity(this)
+
         viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
 
         if(isDarkTheme(this)){
@@ -112,6 +117,13 @@ class AboutActivity : AppCompatActivity() {
             brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
             startActivity(brvahIntent)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        //set
+        ActivitySet.removeActivity(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
