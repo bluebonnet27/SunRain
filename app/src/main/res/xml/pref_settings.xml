@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:title="COVID-19">
@@ -25,6 +25,18 @@
             android:dialogTitle="你喜欢哪个格式"
             android:summary="选择在首页预报中的日期格式"
             android:defaultValue="0"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="通知">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notification_switch"
+            android:title="开启天气通知"
+            app:summaryOn="开启（若您看不见它，请检查通知权限）"
+            android:summaryOff="关闭"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

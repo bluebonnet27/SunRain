@@ -200,6 +200,21 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/sunnyweatherAbout"
+                    android:layout_marginBottom="5dp"
+                    style="@style/about_item">
+
+                    <TextView
+                        style="@style/string_text_left_head"
+                        android:text="guolindev/SunnyWeather"/>
+
+                    <TextView
+                        style="@style/string_text_left_context"
+                        android:text="@string/apache_2"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/retrofitAbout"
                     android:layout_marginBottom="5dp"
                     style="@style/about_item">
@@ -229,20 +244,20 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/brvahAbout"
-                    android:layout_marginBottom="5dp"
-                    style="@style/about_item">
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/brvahAbout"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    style="@style/about_item">-->
 
-                    <TextView
-                        style="@style/string_text_left_head"
-                        android:text="CymChad/BaseRecyclerViewAdapterHelper"/>
+<!--                    <TextView-->
+<!--                        style="@style/string_text_left_head"-->
+<!--                        android:text="CymChad/BaseRecyclerViewAdapterHelper"/>-->
 
-                    <TextView
-                        style="@style/string_text_left_context"
-                        android:text="@string/mit"/>
+<!--                    <TextView-->
+<!--                        style="@style/string_text_left_context"-->
+<!--                        android:text="@string/mit"/>-->
 
-                </RelativeLayout>
+<!--                </RelativeLayout>-->
             </LinearLayout>
 
         </LinearLayout>

@@ -1,10 +1,14 @@
 package com.ti.sunrain.ui.weather
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,6 +19,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -179,6 +184,15 @@ class WeatherActivity : AppCompatActivity() {
      * 主要的刷新天气函数
      */
     private fun showWeatherInfo(weather: Weather){
+
+        //notification channel
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channel = NotificationChannel("sun_rain_realtime","即时天气",
+                NotificationManager.IMPORTANCE_LOW)
+            manager.createNotificationChannel(channel)
+        }
+
         //获取ViewModel中的数据,以及toolbar数据填充
         weatherToolBar.title = viewModel.placeName
 
@@ -253,6 +267,17 @@ class WeatherActivity : AppCompatActivity() {
             }
 
             forecastLayout.addView(view)
+        }
+
+        //now 通知
+        val rTnotification = showRealtimeWeatherNotification(weather)
+        rTnotification.flags = Notification.FLAG_NO_CLEAR
+
+        val notifyPreferences = getSharedPreferences("settings",0)
+        if(notifyPreferences.getBoolean("notification_switch",false)){
+            manager.notify(1,rTnotification)
+        }else{
+            manager.cancel(1)
         }
 
         //temperatureChart
@@ -373,4 +398,15 @@ class WeatherActivity : AppCompatActivity() {
         return hourlyItems
     }
 
+    fun showRealtimeWeatherNotification(weather: Weather):Notification{
+        val skyConToday = getSky(weather.daily.skyconSum[0].value)
+
+        val realtimeNotification = NotificationCompat.Builder(this,"sun_rain_realtime")
+            .setContentTitle("${weather.realtime.temperature.toInt()}° ${getSky(weather.realtime.skycon).info}")
+            .setContentText("Air quality: ${weather.realtime.airQuality.description.chn}")
+            .setSmallIcon(R.drawable.baseline_wb_sunny_black_24dp)
+            .build()
+
+        return realtimeNotification
+    }
 }

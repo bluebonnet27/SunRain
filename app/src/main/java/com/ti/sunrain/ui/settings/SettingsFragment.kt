@@ -23,7 +23,15 @@ class SettingsFragment : PreferenceFragmentCompat(){
         addPreferencesFromResource(R.xml.pref_settings)
 
         val dateFormatPreference : ListPreference? = findPreference("forecastDateFormat_list")
+        val notificationSwitchPreference : SwitchPreference? =findPreference("notification_switch")
+
         dateFormatPreference?.setOnPreferenceChangeListener { _, _ ->
+            Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
+                .show()
+            true
+        }
+
+        notificationSwitchPreference?.setOnPreferenceChangeListener { _,_ ->
             Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
                 .show()
             true

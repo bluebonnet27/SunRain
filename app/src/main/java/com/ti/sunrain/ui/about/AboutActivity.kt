@@ -100,6 +100,12 @@ class AboutActivity : AppCompatActivity() {
             startActivity(caiyunIntent)
         }
 
+        sunnyweatherAbout.setOnClickListener {
+            val sunnyweatherIntent = Intent(Intent.ACTION_VIEW)
+            sunnyweatherIntent.data = Uri.parse("https://github.com/guolindev/SunnyWeather")
+            startActivity(sunnyweatherIntent)
+        }
+
         retrofitAbout.setOnClickListener {
             val retrofitIntent = Intent(Intent.ACTION_VIEW)
             retrofitIntent.data = Uri.parse("https://github.com/square/retrofit")
@@ -112,11 +118,11 @@ class AboutActivity : AppCompatActivity() {
             startActivity(mpAndroidChartIntent)
         }
 
-        brvahAbout.setOnClickListener {
-            val brvahIntent = Intent(Intent.ACTION_VIEW)
-            brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
-            startActivity(brvahIntent)
-        }
+//        brvahAbout.setOnClickListener {
+//            val brvahIntent = Intent(Intent.ACTION_VIEW)
+//            brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
+//            startActivity(brvahIntent)
+//        }
     }
 
     override fun onDestroy() {

@@ -52,7 +52,7 @@ dependencies {
     //chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     // BRVAH
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    //implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // Leak
