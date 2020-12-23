@@ -9,11 +9,11 @@
 
     <ProgressBar
         android:id="@+id/sunTimeProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+        style="@style/progressbar_horizon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100"/>
-
+        android:max="100" />
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"

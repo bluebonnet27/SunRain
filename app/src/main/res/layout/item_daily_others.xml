@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:layout_marginBottom="15dp"
@@ -33,7 +34,7 @@
                 android:id="@+id/dayTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Others"
+                android:text="其他"
                 android:layout_marginStart="10dp"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"/>
@@ -58,7 +59,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_gravity="center_vertical"
                 android:textSize="15sp"
-                android:text="Rain Possibility"/>
+                android:text="平均降水量"/>
 
         </LinearLayout>
 
@@ -90,7 +91,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_gravity="center_vertical"
                 android:textSize="15sp"
-                android:text="Sun Time"/>
+                android:text="日升日落"/>
 
         </LinearLayout>
 
