@@ -27,13 +27,14 @@ data class DailyResponse(val status:String,val result: Result){
                      val temperature:List<Temperature>,
                      val wind:List<Wind>,
                      @SerializedName("air_quality")val aqi:AQI,
-                     @SerializedName("life_index")val lifeIndex:LifeIndex)
+                     @SerializedName("life_index")val lifeIndex:LifeIndex,
+                     val precipitation:List<Precipitation>)
 
     data class Astro(val date: Date,val sunrise:Sunrise,val sunset:Sunset)
 
-    data class Sunrise(val risetime:String)
+    data class Sunrise(@SerializedName("time")val risetime:String)
 
-    data class Sunset(val settime: String)
+    data class Sunset(@SerializedName("time")val settime: String)
 
     data class Skycon(val date: Date,val value:String)
 
@@ -57,5 +58,7 @@ data class DailyResponse(val status:String,val result: Result){
                          val ultraviolet:List<LifeDescription>,
                          val dressing:List<LifeDescription>)
 
-    data class LifeDescription(val desc:String)
+    data class LifeDescription(val index:String,val desc:String)
+
+    data class Precipitation(val avg:Float)
 }

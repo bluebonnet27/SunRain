@@ -5,11 +5,11 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -18,16 +18,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.preference.Preference
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
@@ -41,12 +39,12 @@ import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.ui.about.AboutActivity
 import com.ti.sunrain.ui.daily.DailyinforActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
-import kotlinx.android.synthetic.main.activity_covid_special.*
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.forecast_chart.*
 import kotlinx.android.synthetic.main.hourly.*
+import kotlinx.android.synthetic.main.item_progress_sun.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
@@ -269,6 +267,16 @@ class WeatherActivity : AppCompatActivity() {
             forecastLayout.addView(view)
         }
 
+        //SunRise ProgressBar
+        val sunRiseTime = daily.astro[0].sunrise.risetime
+        val sunSetTime = daily.astro[0].sunset.settime
+
+        sunRiseTimeProgress.text = sunRiseTime
+        sunSetTimeProgress.text = sunSetTime
+
+        val result = getSunProgressFromTimes(sunRiseTime,sunSetTime,serverTimeText)
+        sunTimeProgressBar.progress = result
+
         //now 通知
         val rTnotification = showRealtimeWeatherNotification(weather)
         rTnotification.flags = Notification.FLAG_NO_CLEAR
@@ -362,6 +370,8 @@ class WeatherActivity : AppCompatActivity() {
         hourlyLayout.layoutManager = layoutManager
         val adapter = HourlyAdapter(initHourlyItemList(hourlyReturn))
         hourlyLayout.adapter = adapter
+
+        hourlyDescText.text = hourlyReturn.description
     }
 
     /**
@@ -375,7 +385,7 @@ class WeatherActivity : AppCompatActivity() {
     /**
      * index转换为日期描述，仓库层缺少resources引用所以就直接复制过来了
      */
-    fun getDayDesc(index:Int):String{
+    private fun getDayDesc(index:Int):String{
         return when(index){
             0 -> resources.getString(R.string.today)
             1 -> resources.getString(R.string.tomorrow)
@@ -386,7 +396,7 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
-    fun initHourlyItemList(hourly:HourlyResponse.Result.Hourly):ArrayList<HourlyItem>{
+    private fun initHourlyItemList(hourly:HourlyResponse.Result.Hourly):ArrayList<HourlyItem>{
         val hourlyItems = ArrayList<HourlyItem>(hourly.temperature.size)
         for(i in hourly.temperature.indices){
             val skycon = hourly.skycon[i]
@@ -398,15 +408,27 @@ class WeatherActivity : AppCompatActivity() {
         return hourlyItems
     }
 
-    fun showRealtimeWeatherNotification(weather: Weather):Notification{
+    private fun showRealtimeWeatherNotification(weather: Weather):Notification{
         val skyConToday = getSky(weather.daily.skyconSum[0].value)
 
-        val realtimeNotification = NotificationCompat.Builder(this,"sun_rain_realtime")
+        return NotificationCompat.Builder(this,"sun_rain_realtime")
             .setContentTitle("${weather.realtime.temperature.toInt()}° ${getSky(weather.realtime.skycon).info}")
             .setContentText("Air quality: ${weather.realtime.airQuality.description.chn}")
-            .setSmallIcon(R.drawable.baseline_wb_sunny_black_24dp)
+            .setSmallIcon(skyConToday.weather_icon)
             .build()
+    }
 
-        return realtimeNotification
+    private fun getSunProgressFromTimes(sunRiseTime:String,sunSetTime:String,current:String):Int{
+        val timeFormatter = SimpleDateFormat("hh:mm", Locale.getDefault())
+        val sunRise = timeFormatter.parse(sunRiseTime)
+        val sunSet = timeFormatter.parse(sunSetTime)
+        val currentTime = timeFormatter.parse(current)
+
+        if(sunRise == null || sunSet == null || currentTime == null){
+            return 0
+        }
+        val setSubRise = (sunSet.time - sunRise.time).toDouble()
+        val currentSubRise = (currentTime.time - sunRise.time).toDouble()
+        return ((currentSubRise/setSubRise)*100).toInt()
     }
 }

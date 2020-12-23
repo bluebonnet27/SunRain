@@ -42,15 +42,17 @@
 
                     <include layout="@layout/now"/>
 
+                    <include layout="@layout/item_progress_sun"/>
+
                     <include layout="@layout/forecast"/>
 
-                    <include layout="@layout/life_index" />
+                    <include layout="@layout/hourly"/>
 
                     <include layout="@layout/air"/>
 
-                    <include layout="@layout/forecast_chart"/>
+                    <include layout="@layout/life_index" />
 
-                    <include layout="@layout/hourly"/>
+                    <include layout="@layout/forecast_chart"/>
 
                     <TextView
                         android:layout_width="match_parent"

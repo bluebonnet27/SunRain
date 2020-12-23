@@ -5,7 +5,7 @@ import android.app.Activity
 /**
  * @author: tihon
  * @date: 2020/12/21
- * @description:
+ * @description:这个类的作用是管理所有activities
  */
 object ActivitySet {
 
