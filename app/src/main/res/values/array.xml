@@ -10,4 +10,13 @@
         <item>0</item>
         <item>1</item>
     </string-array>
+    
+    <string-array name="degree_units">
+        <item>摄氏度℃</item>
+        <item>华氏度°F</item>
+    </string-array>
+    <string-array name="degree_units_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
 </resources>

@@ -18,7 +18,7 @@ import kotlin.coroutines.CoroutineContext
 /**
  * @author: tihon
  * @date: 2020/12/3
- * @description:
+ * @description:在本地没有数据（缓存）的情况下去网络层获取数据，但我觉得没必要就去掉了本地缓存
  */
 object Repository {
 
@@ -67,8 +67,9 @@ object Repository {
             }else{
                 Result.failure(
                     RuntimeException(
-                        "WARNING: realtime status is ${realtimeResponse.status} "+
-                                "WARNING: realtime status is ${dailyResponse.status} "
+                        "WARNING: realtime status is ${realtimeResponse.status} " +
+                                "WARNING: daily status is ${dailyResponse.status} " +
+                                "WARNING: hourly status is ${hourlyResponse.status} " 
                     )
                 )
             }
@@ -103,7 +104,7 @@ object Repository {
     fun isPlaceSaved() = PlaceDao.isPlaceSaved()
 
     /**
-     * From WeatherDao,change UNIX time into String
+     * 将 UNIX 时间转换成 string 格式的 date
      */
     fun changeUNIXIntoString(unixTime:Long)=WeatherDao.changeUNIXIntoString(unixTime)
 }

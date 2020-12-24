@@ -86,6 +86,16 @@
     <string name="refreshPage">Refresh</string>
     <string name="openPageInBRowser">Open in browser</string>
     <string name="clearPageCache">Clear cache</string>
+    <string name="wordsToSay">Words to say</string>
+    <string name="finalTextLine1">首先感谢《第一行代码》和它的作者郭霖老师。作为我学习Android开发的第一本入门
+        书，它教会了我很多知识。</string>
+    <string name="finalTextLine2">感谢我的朋友们对这个 APP 的 UI 设计提供的诸多意见，虽然我未能将所有要求全部
+        满足，但你们的支持给了我很多力量。</string>
+    <string name="finalTextLine3">感谢酷安上的开发者对这个 APP 的意见。能将 APP 上架酷安，使晴雨不止作为一个
+        开源的课设项目，而是作为一个真正用户使用的软件，离不开你们的支持。</string>
+    <string name="finalTextLine4">抑制国内 Android 生态的恶化不只是大厂 Android 开发者的责任。个人独立开发者
+        也同样能尽自己的一份力量遏制这个势头。晴雨也许会在未来的某一天停止维护，但我希望若干年后有人能记得这款 APP
+        —— 这也是我所努力的目标 —— 我会很开心的。</string>
 
 
     <!--  introduction of weather information producer  -->

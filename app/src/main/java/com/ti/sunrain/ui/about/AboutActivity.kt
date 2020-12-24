@@ -158,6 +158,10 @@ class AboutActivity : AppCompatActivity() {
         if(hasInstalledAlipayClient()){
             try {
                 val intent = Intent.parseUri(url,Intent.URI_INTENT_SCHEME)
+                //safe rules
+                intent.addCategory("android.intent.category.BROWSABLE")
+                intent.component = null
+                intent.selector = null
                 startActivity(intent)
             }catch (e:URISyntaxException){
                 e.printStackTrace()

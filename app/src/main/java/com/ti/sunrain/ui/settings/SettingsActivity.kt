@@ -1,10 +1,12 @@
 package com.ti.sunrain.ui.settings
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -42,6 +44,8 @@ class SettingsActivity : AppCompatActivity() {
             it.setHomeButtonEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_white_24dp)
         }
+        settingsToolbar.subtitle ="V ${BuildConfig.VERSION_NAME}"
+        settingsToolbar.setSubtitleTextColor(Color.WHITE)
     }
 
     private fun replaceFragement(fragment: Fragment){

@@ -29,7 +29,7 @@ import com.google.gson.annotations.SerializedName
     }
  */
 /**
- * 应答地点类
+ * 应答地点类，从全局 context 来，作为 mvvm 的 model 层
  */
 data class PlaceResponse(val status:String,val places : List<Place>){
 

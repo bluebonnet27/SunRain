@@ -15,6 +15,7 @@ import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
 import kotlinx.android.synthetic.main.activity_dailyinfor.*
 import kotlinx.android.synthetic.main.item_daily_day.*
+import kotlinx.android.synthetic.main.item_daily_lifeindex.*
 import kotlinx.android.synthetic.main.item_daily_night.*
 import kotlinx.android.synthetic.main.item_daily_others.*
 import java.text.SimpleDateFormat
@@ -42,6 +43,7 @@ class DailyinforActivity : AppCompatActivity() {
 
         initToolBar(weather,dayIndex)
         setWeatherDayAndNight(weather,dayIndex)
+        setWeatherLifeIndex(weather,dayIndex)
         setOtherWeatherInformation(weather,dayIndex)
     }
 
@@ -110,6 +112,19 @@ class DailyinforActivity : AppCompatActivity() {
         nightWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
         nightWindDirection.text = "风向: ${getWindDirection(windDirection)}风"
         nightWindSpeed.text = "风速: ${getWindSpeed(windSpeed)}级"
+    }
+
+    private fun setWeatherLifeIndex(weather: Weather,index: Int){
+        //life index
+        val ultravioletDesc = weather.daily.lifeIndex.ultraviolet[index].desc
+        val carWashingDesc = weather.daily.lifeIndex.carWashing[index].desc
+        val coldRiskDesc = weather.daily.lifeIndex.coldRisk[index].desc
+        val dressingDesc = weather.daily.lifeIndex.dressing[index].desc
+
+        ultravioletTextItem.text = ultravioletDesc
+        carWashingTextItem.text = carWashingDesc
+        coldRiskTextItem.text = coldRiskDesc
+        dressingTextItem.text = dressingDesc
     }
 
     private fun setOtherWeatherInformation(weather: Weather,index:Int){

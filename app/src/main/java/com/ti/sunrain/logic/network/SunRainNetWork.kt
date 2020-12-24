@@ -51,7 +51,7 @@ object SunRainNetWork {
                         continuation.resume(body)
                     }
                     else continuation.resumeWithException(
-                        RuntimeException("Response body is null,空的body返回对象"))
+                        RuntimeException("空的body返回对象,检查自SunRainNetWork"))
                 }
 
                 override fun onFailure(call: Call<T>, t: Throwable) {

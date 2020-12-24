@@ -23,8 +23,25 @@
             android:entryValues="@array/date_formats_value"
             android:title="预报日期格式"
             android:dialogTitle="你喜欢哪个格式"
-            android:summary="选择在首页预报中的日期格式"
-            android:defaultValue="0"/>
+            android:summary="选择首页预报的日期格式"
+            android:defaultValue="0" />
+
+        <ListPreference
+            android:key="forecastDegreeRule_list"
+            android:entries="@array/degree_units"
+            android:entryValues="@array/degree_units_values"
+            android:title="温度单位"
+            android:dialogTitle="你喜欢哪个温标"
+            android:summary="选择首页预报的温度单位"
+            android:enabled="false"
+            android:defaultValue="0" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="festival_bg_switch"
+            android:title="开启节日特殊背景"
+            android:summaryOn="开启（仅针对部分公历节日）"
+            android:summaryOff="关闭"/>
 
     </PreferenceCategory>
 
@@ -38,5 +55,37 @@
             app:summaryOn="开启（若您看不见它，请检查通知权限）"
             android:summaryOff="关闭"/>
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notification_moreinfo_switch"
+            android:title="天气通知展示更多数据"
+            android:summaryOn="开启（更多数据会占用更多状态栏空间）"
+            android:summaryOff="关闭"
+            android:enabled="false"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notification_cancancel_switch"
+            android:title="天气通知可以被清除"
+            android:summaryOn="开启（右划或选择全部清除）"
+            android:summaryOff="关闭"
+            android:enabled="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="其他">
+
+        <ListPreference
+            android:key="others_darkmode_list"
+            android:title="暗色模式"
+            android:summary="跟随系统、白天、夜晚"
+            android:enabled="false"/>
+
+        <ListPreference
+            android:key="others_language_list"
+            android:title="多语言"
+            android:summary="选择晴雨为您提供服务的语言"
+            android:enabled="false"/>
     </PreferenceCategory>
 </PreferenceScreen>

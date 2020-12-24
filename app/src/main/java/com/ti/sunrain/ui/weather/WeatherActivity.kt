@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
+import android.icu.text.CaseMap
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -192,17 +193,15 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         //获取ViewModel中的数据,以及toolbar数据填充
-        weatherToolBar.title = viewModel.placeName
-
         val realtime = weather.realtime
         val daily = weather.daily
         val responseForRealtime = weather.realtimeResponse
         val windReturn = weather.wind
         val hourlyReturn = weather.hourly
-
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
-        weatherToolBar.subtitle = "$serverTimeText 刷新"
+
+        initToolBarBasic(viewModel.placeName,"$serverTimeText 刷新")
 
         //now.xml数据注入
         val currentTempText = "${realtime.temperature.toInt()}°"
@@ -212,7 +211,17 @@ class WeatherActivity : AppCompatActivity() {
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
-        drawerLayout.setBackgroundResource(getSky(realtime.skycon).bg)
+
+        val festivalBackgroundPreference = getSharedPreferences("settings",0)
+        val festivalBackgroundValue = festivalBackgroundPreference.getBoolean("festival_bg_switch",true)
+        val originBackground = (getSky(realtime.skycon).bg)
+        if(festivalBackgroundValue){
+            drawerLayout.setBackgroundResource(changeBackgroundByHours(originBackground,judgeTimeInDay()))
+        }
+        else{
+            drawerLayout.setBackgroundResource(originBackground)
+        }
+
         nowWindIcon.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
         windDirection.text = "${getWindDirection(windReturn.direction)}风"
         windLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
@@ -224,7 +233,7 @@ class WeatherActivity : AppCompatActivity() {
         val listHigh = ArrayList<Entry>()
         val listLow = ArrayList<Entry>()
 
-        //settings
+        //settings 来自设置的 preference 引用
         val preferences = getSharedPreferences("settings",0)
         val dateFormatValue = preferences.getString("forecastDateFormat_list","0")
 
@@ -268,19 +277,15 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         //SunRise ProgressBar
-        val sunRiseTime = daily.astro[0].sunrise.risetime
-        val sunSetTime = daily.astro[0].sunset.settime
-
-        sunRiseTimeProgress.text = sunRiseTime
-        sunSetTimeProgress.text = sunSetTime
-
-        val result = getSunProgressFromTimes(sunRiseTime,sunSetTime,serverTimeText)
-        sunTimeProgressBar.progress = result
+        initProgressBar(daily,serverTimeText)
 
         //now 通知
         val rTnotification = showRealtimeWeatherNotification(weather)
-        rTnotification.flags = Notification.FLAG_NO_CLEAR
-
+        val preferencesNotificationCancel = getSharedPreferences("settings",0)
+        if(!preferencesNotificationCancel.getBoolean("notification_cancancel_switch",false)){
+            rTnotification.flags = Notification.FLAG_NO_CLEAR
+        }
+        
         val notifyPreferences = getSharedPreferences("settings",0)
         if(notifyPreferences.getBoolean("notification_switch",false)){
             manager.notify(1,rTnotification)
@@ -323,6 +328,7 @@ class WeatherActivity : AppCompatActivity() {
         dressingText.text = lifeIndex.dressing[0].desc
         ultravioletText.text = lifeIndex.ultraviolet[0].desc
         carWashingText.text = lifeIndex.carWashing[0].desc
+
         weatherLayout.visibility = View.VISIBLE
 
         //air.xml 数列写入数据
@@ -375,6 +381,14 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     /**
+     * 初始化主 toolbar 的标题和副标题
+     */
+    private fun initToolBarBasic(title: String, subTitle:String){
+        weatherToolBar.title = title
+        weatherToolBar.subtitle = subTitle
+    }
+
+    /**
      * 判断是否是深色模式
      */
     private fun isDarkTheme(context:Context):Boolean{
@@ -396,6 +410,9 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 填充小时天气的数据
+     */
     private fun initHourlyItemList(hourly:HourlyResponse.Result.Hourly):ArrayList<HourlyItem>{
         val hourlyItems = ArrayList<HourlyItem>(hourly.temperature.size)
         for(i in hourly.temperature.indices){
@@ -408,18 +425,36 @@ class WeatherActivity : AppCompatActivity() {
         return hourlyItems
     }
 
+    /**
+     * 天气通知
+     */
     private fun showRealtimeWeatherNotification(weather: Weather):Notification{
         val skyConToday = getSky(weather.daily.skyconSum[0].value)
 
-        return NotificationCompat.Builder(this,"sun_rain_realtime")
+        val notification =  NotificationCompat.Builder(this,"sun_rain_realtime")
             .setContentTitle("${weather.realtime.temperature.toInt()}° ${getSky(weather.realtime.skycon).info}")
-            .setContentText("Air quality: ${weather.realtime.airQuality.description.chn}")
             .setSmallIcon(skyConToday.weather_icon)
-            .build()
+
+        val preferencesNotificationLong = getSharedPreferences("settings",0)
+        val isMoreinfo = preferencesNotificationLong.getBoolean("notification_moreinfo_switch",false)
+
+        if(isMoreinfo){
+            notification.setStyle(NotificationCompat.BigTextStyle().bigText("AQI:${weather.realtime.airQuality.aqi.chn}\n" +
+                    weather.hourly.description
+            ))
+        }else{
+            notification.setContentText("AQI:${weather.realtime.airQuality.aqi.chn}")
+        }
+
+        return notification.build()
     }
 
+    /**
+     * 利用三个时间点得到进度条进度 x/100
+     */
     private fun getSunProgressFromTimes(sunRiseTime:String,sunSetTime:String,current:String):Int{
-        val timeFormatter = SimpleDateFormat("hh:mm", Locale.getDefault())
+        val timeFormatter = SimpleDateFormat("HH:mm",Locale.getDefault())
+
         val sunRise = timeFormatter.parse(sunRiseTime)
         val sunSet = timeFormatter.parse(sunSetTime)
         val currentTime = timeFormatter.parse(current)
@@ -427,8 +462,55 @@ class WeatherActivity : AppCompatActivity() {
         if(sunRise == null || sunSet == null || currentTime == null){
             return 0
         }
+
         val setSubRise = (sunSet.time - sunRise.time).toDouble()
         val currentSubRise = (currentTime.time - sunRise.time).toDouble()
+
         return ((currentSubRise/setSubRise)*100).toInt()
+    }
+
+    /**
+     * 初始化日升日落进度条
+     */
+    private fun initProgressBar(daily: DailyResponse.Daily,serverTimeText:String){
+        //SunRise ProgressBar
+        val sunRiseTime = daily.astro[0].sunrise.risetime
+        val sunSetTime = daily.astro[0].sunset.settime
+
+        sunRiseTimeProgress.text = "↑$sunRiseTime"
+        sunSetTimeProgress.text = "$sunSetTime↓"
+
+        val result = getSunProgressFromTimes(sunRiseTime,sunSetTime,serverTimeText)
+        sunTimeProgressBar.progress = result
+    }
+
+    private fun judgeTimeInDay():Int{
+        val date = Date()
+        val df = SimpleDateFormat("HH", Locale.getDefault())
+        val hours = Integer.parseInt(df.format(date))
+
+        return if(hours in 0..5){
+            0
+        }else if(hours in 6..11){
+            1
+        }else if(hours == 12){
+            3
+        }else if(hours in 13..18){
+            4
+        }else{
+            5
+        }
+    }
+
+    private fun changeBackgroundByHours(originBackgroundResId:Int,hour:Int):Int{
+        return if(hour == 4){
+            if(originBackgroundResId == R.drawable.bg_sunnyday_new){
+                R.drawable.bg_sunnyafternoon_sp
+            }else{
+                originBackgroundResId
+            }
+        }else{
+            originBackgroundResId
+        }
     }
 }

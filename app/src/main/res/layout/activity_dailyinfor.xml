@@ -42,6 +42,8 @@
 
             <include layout="@layout/item_daily_night"/>
 
+            <include layout="@layout/item_daily_lifeindex"/>
+
             <include layout="@layout/item_daily_others"/>
         </LinearLayout>
 

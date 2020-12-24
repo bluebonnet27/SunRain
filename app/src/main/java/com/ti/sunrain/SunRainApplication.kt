@@ -6,7 +6,7 @@ import android.content.Context
 /**
  * @author: tihon
  * @date: 2020/12/3
- * @description:
+ * @description:这个类的作用是提供全局的context
  */
 class SunRainApplication:Application() {
 
@@ -14,6 +14,7 @@ class SunRainApplication:Application() {
      * 静态获取全局上下文的单例类
      */
     companion object{
+        //确保注解通过 as 的静态审查，不带这个会报错 2020-12-01
         @Suppress("StaticFieldLeak")
         lateinit var context:Context
 
