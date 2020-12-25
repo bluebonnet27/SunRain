@@ -54,11 +54,6 @@ class DailyinforActivity : AppCompatActivity() {
         ActivitySet.removeActivity(this)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.daily_infor_toolbar_menu,menu)
-        return true
-    }
-
     private fun initToolBar(weather: Weather, index: Int){
         //date
         val dateOrigin = weather.daily.skyconDaylight[index].date

@@ -78,14 +78,20 @@
 
         <ListPreference
             android:key="others_darkmode_list"
+            android:entries="@array/night_mode"
+            android:entryValues="@array/night_mode_values"
+            android:dialogTitle="切换显示模式"
             android:title="暗色模式"
             android:summary="跟随系统、白天、夜晚"
-            android:enabled="false"/>
+            android:defaultValue="0"/>
 
         <ListPreference
             android:key="others_language_list"
+            android:entries="@array/languages"
+            android:entryValues="@array/language_values"
+            android:dialogTitle="选择一个语言"
             android:title="多语言"
             android:summary="选择晴雨为您提供服务的语言"
-            android:enabled="false"/>
+            android:defaultValue="0"/>
     </PreferenceCategory>
 </PreferenceScreen>

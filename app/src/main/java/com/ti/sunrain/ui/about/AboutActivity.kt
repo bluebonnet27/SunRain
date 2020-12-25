@@ -154,8 +154,8 @@ class AboutActivity : AppCompatActivity() {
                 "clientVersion=3.7.0.0718&qrcode=https%3A%2F%2Fqr.alipay.com%2Ffkx11810qxcirwaicgedwc6%3F_s" +
                 "%3Dweb-other&_t=1472443966571#Intent;" +
                 "scheme=alipayqr;package=com.eg.android.AlipayGphone;end"
-        Toast.makeText(SunRainApplication.context, "感谢您的捐赠！", Toast.LENGTH_SHORT).show()
         if(hasInstalledAlipayClient()){
+            Toast.makeText(SunRainApplication.context, "感谢您的捐赠！", Toast.LENGTH_SHORT).show()
             try {
                 val intent = Intent.parseUri(url,Intent.URI_INTENT_SCHEME)
                 //safe rules

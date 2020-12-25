@@ -227,6 +227,7 @@ class WeatherActivity : AppCompatActivity() {
         windLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
 
         //forecast.xml数据注入
+        forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc + " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
         forecastLayout.removeAllViews()
         val days = daily.skyconSum.size
 
@@ -332,6 +333,8 @@ class WeatherActivity : AppCompatActivity() {
         weatherLayout.visibility = View.VISIBLE
 
         //air.xml 数列写入数据
+        airDesc.text = weather.realtime.airQuality.description.chn
+
         val aq = realtime.airQuality
         pm25Num.text = "${aq.pm25} μg/m3"
         pm10Num.text = "${aq.pm10} μg/m3"
@@ -353,7 +356,7 @@ class WeatherActivity : AppCompatActivity() {
         airPie.holeRadius = 90f
         airPie.description.isEnabled = false
         airPie.transparentCircleRadius = 0f
-        airPie.centerText = "AQI:${aq.aqi.chn.toInt()}\n${realtime.airQuality.description.chn}"
+        airPie.centerText = aq.aqi.chn.toInt().toString()
         airPie.setCenterTextSize(18f)
 
         if(isDarkTheme(SunRainApplication.context)){

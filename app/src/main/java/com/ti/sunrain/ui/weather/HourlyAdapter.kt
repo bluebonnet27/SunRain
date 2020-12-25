@@ -1,10 +1,12 @@
 package com.ti.sunrain.ui.weather
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.ti.sunrain.R
 import com.ti.sunrain.logic.model.*
@@ -30,7 +32,19 @@ class HourlyAdapter(private val hourlyItemList:List<HourlyItem>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hourly,
             parent,false)
-        return ViewHolder(view)
+        val viewholder = ViewHolder(view)
+
+        view.setOnClickListener {
+            AlertDialog.Builder(parent.context)
+                .setTitle("${viewholder.timeText.text}")
+                .setIcon(viewholder.skyconImage.drawable)
+                .setMessage("天气: ${viewholder.skyconText.text}\n"+
+                            "温度: ${viewholder.tempText.text}\n"+
+                            "风向: ${viewholder.windText.text}")
+                .show()
+        }
+
+        return viewholder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
