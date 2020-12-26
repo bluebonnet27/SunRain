@@ -83,7 +83,8 @@
             android:dialogTitle="切换显示模式"
             android:title="暗色模式"
             android:summary="跟随系统、白天、夜晚"
-            android:defaultValue="0"/>
+            android:defaultValue="0"
+            android:enabled="false"/>
 
         <ListPreference
             android:key="others_language_list"
@@ -92,6 +93,7 @@
             android:dialogTitle="选择一个语言"
             android:title="多语言"
             android:summary="选择晴雨为您提供服务的语言"
-            android:defaultValue="0"/>
+            android:defaultValue="0"
+            android:enabled="false"/>
     </PreferenceCategory>
 </PreferenceScreen>

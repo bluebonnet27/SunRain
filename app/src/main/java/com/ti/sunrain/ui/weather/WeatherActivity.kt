@@ -166,8 +166,8 @@ class WeatherActivity : AppCompatActivity() {
         //COVID
         //preference需要在每次使用时声明，否则会导致多进程错误
         val covidOption = menu?.getItem(0)
-        val preferences = getSharedPreferences("settings",0)
-        covidOption?.isVisible = preferences.getBoolean("covid19_switch",true)
+        //val preferences = getSharedPreferences("settings",0)
+        covidOption?.isVisible = SunRainApplication.settingsPreference.getBoolean("covid19_switch",true)
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -212,8 +212,8 @@ class WeatherActivity : AppCompatActivity() {
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
 
-        val festivalBackgroundPreference = getSharedPreferences("settings",0)
-        val festivalBackgroundValue = festivalBackgroundPreference.getBoolean("festival_bg_switch",true)
+        //val festivalBackgroundPreference = getSharedPreferences("settings",0)
+        val festivalBackgroundValue = SunRainApplication.settingsPreference.getBoolean("festival_bg_switch",true)
         val originBackground = (getSky(realtime.skycon).bg)
         if(festivalBackgroundValue){
             drawerLayout.setBackgroundResource(changeBackgroundByHours(originBackground,judgeTimeInDay()))
@@ -235,8 +235,8 @@ class WeatherActivity : AppCompatActivity() {
         val listLow = ArrayList<Entry>()
 
         //settings 来自设置的 preference 引用
-        val preferences = getSharedPreferences("settings",0)
-        val dateFormatValue = preferences.getString("forecastDateFormat_list","0")
+        //val preferences = getSharedPreferences("settings",0)
+        val dateFormatValue = SunRainApplication.settingsPreference.getString("forecastDateFormat_list","0")
 
         for(i in 0 until days){
             val skycon = daily.skyconSum[i]
@@ -282,13 +282,13 @@ class WeatherActivity : AppCompatActivity() {
 
         //now 通知
         val rTnotification = showRealtimeWeatherNotification(weather)
-        val preferencesNotificationCancel = getSharedPreferences("settings",0)
-        if(!preferencesNotificationCancel.getBoolean("notification_cancancel_switch",false)){
+        //val preferencesNotificationCancel = getSharedPreferences("settings",0)
+        if(!SunRainApplication.settingsPreference.getBoolean("notification_cancancel_switch",false)){
             rTnotification.flags = Notification.FLAG_NO_CLEAR
         }
         
-        val notifyPreferences = getSharedPreferences("settings",0)
-        if(notifyPreferences.getBoolean("notification_switch",false)){
+        //val notifyPreferences = getSharedPreferences("settings",0)
+        if(SunRainApplication.settingsPreference.getBoolean("notification_switch",false)){
             manager.notify(1,rTnotification)
         }else{
             manager.cancel(1)
@@ -438,8 +438,8 @@ class WeatherActivity : AppCompatActivity() {
             .setContentTitle("${weather.realtime.temperature.toInt()}° ${getSky(weather.realtime.skycon).info}")
             .setSmallIcon(skyConToday.weather_icon)
 
-        val preferencesNotificationLong = getSharedPreferences("settings",0)
-        val isMoreinfo = preferencesNotificationLong.getBoolean("notification_moreinfo_switch",false)
+        //val preferencesNotificationLong = getSharedPreferences("settings",0)
+        val isMoreinfo = SunRainApplication.settingsPreference.getBoolean("notification_moreinfo_switch",false)
 
         if(isMoreinfo){
             notification.setStyle(NotificationCompat.BigTextStyle().bigText("AQI:${weather.realtime.airQuality.aqi.chn}\n" +

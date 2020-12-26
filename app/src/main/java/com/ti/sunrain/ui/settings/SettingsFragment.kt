@@ -66,14 +66,26 @@ class SettingsFragment : PreferenceFragmentCompat(){
             true
         }
 
-        val preferences = SunRainApplication.context.getSharedPreferences("settings",0)
-        val isNotificationSwitchPreferenceTrue = preferences.getBoolean("notification_switch",false)
+        //!!!
+        val isNotificationSwitchPreferenceTrue = SunRainApplication.settingsPreference.getBoolean("notification_switch",false)
         if(isNotificationSwitchPreferenceTrue){
             notificationMoreInfoPreference?.isEnabled = true
             notificationCanCancelPreference?.isEnabled = true
         }else{
             notificationMoreInfoPreference?.isEnabled = false
             notificationCanCancelPreference?.isEnabled = false
+        }
+
+        notificationMoreInfoPreference?.setOnPreferenceChangeListener { _, _ ->
+            Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
+                .show()
+            true
+        }
+
+        notificationCanCancelPreference?.setOnPreferenceChangeListener { _, _ ->
+            Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
+                .show()
+            true
         }
     }
 }

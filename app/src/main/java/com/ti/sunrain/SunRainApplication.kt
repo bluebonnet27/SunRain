@@ -2,6 +2,7 @@ package com.ti.sunrain
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 
 /**
  * @author: tihon
@@ -17,6 +18,7 @@ class SunRainApplication:Application() {
         //确保注解通过 as 的静态审查，不带这个会报错 2020-12-01
         @Suppress("StaticFieldLeak")
         lateinit var context:Context
+        lateinit var settingsPreference:SharedPreferences
 
         //彩云天气令牌值
         const val TOKEN = "QTeX2n8AQjAhR9BV"
@@ -28,5 +30,6 @@ class SunRainApplication:Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        settingsPreference = getSharedPreferences("settings",0)
     }
 }
