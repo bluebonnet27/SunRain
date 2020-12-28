@@ -7,10 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
-import android.icu.text.CaseMap
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -19,7 +17,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
@@ -32,7 +29,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import com.ti.sunrain.CovidSpecial
+import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
@@ -131,7 +128,8 @@ class WeatherActivity : AppCompatActivity() {
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
 
             R.id.COVIDExplorer ->{
-                val covidIntent = Intent(this,CovidSpecial::class.java)
+                val covidIntent = Intent(this,
+                    CovidSpecial::class.java)
                 startActivity(covidIntent)
             }
             R.id.settingsIcon -> {

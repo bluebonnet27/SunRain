@@ -1,11 +1,8 @@
 package com.ti.sunrain.ui.daily
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -41,7 +38,7 @@ class DailyinforActivity : AppCompatActivity() {
         val weather = Gson().fromJson(weatherJson,Weather::class.java)
         val dayIndex = intent.getIntExtra("dayIndex",0)
 
-        initToolBar(weather,dayIndex)
+        initToolBarAndFAB(weather,dayIndex)
         setWeatherDayAndNight(weather,dayIndex)
         setWeatherLifeIndex(weather,dayIndex)
         setOtherWeatherInformation(weather,dayIndex)
@@ -54,7 +51,7 @@ class DailyinforActivity : AppCompatActivity() {
         ActivitySet.removeActivity(this)
     }
 
-    private fun initToolBar(weather: Weather, index: Int){
+    private fun initToolBarAndFAB(weather: Weather, index: Int){
         //date
         val dateOrigin = weather.daily.skyconDaylight[index].date
         val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())

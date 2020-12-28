@@ -1,4 +1,4 @@
-package com.ti.sunrain
+package com.ti.sunrain.ui.covid
 
 import android.content.Intent
 import android.net.Uri
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.ti.sunrain.R
 import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_covid_special.*
 

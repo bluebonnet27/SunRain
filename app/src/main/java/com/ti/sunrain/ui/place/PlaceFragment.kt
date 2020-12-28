@@ -53,6 +53,7 @@ class PlaceFragment:Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter = PlaceAdapter(this,viewModel.placeList)
         recyclerView.adapter = adapter
+
         searchPlaceEdit.addTextChangedListener { editable ->
             val content = editable.toString()
             if(content.isNotEmpty()){
@@ -64,7 +65,8 @@ class PlaceFragment:Fragment() {
                 adapter.notifyDataSetChanged()
             }
         }
-        viewModel.placeLiveData.observe(this, Observer { result ->
+
+        viewModel.placeLiveData.observe(viewLifecycleOwner, Observer { result ->
             val places = result.getOrNull()
             if(places!=null){
                 recyclerView.visibility = View.VISIBLE
