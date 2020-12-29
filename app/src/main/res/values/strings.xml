@@ -93,9 +93,13 @@
     <string name="caiyun">天气数据由彩云天气提供</string>
 
     <!--  About Page  -->
-    <string name="githubAbout">Github</string>
-    <string name="aboutAbout">关于</string>
     <string name="APPIntroductionAbout">晴雨：一个开源的 Android 天气预报 APP</string>
+
+    <string name="email_not_found">很抱歉，在您的手机上没有找到能发送电子邮件的应用</string>
+    <string name="cut_screen">请截图扫描</string>
+
+    <string name="sex_pic">我是一份涩图</string>
+    <string name="no_egg">别点了，没有彩蛋的</string>
     <string name="wordsToSay">想说的话</string>
     <string name="finalTextLine1">首先感谢《第一行代码》和它的作者郭霖老师。作为我学习Android开发的第一本入门书，它教会了我很多知识。我的 APP 主要代码也来自书中的项目。</string>
     <string name="finalTextLine2">感谢我的朋友们对这个 APP 的 UI 设计提供的诸多意见，虽然我未能将所有要求全部满足，但你们的支持给了我很多力量。</string>

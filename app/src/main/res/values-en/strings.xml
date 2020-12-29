@@ -103,9 +103,13 @@
     <string name="know">know</string>
 
     <!--  About Page  -->
-    <string name="githubAbout">Github</string>
-    <string name="aboutAbout">About</string>
     <string name="APPIntroductionAbout">SunRain</string>
+
+    <string name="email_not_found">Sorry, e-mail application not found</string>
+    <string name="cut_screen">Please cut screen</string>
+
+    <string name="sex_pic">I am a sexy picture</string>
+    <string name="no_egg">Do not click, no eggs in</string>
 
     <!--  open source  -->
     <string name="apache_2">Apache-2.0 License</string>

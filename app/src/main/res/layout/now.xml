@@ -12,11 +12,8 @@
         android:id="@+id/informationOfDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="15dp">
+        android:layout_above="@+id/airInformation"
+        android:layout_marginStart="15dp">
 
         <TextView
             android:id="@+id/currentSky"
@@ -25,19 +22,22 @@
             android:textColor="#ffffff"
             android:textSize="18sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:text="|"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/airInformation"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/currentAQI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
             android:textColor="#fff"
             android:textSize="18sp"/>
 
@@ -50,6 +50,15 @@
             android:textSize="18sp"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/currentTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/informationOfDay"
+        android:layout_marginStart="15dp"
+        android:textColor="#ffffff"
+        android:textSize="70sp"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -89,14 +98,5 @@
 
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/currentTemperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/informationOfDay"
-        android:layout_marginStart="15dp"
-        android:textColor="#ffffff"
-        android:textSize="70sp"/>
 
 </RelativeLayout>

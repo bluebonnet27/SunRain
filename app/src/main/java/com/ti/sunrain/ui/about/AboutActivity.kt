@@ -65,7 +65,7 @@ class AboutActivity : AppCompatActivity() {
             if(emailIntent.resolveActivity(packageManager)!=null){
                 startActivity(emailIntent)
             }else{
-                Snackbar.make(parentLiner,"很抱歉，在您的手机上没有找到能发送电子邮件的应用",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(parentLiner,resources.getString(R.string.email_not_found),Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -83,7 +83,7 @@ class AboutActivity : AppCompatActivity() {
             val wechatqrview = ImageView(this)
             wechatqrview.setImageResource(R.drawable.wechatqrcode)
             AlertDialog.Builder(this)
-                .setTitle("请截图扫描")
+                .setTitle(resources.getString(R.string.cut_screen))
                 .setView(wechatqrview)
                 .show()
         }
@@ -142,10 +142,10 @@ class AboutActivity : AppCompatActivity() {
     private fun getRandomForEgg(activity: Activity){
         when((0..99).random()){
             0 -> AlertDialog.Builder(activity)
-                .setMessage("我是一份涩图")
+                .setMessage(resources.getString(R.string.sex_pic))
                 .setPositiveButton(activity.getString(R.string.ok),null)
                 .show()
-            else -> Toast.makeText(activity, "别点了，没有彩蛋的", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(activity, resources.getString(R.string.no_egg), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -155,8 +155,8 @@ class AboutActivity : AppCompatActivity() {
                 "%3Dweb-other&_t=1472443966571#Intent;" +
                 "scheme=alipayqr;package=com.eg.android.AlipayGphone;end"
         if(hasInstalledAlipayClient()){
-            Toast.makeText(SunRainApplication.context, "感谢您的捐赠！", Toast.LENGTH_SHORT).show()
             try {
+                Toast.makeText(SunRainApplication.context, "感谢您的捐赠！", Toast.LENGTH_SHORT).show()
                 val intent = Intent.parseUri(url,Intent.URI_INTENT_SCHEME)
                 //safe rules
                 intent.addCategory("android.intent.category.BROWSABLE")

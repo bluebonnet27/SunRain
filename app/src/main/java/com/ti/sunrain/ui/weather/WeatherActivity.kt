@@ -110,8 +110,8 @@ class WeatherActivity : AppCompatActivity() {
         swipeRefresh.setColorSchemeResources(R.color.blue500)
         refreshWeather()
         swipeRefresh.setOnRefreshListener {
-            Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
             refreshWeather()
+            Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
         }
 
     }
