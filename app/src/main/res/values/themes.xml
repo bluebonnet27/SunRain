@@ -20,8 +20,8 @@
     </style>
 
     <style name="toolbarMainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-<!--        这个方法不知道为什么失效了-->
-<!--        <item name="actionMenuTextColor">@color/white</item>-->
+        <!--        这个方法不知道为什么失效了-->
+        <!--        <item name="actionMenuTextColor">@color/white</item>-->
         <item name="android:textColorPrimary">@color/white</item>
         <item name="subtitleTextColor">@color/white</item>
         <item name="android:colorControlNormal">@color/white</item>
@@ -51,7 +51,7 @@
     </style>
 
     <style name="setting_text_left">
-<!--        <item name="android:textColor">@color/black_to_grey</item>-->
+        <!--        <item name="android:textColor">@color/black_to_grey</item>-->
         <item name="android:layout_marginStart">56dp</item>
         <item name="android:layout_marginTop">12dp</item>
         <item name="android:layout_marginBottom">12dp</item>
@@ -84,7 +84,14 @@
         <item name="android:maxHeight">50dip</item>
         <item name="android:minHeight">10dip</item>
         <item name="android:indeterminateOnly">false</item>
-        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
         <item name="android:progressDrawable">@drawable/progressbar_hint1</item>
+    </style>
+
+    <style name="ThemeOverlay.SunRain.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/light_blue_600</item>
+        <item name="appWidgetTextColor">@color/light_blue_50</item>
     </style>
 </resources>

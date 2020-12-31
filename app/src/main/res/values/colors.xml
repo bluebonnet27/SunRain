@@ -7,7 +7,7 @@
     <color name="grey_darken_3">#424242</color>
     <color name="grey_darken_2">#616161</color>
     <color name="grey_darken_1">#757575</color>
-    
+
     <color name="brown_darken_1">#6d4c41</color>
     <color name="brown_darken_2">#5d4037</color>
     <color name="brown_darken_3">#4d342e</color>
@@ -31,4 +31,8 @@
     <color name="brown200">#bcaaa4</color>
     <color name="brown500">#795548</color>
     <color name="brown700">#5d4037</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 </resources>

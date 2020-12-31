@@ -19,4 +19,9 @@
     <style name="toolbarMainTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="actionMenuTextColor">@color/white</item>
     </style>
+
+    <style name="ThemeOverlay.SunRain.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/light_blue_900</item>
+        <item name="appWidgetTextColor">@color/light_blue_200</item>
+    </style>
 </resources>

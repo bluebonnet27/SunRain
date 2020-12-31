@@ -131,4 +131,6 @@
 
     <!--  settings  -->
     <string name="settingsInfo">Settings</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
