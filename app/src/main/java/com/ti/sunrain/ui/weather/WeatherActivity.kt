@@ -6,6 +6,8 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +20,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -199,7 +202,7 @@ class WeatherActivity : AppCompatActivity() {
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
 
-        initToolBarBasic(viewModel.placeName,"$serverTimeText 刷新")
+        initToolBarBasic(viewModel.placeName,"$serverTimeText ${resources.getString(R.string.refresh)}")
 
         //now.xml数据注入
         val currentTempText = "${realtime.temperature.toInt()}°"
@@ -269,6 +272,7 @@ class WeatherActivity : AppCompatActivity() {
                 val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
                 dailyInfoIntent.putExtra("weather",Gson().toJson(weather))
                 dailyInfoIntent.putExtra("dayIndex",i)
+                //animation
                 startActivity(dailyInfoIntent)
             }
 
@@ -432,9 +436,16 @@ class WeatherActivity : AppCompatActivity() {
     private fun showRealtimeWeatherNotification(weather: Weather):Notification{
         val skyConToday = getSky(weather.daily.skyconSum[0].value)
 
+        var icon_day_or_night = R.drawable.baseline_wb_sunny_black_24dp
+
+        if(isDarkTheme(this)){
+            icon_day_or_night = R.drawable.baseline_nights_stay_white_24dp
+        }
+
         val notification =  NotificationCompat.Builder(this,"sun_rain_realtime")
-            .setContentTitle("${weather.realtime.temperature.toInt()}° ${getSky(weather.realtime.skycon).info}")
-            .setSmallIcon(skyConToday.weather_icon)
+            .setContentTitle("${weather.realtime.temperature.toInt()}°${getSky(weather.realtime.skycon).info}")
+            .setSmallIcon(icon_day_or_night)
+            .setLargeIcon(BitmapFactory.decodeResource(resources,skyConToday.weather_icon))
 
         //val preferencesNotificationLong = getSharedPreferences("settings",0)
         val isMoreinfo = SunRainApplication.settingsPreference.getBoolean("notification_moreinfo_switch",false)
@@ -444,7 +455,7 @@ class WeatherActivity : AppCompatActivity() {
                     weather.hourly.description
             ))
         }else{
-            notification.setContentText("AQI:${weather.realtime.airQuality.aqi.chn}")
+            notification.setContentText("AQI:${weather.realtime.airQuality.aqi.chn} ${weather.realtime.airQuality.description.chn}")
         }
 
         return notification.build()

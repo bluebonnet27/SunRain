@@ -7,6 +7,7 @@
     <!--  places  -->
     <string name="search_hint">Input the city you want to search for weather…</string>
     <string name="search_blank_intro">SORRY! There is nothing here.</string>
+    <string name="refresh">Refresh</string>
 
     <!--  hourly  -->
     <string name="hourly_data">Hourly data</string>

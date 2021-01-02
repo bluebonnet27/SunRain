@@ -3,7 +3,10 @@ package com.ti.sunrain.ui.daily
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
+import android.transition.Explode
+import android.transition.Fade
 import android.view.MenuItem
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
@@ -22,6 +25,12 @@ import java.util.*
 class DailyinforActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        window.apply {
+//            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+//            enterTransition = Fade()
+//            exitTransition = androidx.transition.Fade()
+//        }
         setContentView(R.layout.activity_dailyinfor)
 
         //set

@@ -7,6 +7,7 @@
     <!--  places  -->
     <string name="search_hint">输入你想要查询天气的城市</string>
     <string name="search_blank_intro">这里空空如也</string>
+    <string name="refresh">刷新</string>
 
     <!--  hourly  -->
     <string name="hourly_data">小时数据</string>
