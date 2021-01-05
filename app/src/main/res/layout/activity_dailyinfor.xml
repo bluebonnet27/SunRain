@@ -21,8 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="25dp"
-            app:titleTextColor="@color/white"
-            app:subtitleTextColor="@color/white"/>
+            app:titleTextAppearance="@style/toolbar_title"
+            app:subtitleTextAppearance="@style/toolbar_subtitle"
+            app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -8,9 +8,11 @@ import android.transition.Fade
 import android.view.MenuItem
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.ti.sunrain.R
+import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
 import kotlinx.android.synthetic.main.activity_dailyinfor.*
@@ -35,6 +37,13 @@ class DailyinforActivity : AppCompatActivity() {
 
         //set
         ActivitySet.addActivity(this)
+
+        //darkmode
+        when(SunRainApplication.settingsPreference.getString("others_darkmode_list","0")){
+            "0" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            "1" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+            "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        }
 
         setSupportActionBar(dailyInforToolbar)
         supportActionBar?.let {

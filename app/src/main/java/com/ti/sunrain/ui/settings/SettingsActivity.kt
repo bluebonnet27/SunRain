@@ -5,9 +5,11 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
+import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -18,6 +20,13 @@ class SettingsActivity : AppCompatActivity() {
 
         //set
         ActivitySet.addActivity(this)
+
+        //darkmode
+        when(SunRainApplication.settingsPreference.getString("others_darkmode_list","0")){
+            "0" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            "1" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+            "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        }
 
         initToolBar()
         replaceFragement(SettingsFragment())
@@ -44,8 +53,7 @@ class SettingsActivity : AppCompatActivity() {
             it.setHomeButtonEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_white_24dp)
         }
-        settingsToolbar.subtitle ="V ${BuildConfig.VERSION_NAME}"
-        settingsToolbar.setSubtitleTextColor(Color.WHITE)
+        settingsToolbar.subtitle ="SunRain v${BuildConfig.VERSION_NAME}"
     }
 
     private fun replaceFragement(fragment: Fragment){

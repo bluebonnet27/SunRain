@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -33,6 +34,13 @@ class AboutActivity : AppCompatActivity() {
 
         //set
         ActivitySet.addActivity(this)
+
+        //darkmode
+        when(SunRainApplication.settingsPreference.getString("others_darkmode_list","0")){
+            "0" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            "1" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+            "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        }
 
         viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
 

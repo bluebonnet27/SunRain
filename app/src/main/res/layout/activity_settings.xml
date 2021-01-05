@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.settings.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,6 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="25dp"
+            app:titleTextAppearance="@style/toolbar_title"
+            app:subtitleTextAppearance="@style/toolbar_subtitle"
             app:title="@string/settingsInfo"
             app:titleTextColor="@color/white"/>
 

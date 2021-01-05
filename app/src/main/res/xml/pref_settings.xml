@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
@@ -83,8 +84,7 @@
             android:dialogTitle="切换显示模式"
             android:title="暗色模式"
             android:summary="跟随系统、白天、夜晚"
-            android:defaultValue="0"
-            android:enabled="false"/>
+            android:defaultValue="0"/>
 
         <ListPreference
             android:key="others_language_list"
