@@ -27,12 +27,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/coldRiskImg"
@@ -71,7 +74,10 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/dressingImg"
@@ -112,13 +118,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginTop="15dp">
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/ultravioletImg"
@@ -157,7 +165,10 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/carWashingImg"
@@ -183,6 +194,99 @@
 
                     <TextView
                         android:id="@+id/carWashingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/colorPrimary"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/comfortImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_comfort"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/comfortImg"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="舒适度"/>
+
+                    <TextView
+                        android:id="@+id/comfortText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/colorPrimary"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/windIndexImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_windindex"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/windIndexImg"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/windIndexTextLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="@string/carWashing"/>
+
+                    <TextView
+                        android:id="@+id/windIndexTextDirection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"

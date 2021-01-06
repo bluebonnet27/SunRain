@@ -60,43 +60,4 @@
         android:textColor="#ffffff"
         android:textSize="70sp"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/infromationOfWind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="40dp">
-
-        <ImageView
-            android:id="@+id/nowWindIcon"
-            android:src="@drawable/ic_wind1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="5dp">
-
-            <TextView
-                android:id="@+id/windLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:id="@+id/windDirection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:textSize="15sp"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
 </RelativeLayout>

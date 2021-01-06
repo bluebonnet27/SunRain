@@ -10,6 +10,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginBottom="15dp"
     android:orientation="vertical"
+    android:visibility="gone"
     app:cardCornerRadius="8dp">
 
     <com.github.mikephil.charting.charts.LineChart

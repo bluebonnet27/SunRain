@@ -47,7 +47,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp">
 
                 <ImageView
                     android:id="@+id/coldRiskImgItem"
@@ -86,7 +86,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp">
 
                 <ImageView
                     android:id="@+id/dressingImgItem"
@@ -133,7 +133,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp">
 
                 <ImageView
                     android:id="@+id/ultravioletImgItem"
@@ -172,7 +172,7 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="60dp">
+                android:layout_height="50dp">
 
                 <ImageView
                     android:id="@+id/carWashingImgItem"

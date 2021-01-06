@@ -44,6 +44,13 @@
             android:summaryOn="开启（仅针对部分公历节日）"
             android:summaryOff="关闭"/>
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="forecast_chart_switch"
+            android:title="开启天气预报折线图"
+            android:summaryOn="开启（在最下面哦）"
+            android:summaryOff="关闭"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -82,7 +89,7 @@
             android:entries="@array/night_mode"
             android:entryValues="@array/night_mode_values"
             android:dialogTitle="切换显示模式"
-            android:title="暗色模式"
+            android:title="暗色模式（实验中）"
             android:summary="跟随系统、白天、夜晚"
             android:defaultValue="0"/>
 

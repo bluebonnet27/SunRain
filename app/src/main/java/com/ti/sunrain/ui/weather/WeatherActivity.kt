@@ -18,6 +18,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
@@ -196,8 +198,6 @@ class WeatherActivity : AppCompatActivity() {
      */
     private fun showWeatherInfo(weather: Weather){
 
-        getAndroidID()
-
         //notification channel
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -235,10 +235,6 @@ class WeatherActivity : AppCompatActivity() {
         else{
             drawerLayout.setBackgroundResource(originBackground)
         }
-
-        nowWindIcon.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
-        windDirection.text = "${getWindDirection(windReturn.direction)}风"
-        windLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
 
         //forecast.xml数据注入
         forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc + " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
@@ -310,6 +306,13 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         //temperatureChart
+        val isForecastChartVisible = SunRainApplication.settingsPreference.getBoolean("forecast_chart_switch",false)
+        if(isForecastChartVisible){
+            tempChartCard.visibility = VISIBLE
+        }else{
+            tempChartCard.visibility = GONE
+        }
+
         val setHigh = LineDataSet(listHigh,"High")
         setHigh.mode = LineDataSet.Mode.CUBIC_BEZIER
         setHigh.color = Color.parseColor("#D50000")
@@ -344,6 +347,12 @@ class WeatherActivity : AppCompatActivity() {
         dressingText.text = lifeIndex.dressing[0].desc
         ultravioletText.text = lifeIndex.ultraviolet[0].desc
         carWashingText.text = lifeIndex.carWashing[0].desc
+        comfortText.text = lifeIndex.comfort[0].desc
+//        nowWindIcon.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
+//        windDirection.text = "${getWindDirection(windReturn.direction)}风"
+//        windLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
+        windIndexTextDirection.text = "${getWindDirection(windReturn.direction)}风"
+        windIndexTextLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
 
         weatherLayout.visibility = View.VISIBLE
 
@@ -537,10 +546,5 @@ class WeatherActivity : AppCompatActivity() {
         }else{
             originBackgroundResId
         }
-    }
-
-    private fun getAndroidID(){
-        val androidId = Settings.System.getString(contentResolver,Settings.System.ANDROID_ID)
-        Log.d("test1","androidID: $androidId")
     }
 }

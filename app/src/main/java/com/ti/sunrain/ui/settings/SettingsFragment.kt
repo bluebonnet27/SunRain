@@ -29,6 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
 
         val dateFormatPreference : ListPreference? = findPreference("forecastDateFormat_list")
         val festivalBgPreference : SwitchPreference? = findPreference("festival_bg_switch")
+        val forecastChartPreference : SwitchPreference? = findPreference("forecast_chart_switch")
 
         val notificationSwitchPreference : SwitchPreference? = findPreference("notification_switch")
         val notificationMoreInfoPreference : SwitchPreference? = findPreference("notification_moreinfo_switch")
@@ -52,6 +53,12 @@ class SettingsFragment : PreferenceFragmentCompat(){
         }
 
         festivalBgPreference?.setOnPreferenceChangeListener { _, _ ->
+            Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
+                .show()
+            true
+        }
+
+        forecastChartPreference?.setOnPreferenceChangeListener { _, _ ->
             Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
                 .show()
             true
