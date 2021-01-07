@@ -27,12 +27,6 @@ import java.util.*
 class DailyinforActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        window.apply {
-//            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-//            enterTransition = Fade()
-//            exitTransition = androidx.transition.Fade()
-//        }
         setContentView(R.layout.activity_dailyinfor)
 
         //set
@@ -125,16 +119,25 @@ class DailyinforActivity : AppCompatActivity() {
     }
 
     private fun setWeatherLifeIndex(weather: Weather,index: Int){
-        //life index
+        //life index common
         val ultravioletDesc = weather.daily.lifeIndex.ultraviolet[index].desc
         val carWashingDesc = weather.daily.lifeIndex.carWashing[index].desc
         val coldRiskDesc = weather.daily.lifeIndex.coldRisk[index].desc
         val dressingDesc = weather.daily.lifeIndex.dressing[index].desc
 
+        //life index air
+        val aqiValue = weather.daily.aqi.aqiList[index].avg.chn.toString()
+        val aqiDesc = getAQIDesc(weather.daily.aqi.aqiList[index].avg.chn.toInt())
+        val pm25Desc = weather.daily.aqi.pm25List[index].avg.toString()
+
         ultravioletTextItem.text = ultravioletDesc
         carWashingTextItem.text = carWashingDesc
         coldRiskTextItem.text = coldRiskDesc
         dressingTextItem.text = dressingDesc
+
+        aqiTextTitleItem.text = aqiValue
+        aqiTextContextItem.text = aqiDesc
+        pm25TextItem.text = pm25Desc
     }
 
     private fun setOtherWeatherInformation(weather: Weather,index:Int){
@@ -205,5 +208,28 @@ class DailyinforActivity : AppCompatActivity() {
         3 -> 0x5d4037
         4 -> 0x455a64
         else -> 0xd32f2f
+    }
+
+    fun getAQIDesc(aqiValue:Int):String{
+        when (aqiValue) {
+            in 0..50 -> {
+                return "优"
+            }
+            in 51..100 -> {
+                return "良"
+            }
+            in 101..150 -> {
+                return "轻度污染"
+            }
+            in 151..200 -> {
+                return "中度污染"
+            }
+            in 201..300 -> {
+                return "重度污染"
+            }
+            else -> {
+                return "严重污染"
+            }
+        }
     }
 }

@@ -55,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/baseline_wb_cloudy_white_24dp"
         android:layout_gravity="bottom|end"
         app:layout_constraintEnd_toEndOf="@+id/mainScroll"
         app:layout_constraintBottom_toBottomOf="@+id/mainScroll" />

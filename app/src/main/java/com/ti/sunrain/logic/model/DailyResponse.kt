@@ -26,6 +26,7 @@ data class DailyResponse(val status:String,val result: Result){
                      @SerializedName("skycon_20h_32h")val skyconNight:List<Skycon>,
                      val temperature:List<Temperature>,
                      val wind:List<Wind>,
+                     val humidity:List<Humidity>,
                      @SerializedName("air_quality")val aqi:AQI,
                      @SerializedName("life_index")val lifeIndex:LifeIndex,
                      val precipitation:List<Precipitation>)
@@ -45,13 +46,21 @@ data class DailyResponse(val status:String,val result: Result){
                     @SerializedName("min")val minWind:WindDesc,
                     @SerializedName("avg")val avgWind:WindDesc)
 
+    data class Humidity(val date:String,
+                        @SerializedName("max")val maxHumidity:Float,
+                        @SerializedName("min")val minHumidity:Float,
+                        @SerializedName("avg")val avgHumidity:Float)
+
     data class WindDesc(val speed:Float,val direction:Float )
 
-    data class AQI(val aqiList:List<AQIDesc>)
+    data class AQI(@SerializedName("aqi")val aqiList:List<AQIDesc>,
+                   @SerializedName("pm25")val pm25List:List<PM25Desc>)
 
-    data class AQIDesc(val date: Date,val max:AQIMM,val min:AQIMM)
+    data class AQIDesc(val date: String,val max:AQIMM,val min:AQIMM,val avg:AQIMM)
 
-    data class AQIMM(val chn:String)
+    data class PM25Desc(val date: String,val max:Float,val min:Float,val avg:Float)
+
+    data class AQIMM(val chn:Float)
 
     data class LifeIndex(val coldRisk:List<LifeDescription>,
                          val carWashing:List<LifeDescription>,

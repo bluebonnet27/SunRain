@@ -178,9 +178,7 @@ class WeatherActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         //COVID
-        //preference需要在每次使用时声明，否则会导致多进程错误
         val covidOption = menu?.getItem(0)
-        //val preferences = getSharedPreferences("settings",0)
         covidOption?.isVisible = SunRainApplication.settingsPreference.getBoolean("covid19_switch",true)
         return super.onPrepareOptionsMenu(menu)
     }
@@ -198,7 +196,7 @@ class WeatherActivity : AppCompatActivity() {
      */
     private fun showWeatherInfo(weather: Weather){
 
-        //notification channel
+        //天气通知频道
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val channel = NotificationChannel("sun_rain_realtime","即时天气",
@@ -206,7 +204,7 @@ class WeatherActivity : AppCompatActivity() {
             manager.createNotificationChannel(channel)
         }
 
-        //获取ViewModel中的数据,以及toolbar数据填充
+        //获取ViewModel中的数据
         val realtime = weather.realtime
         val daily = weather.daily
         val responseForRealtime = weather.realtimeResponse
@@ -215,9 +213,10 @@ class WeatherActivity : AppCompatActivity() {
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
 
+        //ToolBar 数据
         initToolBarBasic(viewModel.placeName,"$serverTimeText ${resources.getString(R.string.refresh)}")
 
-        //now.xml数据注入
+        //now.xml 数据
         val currentTempText = "${realtime.temperature.toInt()}°"
         currentTemperature.text = currentTempText
         currentSky.text = getSky(realtime.skycon).info
@@ -226,7 +225,7 @@ class WeatherActivity : AppCompatActivity() {
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
 
-        //val festivalBackgroundPreference = getSharedPreferences("settings",0)
+        //now.xml 动态背景
         val festivalBackgroundValue = SunRainApplication.settingsPreference.getBoolean("festival_bg_switch",true)
         val originBackground = (getSky(realtime.skycon).bg)
         if(festivalBackgroundValue){
@@ -236,7 +235,10 @@ class WeatherActivity : AppCompatActivity() {
             drawerLayout.setBackgroundResource(originBackground)
         }
 
-        //forecast.xml数据注入
+        //progressbar 数据
+        initProgressBar(daily,serverTimeText)
+
+        //forecast.xml 数据
         forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc + " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
         forecastLayout.removeAllViews()
         val days = daily.skyconSum.size
@@ -244,8 +246,6 @@ class WeatherActivity : AppCompatActivity() {
         val listHigh = ArrayList<Entry>()
         val listLow = ArrayList<Entry>()
 
-        //settings 来自设置的 preference 引用
-        //val preferences = getSharedPreferences("settings",0)
         val dateFormatValue = SunRainApplication.settingsPreference.getString("forecastDateFormat_list","0")
 
         for(i in 0 until days){
@@ -281,31 +281,25 @@ class WeatherActivity : AppCompatActivity() {
                 val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
                 dailyInfoIntent.putExtra("weather",Gson().toJson(weather))
                 dailyInfoIntent.putExtra("dayIndex",i)
-                //animation
                 startActivity(dailyInfoIntent)
             }
 
             forecastLayout.addView(view)
         }
 
-        //SunRise ProgressBar
-        initProgressBar(daily,serverTimeText)
-
-        //now 通知
+        //天气通知正文
         val rTnotification = showRealtimeWeatherNotification(weather)
-        //val preferencesNotificationCancel = getSharedPreferences("settings",0)
         if(!SunRainApplication.settingsPreference.getBoolean("notification_cancancel_switch",false)){
             rTnotification.flags = Notification.FLAG_NO_CLEAR
         }
         
-        //val notifyPreferences = getSharedPreferences("settings",0)
         if(SunRainApplication.settingsPreference.getBoolean("notification_switch",false)){
             manager.notify(1,rTnotification)
         }else{
             manager.cancel(1)
         }
 
-        //temperatureChart
+        //temperatureChart 数据
         val isForecastChartVisible = SunRainApplication.settingsPreference.getBoolean("forecast_chart_switch",false)
         if(isForecastChartVisible){
             tempChartCard.visibility = VISIBLE
@@ -338,9 +332,6 @@ class WeatherActivity : AppCompatActivity() {
 
         temperatureChart.data = dataTemp
 
-        //animation
-        //weatherAnimation.setWeatherData(PrecipType.SNOW)
-
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
         coldRiskText.text = lifeIndex.coldRisk[0].desc //今天数据就是一组数据里的第一个
@@ -348,9 +339,6 @@ class WeatherActivity : AppCompatActivity() {
         ultravioletText.text = lifeIndex.ultraviolet[0].desc
         carWashingText.text = lifeIndex.carWashing[0].desc
         comfortText.text = lifeIndex.comfort[0].desc
-//        nowWindIcon.setImageResource(getWindIcon(getWindSpeed(windReturn.speed)))
-//        windDirection.text = "${getWindDirection(windReturn.direction)}风"
-//        windLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
         windIndexTextDirection.text = "${getWindDirection(windReturn.direction)}风"
         windIndexTextLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
 
@@ -397,7 +385,7 @@ class WeatherActivity : AppCompatActivity() {
         val dirtyDataUse = PieData(dirtyDataSet)
         airPie.data = dirtyDataUse
 
-        //hourly
+        //hourly 数据
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         hourlyLayout.layoutManager = layoutManager
