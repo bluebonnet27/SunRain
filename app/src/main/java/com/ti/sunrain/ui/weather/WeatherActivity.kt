@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityOptionsCompat
@@ -341,6 +342,16 @@ class WeatherActivity : AppCompatActivity() {
         comfortText.text = lifeIndex.comfort[0].desc
         windIndexTextDirection.text = "${getWindDirection(windReturn.direction)}风"
         windIndexTextLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
+
+        //lifeindex.xml CLick
+        ColdRiskItem.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Cold Risk")
+                .setMessage("明天：  ${lifeIndex.coldRisk[1].desc}\n"+
+                            "后天：  ${lifeIndex.coldRisk[2].desc}\n"+
+                            "大后天：${lifeIndex.coldRisk[3].desc}")
+                .show()
+        }
 
         weatherLayout.visibility = View.VISIBLE
 
