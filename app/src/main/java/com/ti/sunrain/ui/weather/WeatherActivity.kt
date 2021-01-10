@@ -346,10 +346,16 @@ class WeatherActivity : AppCompatActivity() {
         //lifeindex.xml CLick
         ColdRiskItem.setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("Cold Risk")
-                .setMessage("明天：  ${lifeIndex.coldRisk[1].desc}\n"+
-                            "后天：  ${lifeIndex.coldRisk[2].desc}\n"+
-                            "大后天：${lifeIndex.coldRisk[3].desc}")
+                .setTitle(lifeIndex.coldRisk[0].desc)
+                .setMessage("GOOOOOOOOOOOOOOOOOOOOOOOD\n"+
+                            "Tomorrow: ${lifeIndex.coldRisk[1].desc}\n"+
+                            "HOUTIAN: ${lifeIndex.coldRisk[2].desc}\n"+
+                            "DAHOUTIAN: ${lifeIndex.coldRisk[3].desc}")
+                .show()
+        }
+
+        dressingItem.setOnClickListener {
+            AlertDialog.Builder(this)
                 .show()
         }
 
