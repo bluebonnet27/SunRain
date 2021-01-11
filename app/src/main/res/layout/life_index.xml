@@ -123,6 +123,7 @@
             android:layout_marginTop="15dp">
 
             <RelativeLayout
+                android:id="@+id/ultravioletItem"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
@@ -165,6 +166,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/carWashingItem"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
@@ -215,6 +217,7 @@
             android:layout_marginBottom="30dp">
 
             <RelativeLayout
+                android:id="@+id/comfortItem"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
@@ -257,6 +260,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/windDailyItem"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"

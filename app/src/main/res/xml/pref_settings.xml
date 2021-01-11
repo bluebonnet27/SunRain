@@ -51,6 +51,13 @@
             android:summaryOn="开启（在最下面哦）"
             android:summaryOff="关闭"/>
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="title_refresh_switch"
+            android:title="点击标题刷新天气"
+            android:summaryOn="开启（为了防止误触，建议关闭）"
+            android:summaryOff="关闭"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

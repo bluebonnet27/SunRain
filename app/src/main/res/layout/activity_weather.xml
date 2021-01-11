@@ -18,6 +18,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             android:theme="@style/toolbarMainTheme"
+            android:clickable="true"
+            android:focusable="true"
             app:titleTextAppearance="@style/toolbar_title"
             app:subtitleTextAppearance="@style/toolbar_subtitle"
             app:title="选择城市"

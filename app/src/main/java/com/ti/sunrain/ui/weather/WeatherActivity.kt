@@ -131,6 +131,13 @@ class WeatherActivity : AppCompatActivity() {
             Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
         }
 
+        if(SunRainApplication.settingsPreference.getBoolean("title_refresh_switch",false)){
+            weatherToolBar.setOnClickListener {
+                refreshWeather()
+                Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onDestroy() {
@@ -347,16 +354,50 @@ class WeatherActivity : AppCompatActivity() {
         ColdRiskItem.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle(lifeIndex.coldRisk[0].desc)
-                .setMessage("GOOOOOOOOOOOOOOOOOOOOOOOD\n"+
-                            "Tomorrow: ${lifeIndex.coldRisk[1].desc}\n"+
-                            "HOUTIAN: ${lifeIndex.coldRisk[2].desc}\n"+
-                            "DAHOUTIAN: ${lifeIndex.coldRisk[3].desc}")
+                .setMessage("明天的： ${lifeIndex.coldRisk[1].desc}\n"+
+                            "后天的： ${lifeIndex.coldRisk[2].desc}\n"+
+                            "大后天： ${lifeIndex.coldRisk[3].desc}")
                 .show()
         }
 
         dressingItem.setOnClickListener {
             AlertDialog.Builder(this)
+                .setTitle(lifeIndex.dressing[0].desc)
+                .setMessage("明天的： ${lifeIndex.dressing[1].desc}\n"+
+                            "后天的： ${lifeIndex.dressing[2].desc}\n"+
+                            "大后天： ${lifeIndex.dressing[3].desc}")
                 .show()
+        }
+
+        ultravioletItem.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(lifeIndex.ultraviolet[0].desc)
+                .setMessage("明天的： ${lifeIndex.ultraviolet[1].desc}\n"+
+                            "后天的： ${lifeIndex.ultraviolet[2].desc}\n"+
+                            "大后天： ${lifeIndex.ultraviolet[3].desc}")
+                .show()
+        }
+
+        carWashingItem.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(lifeIndex.carWashing[0].desc)
+                .setMessage("明天的： ${lifeIndex.carWashing[1].desc}\n"+
+                            "后天的： ${lifeIndex.carWashing[2].desc}\n"+
+                            "大后天： ${lifeIndex.carWashing[3].desc}")
+                .show()
+        }
+
+        comfortItem.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(lifeIndex.comfort[0].desc)
+                .setMessage("明天的： ${lifeIndex.comfort[1].desc}\n"+
+                        "后天的： ${lifeIndex.comfort[2].desc}\n"+
+                        "大后天： ${lifeIndex.comfort[3].desc}")
+                .show()
+        }
+
+        windDailyItem.setOnClickListener { view->
+            Snackbar.make(view,"请前往对应日期页查看",Snackbar.LENGTH_SHORT).show()
         }
 
         weatherLayout.visibility = View.VISIBLE
