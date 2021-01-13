@@ -187,7 +187,8 @@ class WeatherActivity : AppCompatActivity() {
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         //COVID
         val covidOption = menu?.getItem(0)
-        covidOption?.isVisible = SunRainApplication.settingsPreference.getBoolean("covid19_switch",true)
+        covidOption?.isVisible = SunRainApplication.settingsPreference
+            .getBoolean("covid19_switch",true)
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -234,10 +235,12 @@ class WeatherActivity : AppCompatActivity() {
         currentAQIDesc.text = " $currentAQIDescInfor"
 
         //now.xml 动态背景
-        val festivalBackgroundValue = SunRainApplication.settingsPreference.getBoolean("festival_bg_switch",true)
+        val festivalBackgroundValue = SunRainApplication.settingsPreference
+            .getBoolean("festival_bg_switch",true)
         val originBackground = (getSky(realtime.skycon).bg)
         if(festivalBackgroundValue){
-            drawerLayout.setBackgroundResource(changeBackgroundByHours(originBackground,judgeTimeInDay()))
+            drawerLayout.setBackgroundResource(changeBackgroundByHours(originBackground
+                ,judgeTimeInDay()))
         }
         else{
             drawerLayout.setBackgroundResource(originBackground)
@@ -247,14 +250,16 @@ class WeatherActivity : AppCompatActivity() {
         initProgressBar(daily,serverTimeText)
 
         //forecast.xml 数据
-        forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc + " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
+        forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc +
+                " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
         forecastLayout.removeAllViews()
         val days = daily.skyconSum.size
 
         val listHigh = ArrayList<Entry>()
         val listLow = ArrayList<Entry>()
 
-        val dateFormatValue = SunRainApplication.settingsPreference.getString("forecastDateFormat_list","0")
+        val dateFormatValue = SunRainApplication.settingsPreference
+            .getString("forecastDateFormat_list","0")
 
         for(i in 0 until days){
             val skycon = daily.skyconSum[i]
@@ -308,7 +313,8 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         //temperatureChart 数据
-        val isForecastChartVisible = SunRainApplication.settingsPreference.getBoolean("forecast_chart_switch",false)
+        val isForecastChartVisible = SunRainApplication.settingsPreference
+            .getBoolean("forecast_chart_switch",false)
         if(isForecastChartVisible){
             tempChartCard.visibility = VISIBLE
         }else{
@@ -402,46 +408,8 @@ class WeatherActivity : AppCompatActivity() {
 
         weatherLayout.visibility = View.VISIBLE
 
-        //air.xml 数列写入数据
-        airDesc.text = weather.realtime.airQuality.description.chn
-
-        val aq = realtime.airQuality
-        pm25Num.text = "${aq.pm25} μg/m3"
-        pm10Num.text = "${aq.pm10} μg/m3"
-        no2Num.text = "${aq.no2} μg/m3"
-        o3Num.text = "${aq.o3} μg/m3"
-        so2Num.text = "${aq.so2} μg/m3"
-        coNum.text = "${aq.co} mg/m3"
-
-        //air.xml 图绘制
-        val dirtyData = ArrayList<PieEntry>()
-        dirtyData.add(PieEntry(aq.aqi.chn,""))
-        dirtyData.add(PieEntry(600-aq.aqi.chn,""))
-        val dirtyDataSet = PieDataSet(dirtyData,"")
-
-        //air.xml 美化
-        dirtyDataSet.setColors(Color.parseColor(viewModel.getAQIColor(aq.aqi.chn.toInt())),
-                                Color.parseColor("#eeeeee"))
-        dirtyDataSet.valueTextSize = 0f
-        airPie.holeRadius = 90f
-        airPie.description.isEnabled = false
-        airPie.transparentCircleRadius = 0f
-        airPie.centerText = aq.aqi.chn.toInt().toString()
-        airPie.setCenterTextSize(18f)
-
-        if(isDarkTheme(SunRainApplication.context)){
-            airPie.setCenterTextColor(Color.WHITE)
-            airPie.setHoleColor(Color.parseColor("#ff3f3f3f"))
-        }else{
-            airPie.setCenterTextColor(Color.BLACK)
-            airPie.setHoleColor(Color.WHITE)
-        }
-
-        airPie.animateXY(4000,4000)
-        airPie.legend.isEnabled = false
-
-        val dirtyDataUse = PieData(dirtyDataSet)
-        airPie.data = dirtyDataUse
+        //air.xml
+        initAirPie(weather)
 
         //hourly 数据
         val layoutManager = LinearLayoutManager(this)
@@ -496,6 +464,52 @@ class WeatherActivity : AppCompatActivity() {
             hourlyItems.add(HourlyItem(skycon,temperature,wind))
         }
         return hourlyItems
+    }
+
+    /**
+     * 填充空气指数的数据，绘图
+     */
+    private fun initAirPie(weather: Weather){
+        //air.xml 数列写入数据
+        airDesc.text = weather.realtime.airQuality.description.chn
+
+        val aq = weather.realtime.airQuality
+        pm25Num.text = "${aq.pm25} μg/m3"
+        pm10Num.text = "${aq.pm10} μg/m3"
+        no2Num.text = "${aq.no2} μg/m3"
+        o3Num.text = "${aq.o3} μg/m3"
+        so2Num.text = "${aq.so2} μg/m3"
+        coNum.text = "${aq.co} mg/m3"
+
+        //air.xml 图绘制
+        val dirtyData = ArrayList<PieEntry>()
+        dirtyData.add(PieEntry(aq.aqi.chn,""))
+        dirtyData.add(PieEntry(600-aq.aqi.chn,""))
+        val dirtyDataSet = PieDataSet(dirtyData,"")
+
+        //air.xml 美化
+        dirtyDataSet.setColors(Color.parseColor(viewModel.getAQIColor(aq.aqi.chn.toInt())),
+            Color.parseColor("#eeeeee"))
+        dirtyDataSet.valueTextSize = 0f
+        airPie.holeRadius = 90f
+        airPie.description.isEnabled = false
+        airPie.transparentCircleRadius = 0f
+        airPie.centerText = aq.aqi.chn.toInt().toString()
+        airPie.setCenterTextSize(20f)
+
+        if(isDarkTheme(SunRainApplication.context)){
+            airPie.setCenterTextColor(Color.WHITE)
+            airPie.setHoleColor(Color.parseColor("#ff3f3f3f"))
+        }else{
+            airPie.setCenterTextColor(Color.BLACK)
+            airPie.setHoleColor(Color.WHITE)
+        }
+
+        airPie.animateXY(4000,4000)
+        airPie.legend.isEnabled = false
+
+        val dirtyDataUse = PieData(dirtyDataSet)
+        airPie.data = dirtyDataUse
     }
 
     /**
@@ -593,4 +607,5 @@ class WeatherActivity : AppCompatActivity() {
             originBackgroundResId
         }
     }
+
 }

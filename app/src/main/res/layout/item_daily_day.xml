@@ -24,6 +24,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/dayInfoImg"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/baseline_wb_sunny_black_24dp"

@@ -1,5 +1,7 @@
 package com.ti.sunrain.ui.daily
 
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
@@ -116,6 +118,17 @@ class DailyinforActivity : AppCompatActivity() {
         nightWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
         nightWindDirection.text = "风向: ${getWindDirection(windDirection)}风"
         nightWindSpeed.text = "风速: ${getWindSpeed(windSpeed)}级"
+
+        //darkTheme
+        if(isDarkTheme(this)){
+            dayInfoImg.setImageResource(R.drawable.baseline_wb_sunny_white_24dp)
+            nightInforImg.setImageResource(R.drawable.baseline_nights_stay_white_24dp)
+
+            lifeIndexInfoImg.setImageResource(R.drawable.baseline_nature_people_white_24dp)
+
+            othersInfoImg.setImageResource(R.drawable.baseline_filter_vintage_white_24dp)
+            rainDailyIcon.setImageResource(R.drawable.baseline_beach_access_white_24dp)
+        }
     }
 
     private fun setWeatherLifeIndex(weather: Weather,index: Int){
@@ -231,5 +244,10 @@ class DailyinforActivity : AppCompatActivity() {
                 return "严重污染"
             }
         }
+    }
+
+    fun isDarkTheme(context: Context):Boolean{
+        val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return flag == Configuration.UI_MODE_NIGHT_YES
     }
 }
