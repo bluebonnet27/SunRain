@@ -6,14 +6,10 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.media.audiofx.BassBoost
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -27,7 +23,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -406,7 +401,7 @@ class WeatherActivity : AppCompatActivity() {
             Snackbar.make(view,"请前往对应日期页查看",Snackbar.LENGTH_SHORT).show()
         }
 
-        weatherLayout.visibility = View.VISIBLE
+        weatherLayout.visibility = VISIBLE
 
         //air.xml
         initAirPie(weather)
@@ -518,15 +513,15 @@ class WeatherActivity : AppCompatActivity() {
     private fun showRealtimeWeatherNotification(weather: Weather):Notification{
         val skyConToday = getSky(weather.daily.skyconSum[0].value)
 
-        var icon_day_or_night = R.drawable.baseline_wb_sunny_black_24dp
+        var iconDayOrNight = R.drawable.baseline_wb_sunny_black_24dp
 
         if(isDarkTheme(this)){
-            icon_day_or_night = R.drawable.baseline_nights_stay_white_24dp
+            iconDayOrNight = R.drawable.baseline_nights_stay_white_24dp
         }
 
         val notification =  NotificationCompat.Builder(this,"sun_rain_realtime")
             .setContentTitle("${weather.realtime.temperature.toInt()}°${getSky(weather.realtime.skycon).info}")
-            .setSmallIcon(icon_day_or_night)
+            .setSmallIcon(iconDayOrNight)
             .setLargeIcon(BitmapFactory.decodeResource(resources,skyConToday.weather_icon))
 
         //val preferencesNotificationLong = getSharedPreferences("settings",0)

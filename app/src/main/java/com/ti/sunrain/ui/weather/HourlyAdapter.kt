@@ -1,6 +1,5 @@
 package com.ti.sunrain.ui.weather
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.ti.sunrain.R
 import com.ti.sunrain.logic.model.*
-import kotlinx.android.synthetic.main.item_hourly.view.*
 
 /**
  * @author: tihon

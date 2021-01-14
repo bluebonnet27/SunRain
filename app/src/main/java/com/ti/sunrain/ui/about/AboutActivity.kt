@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
@@ -181,10 +180,10 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun hasInstalledAlipayClient():Boolean{
-        val ALIPAY_PACKAGE_NAME = "com.eg.android.AlipayGphone"
+        val alipayPackageName = "com.eg.android.AlipayGphone"
         val packageManager = SunRainApplication.context.packageManager
         return try {
-            val info = packageManager.getPackageInfo(ALIPAY_PACKAGE_NAME,0)
+            val info = packageManager.getPackageInfo(alipayPackageName,0)
             info != null
         }catch (e:PackageManager.NameNotFoundException){
             e.printStackTrace()

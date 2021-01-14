@@ -1,7 +1,6 @@
 package com.ti.sunrain.ui.settings
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -63,13 +62,5 @@ class SettingsActivity : AppCompatActivity() {
             replace(R.id.settingsLayout,SettingsFragment())
             commit()
         }
-    }
-
-    private fun restartApplication(){
-        val restartIntent = packageManager.getLaunchIntentForPackage(packageName)
-        restartIntent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(restartIntent)
-
-        android.os.Process.killProcess(android.os.Process.myPid());
     }
 }

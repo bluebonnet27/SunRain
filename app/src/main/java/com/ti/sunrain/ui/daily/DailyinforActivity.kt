@@ -5,10 +5,7 @@ import android.content.res.Configuration
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
-import android.transition.Explode
-import android.transition.Fade
 import android.view.MenuItem
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
@@ -183,7 +180,7 @@ class DailyinforActivity : AppCompatActivity() {
         }
     }
 
-    fun getSeason(date: Date):Int{
+    private fun getSeason(date: Date):Int{
         val SPRING = 1
         val SUMMER = 2
         val AUTUMN = 3
@@ -207,7 +204,7 @@ class DailyinforActivity : AppCompatActivity() {
         }
     }
 
-    fun getSeasonIcon(season:Int) = when(season){
+    private fun getSeasonIcon(season:Int) = when(season){
             1 -> R.drawable.ic_spring_color
             2 -> R.drawable.ic_summer_color
             3 -> R.drawable.ic_autumn_color
@@ -223,7 +220,7 @@ class DailyinforActivity : AppCompatActivity() {
         else -> 0xd32f2f
     }
 
-    fun getAQIDesc(aqiValue:Int):String{
+    private fun getAQIDesc(aqiValue:Int):String{
         when (aqiValue) {
             in 0..50 -> {
                 return "优"
@@ -246,7 +243,7 @@ class DailyinforActivity : AppCompatActivity() {
         }
     }
 
-    fun isDarkTheme(context: Context):Boolean{
+    private fun isDarkTheme(context: Context):Boolean{
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return flag == Configuration.UI_MODE_NIGHT_YES
     }

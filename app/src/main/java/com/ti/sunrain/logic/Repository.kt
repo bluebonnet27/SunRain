@@ -1,12 +1,9 @@
 package com.ti.sunrain.logic
 
-import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.ti.sunrain.R
 import com.ti.sunrain.logic.dao.PlaceDao
 import com.ti.sunrain.logic.dao.WeatherDao
-import com.ti.sunrain.logic.model.HourlyResponse
 import com.ti.sunrain.logic.model.PlaceResponse.Place
 import com.ti.sunrain.logic.model.Weather
 import com.ti.sunrain.logic.network.SunRainNetWork

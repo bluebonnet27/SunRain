@@ -10,8 +10,6 @@ import com.ti.sunrain.SunRainApplication
  * @description:
  */
 
-class Wind(val windDirection:String,val windSpeed:String)
-
 fun getWindDirection(originDirection:Float):String{
     if (originDirection in 348.75..360.0) {
         return "北"

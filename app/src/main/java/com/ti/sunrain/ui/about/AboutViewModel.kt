@@ -11,5 +11,5 @@ import com.ti.sunrain.SunRainApplication
  */
 class AboutViewModel : ViewModel() {
 
-    val wechatQRCode = ImageView(SunRainApplication.context)
+    //val wechatQRCode = ImageView(SunRainApplication.context)
 }
