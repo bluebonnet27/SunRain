@@ -120,11 +120,6 @@ class DailyinforActivity : AppCompatActivity() {
         if(isDarkTheme(this)){
             dayInfoImg.setImageResource(R.drawable.baseline_wb_sunny_white_24dp)
             nightInforImg.setImageResource(R.drawable.baseline_nights_stay_white_24dp)
-
-            lifeIndexInfoImg.setImageResource(R.drawable.baseline_nature_people_white_24dp)
-
-            othersInfoImg.setImageResource(R.drawable.baseline_filter_vintage_white_24dp)
-            rainDailyIcon.setImageResource(R.drawable.baseline_beach_access_white_24dp)
         }
     }
 
@@ -148,6 +143,11 @@ class DailyinforActivity : AppCompatActivity() {
         aqiTextTitleItem.text = aqiValue
         aqiTextContextItem.text = aqiDesc
         pm25TextItem.text = pm25Desc
+
+        //darkmode
+        if(isDarkTheme(this)){
+            lifeIndexInfoImg.setImageResource(R.drawable.baseline_nature_people_white_24dp)
+        }
     }
 
     private fun setOtherWeatherInformation(weather: Weather,index:Int){
@@ -160,6 +160,13 @@ class DailyinforActivity : AppCompatActivity() {
 
         sunriseTimeText.text = sunRiseTime
         sunsetTimeText.text = sunSetTime
+
+        //darkmode
+        if(isDarkTheme(this)){
+            othersInfoImg.setImageResource(R.drawable.baseline_filter_vintage_white_24dp)
+            rainDailyIcon.setImageResource(R.drawable.baseline_beach_access_white_24dp)
+            astroDailyIcon.setImageResource(R.drawable.baseline_brightness_medium_white_24dp)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -1,7 +1,10 @@
 package com.ti.sunrain.ui.settings
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
@@ -33,6 +36,21 @@ class SettingsFragment : PreferenceFragmentCompat(){
         val notificationCanCancelPreference : SwitchPreference? = findPreference("notification_cancancel_switch")
 
         val darkmodePreference : ListPreference? = findPreference("others_darkmode_list")
+
+        if(isDarktheme(SunRainApplication.context)){
+            val context = SunRainApplication.context
+
+            covidPreference?.icon = getDrawable(context,R.drawable.baseline_warning_white_24dp)
+
+            dateFormatPreference?.icon = getDrawable(context,R.drawable.baseline_date_range_white_24dp)
+            festivalBgPreference?.icon = getDrawable(context,R.drawable.baseline_card_giftcard_white_24dp)
+            forecastChartPreference?.icon = getDrawable(context,R.drawable.baseline_show_chart_white_24dp)
+            titleRefreshPreference?.icon = getDrawable(context,R.drawable.baseline_title_white_24dp)
+
+            notificationSwitchPreference?.icon = getDrawable(context,R.drawable.baseline_notifications_white_24dp)
+
+            darkmodePreference?.icon = getDrawable(context,R.drawable.baseline_brightness_2_white_24dp)
+        }
 
         covidPreference?.setOnPreferenceChangeListener { _, _ ->
             Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"需要重启APP",Snackbar.LENGTH_SHORT)
@@ -120,6 +138,11 @@ class SettingsFragment : PreferenceFragmentCompat(){
 
             true
         }
+    }
+
+    fun isDarktheme(context: Context):Boolean{
+        val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return flag == Configuration.UI_MODE_NIGHT_YES
     }
 }
 

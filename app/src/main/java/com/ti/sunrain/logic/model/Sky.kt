@@ -1,5 +1,6 @@
 package com.ti.sunrain.logic.model
 
+import com.rainy.weahter_bg_plug.utils.WeatherUtil
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 
@@ -46,7 +47,44 @@ private val sky = mapOf(
     "HAIL" to Sky(SunRainApplication.context.getString(R.string.hail),R.drawable.ic_hail, R.drawable.bg_snow_moderate_new)
 )
 
+private val skyAni = mapOf(
+    "CLEAR_DAY" to WeatherUtil.WeatherType.sunny,
+    "CLEAR_NIGHT" to WeatherUtil.WeatherType.sunnyNight,
+
+    "PARTLY_CLOUDY_DAY" to WeatherUtil.WeatherType.cloudy,
+    "PARTLY_CLOUDY_NIGHT" to WeatherUtil.WeatherType.cloudyNight,
+
+    "CLOUDY" to WeatherUtil.WeatherType.overcast,
+
+    "LIGHT_HAZE" to WeatherUtil.WeatherType.hazy,
+    "MODERATE_HAZE" to WeatherUtil.WeatherType.hazy,
+    "HEAVY_HAZE" to WeatherUtil.WeatherType.hazy,
+
+    "LIGHT_RAIN" to WeatherUtil.WeatherType.lightRainy,
+    "MODERATE_RAIN" to WeatherUtil.WeatherType.middleRainy,
+    "HEAVY_RAIN" to WeatherUtil.WeatherType.heavyRainy,
+    "STORM_RAIN" to WeatherUtil.WeatherType.heavyRainy,
+
+    "FOG" to WeatherUtil.WeatherType.foggy,
+
+    "LIGHT_SNOW" to WeatherUtil.WeatherType.lightSnow,
+    "MODERATE_SNOW" to WeatherUtil.WeatherType.middleSnow,
+    "HEAVY_SNOW" to WeatherUtil.WeatherType.heavySnow,
+    "STORM_SNOW" to WeatherUtil.WeatherType.heavySnow,
+
+    "DUST" to WeatherUtil.WeatherType.dusty,
+    "WIND" to WeatherUtil.WeatherType.overcast,
+
+    "THUNDER_SHOWER" to WeatherUtil.WeatherType.thunder,
+    "SLEET" to WeatherUtil.WeatherType.middleSnow,
+    "HAIL" to WeatherUtil.WeatherType.middleSnow
+)
+
 fun getSky(skycon:String):Sky{
     return sky[skycon]?: sky[SunRainApplication.context.getString(R.string.clear_day)]!!
     //判空运算，简化了，详细写法类似于 Java 的
+}
+
+fun getSkyAni(skycon: String):String{
+    return skyAni[skycon]?: WeatherUtil.WeatherType.sunny
 }

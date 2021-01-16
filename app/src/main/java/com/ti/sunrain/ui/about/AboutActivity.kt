@@ -125,6 +125,12 @@ class AboutActivity : AppCompatActivity() {
             startActivity(mpAndroidChartIntent)
         }
 
+        weatherAnimationAbout.setOnClickListener {
+            val weatherAnimationIntent = Intent(Intent.ACTION_VIEW)
+            weatherAnimationIntent.data = Uri.parse("https://github.com/Rainvvy/Weather_Bg")
+            startActivity(weatherAnimationIntent)
+        }
+
 //        brvahAbout.setOnClickListener {
 //            val brvahIntent = Intent(Intent.ACTION_VIEW)
 //            brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")

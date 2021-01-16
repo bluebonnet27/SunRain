@@ -34,6 +34,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.rainy.weahter_bg_plug.utils.WeatherUtil
 import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
@@ -228,6 +229,8 @@ class WeatherActivity : AppCompatActivity() {
         currentAQI.text = currentPM25Text
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
+
+        nowAnimation.changeWeather(getSkyAni(realtime.skycon))
 
         //now.xml 动态背景
         val festivalBackgroundValue = SunRainApplication.settingsPreference

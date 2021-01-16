@@ -244,6 +244,21 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/weatherAnimationAbout"
+                    android:layout_marginBottom="5dp"
+                    style="@style/about_item">
+
+                    <TextView
+                        style="@style/string_text_left_head"
+                        android:text="Rainvvy/Weather_Bg"/>
+
+                    <TextView
+                        style="@style/string_text_left_context"
+                        android:text="@string/mit"/>
+
+                </RelativeLayout>
+
 <!--                <RelativeLayout-->
 <!--                    android:id="@+id/brvahAbout"-->
 <!--                    android:layout_marginBottom="5dp"-->

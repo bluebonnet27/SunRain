@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/search_blank_intro"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:drawableStartCompat="@drawable/baseline_search_off_blue_700_24dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/actionBarLayout"

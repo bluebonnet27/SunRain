@@ -11,7 +11,8 @@
             android:key="covid19_switch"
             android:title="开启COVID19视图"
             android:summaryOn="开启"
-            android:summaryOff="关闭"/>
+            android:summaryOff="关闭"
+            android:icon="@drawable/baseline_warning_black_24dp"/>
 
     </PreferenceCategory>
 
@@ -25,7 +26,8 @@
             android:title="预报日期格式"
             android:dialogTitle="你喜欢哪个格式"
             android:summary="选择首页预报的日期格式"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            android:icon="@drawable/baseline_date_range_black_24dp"/>
 
         <ListPreference
             android:key="forecastDegreeRule_list"
@@ -42,21 +44,24 @@
             android:key="festival_bg_switch"
             android:title="开启节日特殊背景"
             android:summaryOn="开启（仅针对部分公历节日）"
-            android:summaryOff="关闭"/>
+            android:summaryOff="关闭"
+            android:icon="@drawable/baseline_card_giftcard_black_24dp"/>
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="forecast_chart_switch"
             android:title="开启天气预报折线图"
             android:summaryOn="开启（在最下面哦）"
-            android:summaryOff="关闭"/>
+            android:summaryOff="关闭"
+            android:icon="@drawable/baseline_show_chart_black_24dp"/>
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="title_refresh_switch"
             android:title="点击标题刷新天气"
             android:summaryOn="开启（为了防止误触，建议关闭）"
-            android:summaryOff="关闭"/>
+            android:summaryOff="关闭"
+            android:icon="@drawable/baseline_title_black_24dp"/>
 
     </PreferenceCategory>
 
@@ -68,7 +73,8 @@
             android:key="notification_switch"
             android:title="开启天气通知"
             app:summaryOn="开启（若您看不见它，请检查通知权限）"
-            android:summaryOff="关闭"/>
+            android:summaryOff="关闭"
+            android:icon="@drawable/baseline_notifications_black_24dp"/>
 
         <SwitchPreference
             android:defaultValue="false"
@@ -98,7 +104,8 @@
             android:dialogTitle="切换显示模式"
             android:title="暗色模式（实验中）"
             android:summary="跟随系统、白天、夜晚"
-            android:defaultValue="0"/>
+            android:defaultValue="0"
+            android:icon="@drawable/baseline_brightness_2_black_24dp"/>
 
         <ListPreference
             android:key="others_language_list"
