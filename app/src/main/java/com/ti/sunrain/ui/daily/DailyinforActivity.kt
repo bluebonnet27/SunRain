@@ -135,6 +135,9 @@ class DailyinforActivity : AppCompatActivity() {
         val aqiDesc = getAQIDesc(weather.daily.aqi.aqiList[index].avg.chn.toInt())
         val pm25Desc = weather.daily.aqi.pm25List[index].avg.toString()
 
+        //life index humidity
+        val humidity = weather.daily.humidity[index].avgHumidity
+
         ultravioletTextItem.text = ultravioletDesc
         carWashingTextItem.text = carWashingDesc
         coldRiskTextItem.text = coldRiskDesc
@@ -143,6 +146,8 @@ class DailyinforActivity : AppCompatActivity() {
         aqiTextTitleItem.text = aqiValue
         aqiTextContextItem.text = aqiDesc
         pm25TextItem.text = pm25Desc
+
+        dailyHumidity.text = "湿度：" + humidity*100 + "%"
 
         //darkmode
         if(isDarkTheme(this)){

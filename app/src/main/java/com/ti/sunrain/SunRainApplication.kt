@@ -31,5 +31,6 @@ class SunRainApplication:Application() {
         super.onCreate()
         context = applicationContext
         settingsPreference = getSharedPreferences("settings",0)
+        
     }
 }
