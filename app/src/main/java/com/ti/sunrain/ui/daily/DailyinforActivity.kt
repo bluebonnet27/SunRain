@@ -65,6 +65,7 @@ class DailyinforActivity : AppCompatActivity() {
     private fun initToolBarAndFAB(weather: Weather, index: Int){
         //date
         val dateOrigin = weather.daily.skyconDaylight[index].date
+        val humidityOrigin = weather.daily.humidity[index].avgHumidity
         val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
         supportActionBar?.title = simpleDateFormat.format(dateOrigin) + "(${getDayDesc(index)})"
 
@@ -72,7 +73,8 @@ class DailyinforActivity : AppCompatActivity() {
         val temperatureOrigin = weather.daily.temperature[index]
         val tMaxTxt = resources.getString(R.string.max_temp) + ":" + temperatureOrigin.max.toInt()
         val tMinTxt = resources.getString(R.string.min_temp) + ":" + temperatureOrigin.min.toInt()
-        val tempText = "$tMinTxt℃   $tMaxTxt℃"
+        val humidityText = (humidityOrigin*100).toString()
+        val tempText = "$tMinTxt℃   $tMaxTxt℃   湿度：$humidityText%"
         dailyInforToolbar.subtitle = tempText
 
         //icon season
@@ -135,9 +137,6 @@ class DailyinforActivity : AppCompatActivity() {
         val aqiDesc = getAQIDesc(weather.daily.aqi.aqiList[index].avg.chn.toInt())
         val pm25Desc = weather.daily.aqi.pm25List[index].avg.toString()
 
-        //life index humidity
-        val humidity = weather.daily.humidity[index].avgHumidity
-
         ultravioletTextItem.text = ultravioletDesc
         carWashingTextItem.text = carWashingDesc
         coldRiskTextItem.text = coldRiskDesc
@@ -146,8 +145,6 @@ class DailyinforActivity : AppCompatActivity() {
         aqiTextTitleItem.text = aqiValue
         aqiTextContextItem.text = aqiDesc
         pm25TextItem.text = pm25Desc
-
-        dailyHumidity.text = "湿度：" + humidity*100 + "%"
 
         //darkmode
         if(isDarkTheme(this)){

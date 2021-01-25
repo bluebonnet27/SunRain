@@ -230,6 +230,7 @@ class WeatherActivity : AppCompatActivity() {
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
 
+        //nowAnimation.changeWeather(WeatherUtil.WeatherType.overcast)
         nowAnimation.changeWeather(getSkyAni(realtime.skycon))
 
         //now.xml 动态背景
@@ -395,8 +396,8 @@ class WeatherActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle(lifeIndex.comfort[0].desc)
                 .setMessage("明天的： ${lifeIndex.comfort[1].desc}\n"+
-                        "后天的： ${lifeIndex.comfort[2].desc}\n"+
-                        "大后天： ${lifeIndex.comfort[3].desc}")
+                            "后天的： ${lifeIndex.comfort[2].desc}\n"+
+                            "大后天： ${lifeIndex.comfort[3].desc}")
                 .show()
         }
 
