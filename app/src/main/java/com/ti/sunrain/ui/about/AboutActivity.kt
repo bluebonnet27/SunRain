@@ -46,6 +46,8 @@ class AboutActivity : AppCompatActivity() {
         if(isDarkTheme(this)){
             emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
             githubIcon.setImageResource(R.drawable.ic_github_white)
+            updateIcon.setImageResource(R.drawable.baseline_update_white_24dp)
+
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)
         }
@@ -80,6 +82,14 @@ class AboutActivity : AppCompatActivity() {
             val githubIntent = Intent(Intent.ACTION_VIEW)
             githubIntent.data = Uri.parse("https://github.com/bluebonnet27/SunRain/issues")
             startActivity(githubIntent)
+        }
+
+        updateAbout.setOnClickListener {
+            Toast.makeText(this, "密码是 c7t9", Toast.LENGTH_SHORT).show()
+
+            val updateIntent = Intent(Intent.ACTION_VIEW)
+            updateIntent.data = Uri.parse("https://wwa.lanzous.com/b0dwdaush")
+            startActivity(updateIntent)
         }
 
         alipayAbout.setOnClickListener {

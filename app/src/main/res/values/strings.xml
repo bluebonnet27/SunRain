@@ -114,6 +114,7 @@
     <string name="feedback">反馈</string>
     <string name="emailFeedback">发邮件反馈</string>
     <string name="githubFeedback">在 GitHub 上提 Issues</string>
+    <string name="updateFeedback">获取最新版本</string>
 
     <string name="donation">捐赠</string>
     <string name="aliPay">支付宝</string>
