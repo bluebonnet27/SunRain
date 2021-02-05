@@ -51,6 +51,7 @@
     <string name="settingsIcon">设置</string>
     <string name="aboutIcon">关于</string>
     <string name="shareIcon">分享APP</string>
+    <string name="exitIcon">退出</string>
     <string name="know">我知道了</string>
 
     <!--  weather  -->
@@ -111,10 +112,11 @@
     <string name="apache_2">Apache-2.0 License</string>
     <string name="mit">MIT License</string>
 
-    <string name="feedback">反馈</string>
+    <string name="feedback">更新与反馈</string>
     <string name="emailFeedback">发邮件反馈</string>
     <string name="githubFeedback">在 GitHub 上提 Issues</string>
     <string name="updateFeedback">获取最新版本</string>
+    <string name="nowVersionFeedback">当前版本更新日志</string>
 
     <string name="donation">捐赠</string>
     <string name="aliPay">支付宝</string>

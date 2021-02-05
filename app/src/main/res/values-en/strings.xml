@@ -51,6 +51,7 @@
     <string name="settingsIcon">Settings</string>
     <string name="aboutIcon">About</string>
     <string name="shareIcon">Share me</string>
+    <string name="exitIcon">exit</string>
 
     <!--  weather  -->
     <string name="airIndex">Air Index</string>
@@ -116,7 +117,7 @@
     <string name="apache_2">Apache-2.0 License</string>
     <string name="mit">MIT License</string>
 
-    <string name="feedback">Feedback</string>
+    <string name="feedback">Update and Feedback</string>
     <string name="emailFeedback">Email me</string>
     <string name="githubFeedback">Post Issues on GitHub</string>
 
@@ -135,4 +136,5 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="updateFeedback">Get the newest version</string>
+    <string name="nowVersionFeedback">Update log</string>
 </resources>

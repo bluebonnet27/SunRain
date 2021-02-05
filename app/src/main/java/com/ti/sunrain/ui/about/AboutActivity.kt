@@ -47,6 +47,7 @@ class AboutActivity : AppCompatActivity() {
             emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
             githubIcon.setImageResource(R.drawable.ic_github_white)
             updateIcon.setImageResource(R.drawable.baseline_update_white_24dp)
+            nowVersionIcon.setImageResource(R.drawable.baseline_info_white_24dp)
 
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)
@@ -90,6 +91,13 @@ class AboutActivity : AppCompatActivity() {
             val updateIntent = Intent(Intent.ACTION_VIEW)
             updateIntent.data = Uri.parse("https://wwa.lanzous.com/b0dwdaush")
             startActivity(updateIntent)
+        }
+
+        nowVersionAbout.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(BuildConfig.VERSION_NAME)
+                .setMessage("1. 加入退出按钮\n2. 加入更新日志功能")
+                .show()
         }
 
         alipayAbout.setOnClickListener {

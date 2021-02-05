@@ -171,6 +171,10 @@ class WeatherActivity : AppCompatActivity() {
                 val shareIntent = Intent.createChooser(sendIntent, "把下载网址发给")
                 startActivity(shareIntent)
             }
+            R.id.exitIcon -> {
+                Toast.makeText(this, "再见", Toast.LENGTH_SHORT).show()
+                ActivitySet.finishAllActivities()
+            }
         }
         return true
     }

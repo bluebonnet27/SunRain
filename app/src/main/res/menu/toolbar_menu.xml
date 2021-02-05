@@ -11,14 +11,16 @@
         android:id="@+id/settingsIcon"
         android:title="@string/settingsIcon"
         app:showAsAction="never"/>
-
     <item
         android:id="@+id/aboutIcon"
         android:title="@string/aboutIcon"
         app:showAsAction="never"/>
-
     <item
         android:id="@+id/shareIcon"
         android:title="@string/shareIcon"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/exitIcon"
+        android:title="@string/exitIcon"
         app:showAsAction="never"/>
 </menu>
