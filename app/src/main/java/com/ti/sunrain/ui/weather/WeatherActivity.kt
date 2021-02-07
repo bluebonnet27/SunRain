@@ -29,18 +29,20 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import com.rainy.weahter_bg_plug.utils.WeatherUtil
-import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.ui.about.AboutActivity
+import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.ui.daily.DailyinforActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_weather.*
@@ -315,7 +317,8 @@ class WeatherActivity : AppCompatActivity() {
             manager.cancel(1)
         }
 
-        //temperatureChart 数据
+        //temperatureChart
+        //可见性
         val isForecastChartVisible = SunRainApplication.settingsPreference
             .getBoolean("forecast_chart_switch",false)
         if(isForecastChartVisible){
@@ -324,30 +327,49 @@ class WeatherActivity : AppCompatActivity() {
             tempChartCard.visibility = GONE
         }
 
+        //最高温度
         val setHigh = LineDataSet(listHigh,"High")
         setHigh.mode = LineDataSet.Mode.CUBIC_BEZIER
         setHigh.color = Color.parseColor("#D50000")
+        setHigh.valueTextSize = 12f
+        setHigh.lineWidth = 3f
 
+        //最低温度
         val setLow = LineDataSet(listLow,"Low")
         setLow.mode = LineDataSet.Mode.CUBIC_BEZIER
         setLow.color = Color.parseColor("#0091EA")
+        setLow.valueTextSize = 12f
+        setLow.lineWidth = 3f
 
+        //添加数据
         val dataSets = ArrayList<ILineDataSet>()
         dataSets.add(setHigh)
         dataSets.add(setLow)
         val dataTemp = LineData(dataSets)
-
-        temperatureChart.apply {
-            setTouchEnabled(false)
-            axisLeft.setDrawAxisLine(false)
-            description.isEnabled = false
-        }
-
-        val xAxis = temperatureChart.xAxis
-        xAxis.setDrawAxisLine(false)
-        xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
-
         temperatureChart.data = dataTemp
+
+        //折线图背景
+        temperatureChart.xAxis.setDrawGridLines(false)
+        temperatureChart.axisLeft.setDrawGridLines(false)
+
+        //右下角英文字母
+        temperatureChart.description.isEnabled = false
+
+        //图例
+        temperatureChart.legend.isEnabled = false
+
+        //x轴
+        val xAxis = temperatureChart.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.granularity = 1F // 加上这个就不会出现坐标点不对应的情况，但我不知道这是干啥的
+        xAxis.valueFormatter = TemperatureChartXAxisFormatter()
+
+        //y轴
+        temperatureChart.axisRight.isEnabled = false
+        temperatureChart.axisLeft.isEnabled = false
+
+        //不允许触摸
+        temperatureChart.setTouchEnabled(false)
 
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
@@ -611,4 +633,10 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
+    class TemperatureChartXAxisFormatter : ValueFormatter() {
+        private val days = arrayOf("今天", "明天", "后天", "大后天", "四天后")
+        override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+            return days.getOrNull(value.toInt()) ?: value.toString()
+        }
+    }
 }

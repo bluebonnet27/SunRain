@@ -96,7 +96,7 @@ class AboutActivity : AppCompatActivity() {
         nowVersionAbout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle(BuildConfig.VERSION_NAME)
-                .setMessage("1. 加入退出按钮\n2. 加入更新日志功能")
+                .setMessage("1. 更改进度条颜色为主题色\n2. 修改图表使之更好看")
                 .show()
         }
 

@@ -5,7 +5,9 @@ import android.content.res.Configuration
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
