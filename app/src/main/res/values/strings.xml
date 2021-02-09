@@ -128,6 +128,8 @@
 
     <string name="opensourceThanks">开源感谢</string>
 
+    <string name="coolapk_contact">在酷安上联系我</string>
+
     <!--  settings  -->
     <string name="settingsInfo">设置</string>
     <string name="appwidget_text">EXAMPLE</string>

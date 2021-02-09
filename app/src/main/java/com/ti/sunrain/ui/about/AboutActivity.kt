@@ -8,11 +8,13 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.BuildConfig
@@ -59,6 +61,7 @@ class AboutActivity : AppCompatActivity() {
             it.setHomeButtonEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_white_24dp)
         }
+        aboutToolbar.overflowIcon = ContextCompat.getDrawable(this,R.drawable.baseline_more_vert_white_24dp)
 
         iconImageAbout.setOnClickListener {
             getRandomForEgg(this)
@@ -163,9 +166,20 @@ class AboutActivity : AppCompatActivity() {
         ActivitySet.removeActivity(this)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.about_menu,menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home -> finish()
+
+            R.id.coolapkContact -> {
+                val coolapkIntent = Intent(Intent.ACTION_VIEW)
+                coolapkIntent.data = Uri.parse("https://www.coolapk.com/u/1756645?from=qr")
+                startActivity(coolapkIntent)
+            }
         }
         return true
     }

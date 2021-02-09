@@ -24,6 +24,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -191,6 +192,7 @@ class WeatherActivity : AppCompatActivity() {
         val covidOption = menu?.getItem(0)
         covidOption?.isVisible = SunRainApplication.settingsPreference
             .getBoolean("covid19_switch",true)
+
         return super.onPrepareOptionsMenu(menu)
     }
 
