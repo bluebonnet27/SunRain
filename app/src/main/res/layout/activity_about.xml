@@ -170,6 +170,24 @@
                         android:text="@string/wechatPay"/>
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/adAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:id="@+id/adIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/baseline_attach_money_black_24dp"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="@string/adpay"/>
+                </RelativeLayout>
+
             </LinearLayout>
 
             <TextView
@@ -313,49 +331,49 @@
 <!--                </RelativeLayout>-->
             </LinearLayout>
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="@string/wordsToSay"/>
+<!--            <TextView-->
+<!--                style="@style/about_item_head"-->
+<!--                android:text="@string/wordsToSay"/>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="20dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginBottom="20dp">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/finalTextLine1"/>
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:text="@string/finalTextLine1"/>-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/finalTextLine2"/>
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:text="@string/finalTextLine2"/>-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/finalTextLine3"/>
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:text="@string/finalTextLine3"/>-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/finalTextLine4"/>
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:text="@string/finalTextLine4"/>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

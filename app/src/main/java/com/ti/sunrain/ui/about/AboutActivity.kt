@@ -24,6 +24,12 @@ import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_about.*
 import kotlinx.android.synthetic.main.item_about_header.*
 import java.net.URISyntaxException
+import com.ti.sunrain.MainActivity
+
+import android.content.DialogInterface
+
+
+
 
 class AboutActivity : AppCompatActivity() {
 
@@ -116,6 +122,10 @@ class AboutActivity : AppCompatActivity() {
                 .show()
         }
 
+        adAbout.setOnClickListener { view ->
+            Snackbar.make(view,"目前还没接到广告...",Snackbar.LENGTH_SHORT).show()
+        }
+
         icons8About.setOnClickListener {
             val icons8Intent = Intent(Intent.ACTION_VIEW)
             icons8Intent.data = Uri.parse("https://icons8.com/")
@@ -179,6 +189,21 @@ class AboutActivity : AppCompatActivity() {
                 val coolapkIntent = Intent(Intent.ACTION_VIEW)
                 coolapkIntent.data = Uri.parse("https://www.coolapk.com/u/1756645?from=qr")
                 startActivity(coolapkIntent)
+            }
+
+            R.id.moreSay -> {
+                androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.things_to_say))
+                    .setMessage(getString(R.string.finalTextLine1)+"\n\n"
+                                +getString(R.string.finalTextLine2)+"\n\n"
+                                +getString(R.string.finalTextLine3)+"\n\n"
+                                +getString(R.string.finalTextLine4))
+                    .setPositiveButton(getString(R.string.ok)) { dialog, which ->
+                        Toast.makeText(this, "谢谢你的阅读", Toast.LENGTH_SHORT)
+                            .show()
+                        dialog.dismiss()
+                    }
+                    .show()
             }
         }
         return true

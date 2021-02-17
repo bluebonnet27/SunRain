@@ -121,6 +121,7 @@
     <string name="donation">捐赠</string>
     <string name="aliPay">支付宝</string>
     <string name="wechatPay">微信支付</string>
+    <string name="adpay">看广告支持下</string>
 
     <string name="Source_of_icons">图标来源</string>
 
@@ -129,6 +130,7 @@
     <string name="opensourceThanks">开源感谢</string>
 
     <string name="coolapk_contact">在酷安上联系我</string>
+    <string name="things_to_say">想说的话</string>
 
     <!--  settings  -->
     <string name="settingsInfo">设置</string>

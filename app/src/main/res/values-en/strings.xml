@@ -138,4 +138,6 @@
     <string name="updateFeedback">Get the newest version</string>
     <string name="nowVersionFeedback">Update log</string>
     <string name="coolapk_contact">Coolapk</string>
+    <string name="adpay">Watch AD</string>
+    <string name="things_to_say">More</string>
 </resources>
