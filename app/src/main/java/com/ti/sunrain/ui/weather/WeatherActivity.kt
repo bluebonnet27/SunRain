@@ -508,6 +508,72 @@ class WeatherActivity : AppCompatActivity() {
         so2Num.text = "${aq.so2} μg/m3"
         coNum.text = "${aq.co} mg/m3"
 
+        pm25Item.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("PM 2.5")
+                .setMessage("细颗粒物又称细粒、细颗粒、PM2.5。细颗粒物指环境空气中空气动力学当量直径小于" +
+                        "等于 2.5 微米的颗粒物。它能较长时间悬浮于空气中，其在空气中含量浓度越高，就代表空" +
+                        "气污染越严重。虽然PM2.5只是地球大气成分中含量很少的组分，但它对空气质量和能见度等" +
+                        "有重要的影响。与较粗的大气颗粒物相比，PM2.5粒径小，面积大，活性强，易附带有毒、有" +
+                        "害物质（例如，重金属、微生物等），且在大气中的停留时间长、输送距离远，因而对人体健" +
+                        "康和大气环境质量的影响更大。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
+
+        pm10Item.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("PM 10")
+                .setMessage("可吸入颗粒物，通常是指粒径在10微米以下的颗粒物，又称PM10。可吸入颗粒物在" +
+                        "环境空气中持续的时间很长，对人体健康和大气能见度的影响都很大。通常来自在未铺的" +
+                        "沥青、水泥的路面上行驶的机动车、材料的破碎碾磨处理过程以及被风扬起的尘土。可吸入" +
+                        "颗粒物被人吸入后，会积累在呼吸系统中，引发许多疾病，对人类危害大。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
+
+        o3Item.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("臭氧")
+                .setMessage("当人类生活区周边的臭氧浓度超过一定限值，就将造成灰疆和光化学烟雾等污染，严重" +
+                        "影响正常生产与生活。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
+
+        no2Item.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("二氧化氮")
+                .setMessage("可吸入颗粒物，通常是指粒径在10微米以下的颗粒物，又称PM10。可吸入颗粒物在" +
+                        "环境空气中持续的时间很长，对人体健康和大气能见度的影响都很大。通常来自在未铺的" +
+                        "沥青、水泥的路面上行驶的机动车、材料的破碎碾磨处理过程以及被风扬起的尘土。可吸入" +
+                        "颗粒物被人吸入后，会积累在呼吸系统中，引发许多疾病，对人类危害大。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
+
+        so2Item.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("PM 10")
+                .setMessage("可吸入颗粒物，通常是指粒径在10微米以下的颗粒物，又称PM10。可吸入颗粒物在" +
+                        "环境空气中持续的时间很长，对人体健康和大气能见度的影响都很大。通常来自在未铺的" +
+                        "沥青、水泥的路面上行驶的机动车、材料的破碎碾磨处理过程以及被风扬起的尘土。可吸入" +
+                        "颗粒物被人吸入后，会积累在呼吸系统中，引发许多疾病，对人类危害大。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
+
+        coItem.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("PM 10")
+                .setMessage("可吸入颗粒物，通常是指粒径在10微米以下的颗粒物，又称PM10。可吸入颗粒物在" +
+                        "环境空气中持续的时间很长，对人体健康和大气能见度的影响都很大。通常来自在未铺的" +
+                        "沥青、水泥的路面上行驶的机动车、材料的破碎碾磨处理过程以及被风扬起的尘土。可吸入" +
+                        "颗粒物被人吸入后，会积累在呼吸系统中，引发许多疾病，对人类危害大。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
+
         //air.xml 图绘制
         val dirtyData = ArrayList<PieEntry>()
         dirtyData.add(PieEntry(aq.aqi.chn,""))

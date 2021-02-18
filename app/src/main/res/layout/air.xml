@@ -54,11 +54,13 @@
 
                 <!-- pm2.5 单项 -->
                 <LinearLayout
+                    android:id="@+id/pm25Item"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    style="@style/my_clickable">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -74,11 +76,13 @@
 
                 <!-- pm10 单项，同级别以此类推 -->
                 <LinearLayout
+                    android:id="@+id/pm10Item"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    style="@style/my_clickable">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -93,11 +97,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/o3Item"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    style="@style/my_clickable">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -112,6 +118,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/no2Item"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
@@ -131,11 +138,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/so2Item"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    style="@style/my_clickable">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -150,11 +159,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/coItem"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    style="@style/my_clickable">
 
                     <TextView
                         android:layout_width="wrap_content"
