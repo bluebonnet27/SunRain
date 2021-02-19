@@ -29,8 +29,6 @@ import com.ti.sunrain.MainActivity
 import android.content.DialogInterface
 
 
-
-
 class AboutActivity : AppCompatActivity() {
 
     lateinit var viewModel: AboutViewModel
@@ -54,11 +52,13 @@ class AboutActivity : AppCompatActivity() {
         if(isDarkTheme(this)){
             emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
             githubIcon.setImageResource(R.drawable.ic_github_white)
+            marketIcon.setImageResource(R.drawable.baseline_shop_white_24dp)
             updateIcon.setImageResource(R.drawable.baseline_update_white_24dp)
             nowVersionIcon.setImageResource(R.drawable.baseline_info_white_24dp)
 
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)
+            adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
         }
 
         setSupportActionBar(aboutToolbar)
@@ -94,6 +94,12 @@ class AboutActivity : AppCompatActivity() {
             startActivity(githubIntent)
         }
 
+        marketAbout.setOnClickListener {
+            val marketIntent = Intent(Intent.ACTION_VIEW)
+            marketIntent.data = Uri.parse("https://www.coolapk.com/apk/com.ti.sunrain")
+            startActivity(marketIntent)
+        }
+
         updateAbout.setOnClickListener {
             Toast.makeText(this, "密码是 c7t9", Toast.LENGTH_SHORT).show()
 
@@ -105,7 +111,8 @@ class AboutActivity : AppCompatActivity() {
         nowVersionAbout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle(BuildConfig.VERSION_NAME)
-                .setMessage("1. 更改进度条颜色为主题色\n2. 修改图表使之更好看")
+                .setMessage("1. 关于页若干内容修改\n" +
+                            "2. 空气质量页若干内容修改")
                 .show()
         }
 
@@ -191,6 +198,12 @@ class AboutActivity : AppCompatActivity() {
                 startActivity(coolapkIntent)
             }
 
+            R.id.blogContact -> {
+                val blogIntent = Intent(Intent.ACTION_VIEW)
+                blogIntent.data = Uri.parse("https://blog.bluebonnet27.xyz")
+                startActivity(blogIntent)
+            }
+
             R.id.moreSay -> {
                 androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle(getString(R.string.things_to_say))
@@ -198,7 +211,7 @@ class AboutActivity : AppCompatActivity() {
                                 +getString(R.string.finalTextLine2)+"\n\n"
                                 +getString(R.string.finalTextLine3)+"\n\n"
                                 +getString(R.string.finalTextLine4))
-                    .setPositiveButton(getString(R.string.ok)) { dialog, which ->
+                    .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                         Toast.makeText(this, "谢谢你的阅读", Toast.LENGTH_SHORT)
                             .show()
                         dialog.dismiss()
@@ -210,11 +223,14 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun getRandomForEgg(activity: Activity){
-        when((0..99).random()){
-            0 -> AlertDialog.Builder(activity)
-                .setMessage(resources.getString(R.string.sex_pic))
-                .setPositiveButton(activity.getString(R.string.ok),null)
-                .show()
+        when((0..2).random()){
+            0 -> {
+                androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.egg_title))
+                    .setMessage(getString(R.string.sex_pic))
+                    .setPositiveButton(getString(R.string.ok),null)
+                    .show()
+            }
             else -> Toast.makeText(activity, resources.getString(R.string.no_egg), Toast.LENGTH_SHORT).show()
         }
     }

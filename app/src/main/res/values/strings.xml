@@ -100,6 +100,7 @@
     <string name="email_not_found">很抱歉，在您的手机上没有找到能发送电子邮件的应用</string>
     <string name="cut_screen">请截图扫描</string>
 
+    <string name="egg_title">彩蛋</string>
     <string name="sex_pic">我是一份涩图</string>
     <string name="no_egg">别点了，没有彩蛋的</string>
     <string name="wordsToSay">想说的话</string>
@@ -115,8 +116,9 @@
     <string name="feedback">更新与反馈</string>
     <string name="emailFeedback">发邮件反馈</string>
     <string name="githubFeedback">在 GitHub 上提 Issues</string>
-    <string name="updateFeedback">获取最新版本</string>
+    <string name="updateFeedback">从浏览器获取最新版本</string>
     <string name="nowVersionFeedback">当前版本更新日志</string>
+    <string name="marketFeedback">访问酷安应用主页</string>
 
     <string name="donation">捐赠</string>
     <string name="aliPay">支付宝</string>
@@ -130,6 +132,7 @@
     <string name="opensourceThanks">开源感谢</string>
 
     <string name="coolapk_contact">在酷安上联系我</string>
+    <string name="blog_contact">访问我的博客</string>
     <string name="things_to_say">想说的话</string>
 
     <!--  settings  -->

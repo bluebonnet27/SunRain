@@ -86,6 +86,25 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/marketAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:id="@+id/marketIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/baseline_shop_black_24dp"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="@string/marketFeedback"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/updateAbout"
                     style="@style/about_item">
 

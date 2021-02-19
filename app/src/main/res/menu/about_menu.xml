@@ -7,6 +7,10 @@
         android:title="@string/coolapk_contact"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/blogContact"
+        android:title="@string/blog_contact"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/moreSay"
         android:title="@string/things_to_say"
         app:showAsAction="never"/>

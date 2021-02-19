@@ -135,9 +135,12 @@
     <string name="settingsInfo">Settings</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
-    <string name="updateFeedback">Get the newest version</string>
+    <string name="updateFeedback">Get the newest version from browser</string>
     <string name="nowVersionFeedback">Update log</string>
     <string name="coolapk_contact">Coolapk</string>
     <string name="adpay">Watch AD</string>
     <string name="things_to_say">More</string>
+    <string name="blog_contact">My blog</string>
+    <string name="marketFeedback">Coolapk Page</string>
+    <string name="egg_title">Surprise</string>
 </resources>
