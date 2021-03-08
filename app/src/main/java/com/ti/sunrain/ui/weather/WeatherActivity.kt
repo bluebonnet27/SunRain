@@ -78,6 +78,32 @@ class WeatherActivity : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
+        //welcome
+        val welcomeData = SunRainApplication.settingsPreference.getBoolean("welcome",true)
+        if(welcomeData){
+            AlertDialog.Builder(this)
+                .setTitle("隐私政策")
+                .setMessage("1. 当您使用晴雨时需要提供网络权限，用于将您输入的城市信息使用彩云天气的" +
+                        "第三方接口搜索天气。晴雨会将上一次搜索的记录保存在本地。通过清除软件数据，可" +
+                        "以将已保存的数据清除。晴雨不需要其他任何权限。\n"+
+                        "2. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
+                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。")
+                .setPositiveButton(getString(R.string.ok)){_,_->run{
+                        val settingsEditor = SunRainApplication.settingsPreference.edit()
+                        settingsEditor.putBoolean("welcome",false)
+                        settingsEditor.apply()
+
+                        Toast.makeText(this, "您可以在关于页再次查看", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .setNegativeButton("退出"){
+                    _,_->run{
+                        ActivitySet.finishAllActivities()
+                    }
+                }
+                .show()
+        }
+
         setSupportActionBar(weatherToolBar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)

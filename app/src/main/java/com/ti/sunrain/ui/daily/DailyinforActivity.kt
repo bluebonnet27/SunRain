@@ -136,7 +136,7 @@ class DailyinforActivity : AppCompatActivity() {
 
         //life index air
         val aqiValue = weather.daily.aqi.aqiList[index].avg.chn.toString()
-        val aqiDesc = getAQIDesc(weather.daily.aqi.aqiList[index].avg.chn.toInt())
+        val aqiDesc = "空气" + getAQIDesc(weather.daily.aqi.aqiList[index].avg.chn.toInt())
         val pm25Desc = weather.daily.aqi.pm25List[index].avg.toString()
 
         ultravioletTextItem.text = ultravioletDesc

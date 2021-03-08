@@ -59,6 +59,8 @@ class AboutActivity : AppCompatActivity() {
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)
             adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
+
+            privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
         }
 
         setSupportActionBar(aboutToolbar)
@@ -174,6 +176,23 @@ class AboutActivity : AppCompatActivity() {
 //            brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
 //            startActivity(brvahIntent)
 //        }
+
+        privacyAbout.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("隐私政策")
+                .setMessage("1. 当您使用晴雨时需要提供网络权限，用于将您输入的城市信息使用彩云天气的" +
+                        "第三方接口搜索天气。晴雨会将上一次搜索的记录保存在本地。通过清除软件数据，可" +
+                        "以将已保存的数据清除。晴雨不需要其他任何权限。\n"+
+                        "2. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
+                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .setNegativeButton("更多"){ _, _ -> run {
+                        val morePrivacyIntent = Intent(Intent.ACTION_VIEW)
+                        morePrivacyIntent.data = Uri.parse("https://bluebonnet27.gitee.io/userAssignment.html")
+                        startActivity(morePrivacyIntent)
+                    }
+                }.show()
+        }
     }
 
     override fun onDestroy() {
@@ -191,6 +210,12 @@ class AboutActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home -> finish()
+
+            R.id.mainPageAbout -> {
+                val mainPageIntent = Intent(Intent.ACTION_VIEW)
+                mainPageIntent.data = Uri.parse("https://bluebonnet27.gitee.io")
+                startActivity(mainPageIntent)
+            }
 
             R.id.coolapkContact -> {
                 val coolapkIntent = Intent(Intent.ACTION_VIEW)
