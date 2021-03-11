@@ -8,11 +8,11 @@
 
         <SwitchPreference
             android:defaultValue="true"
+            android:icon="@drawable/baseline_warning_black_24dp"
             android:key="covid19_switch"
-            android:title="开启COVID19视图"
-            android:summaryOn="开启"
             android:summaryOff="关闭"
-            android:icon="@drawable/baseline_warning_black_24dp"/>
+            android:summaryOn="开启"
+            android:title="开启COVID19视图" />
 
     </PreferenceCategory>
 
@@ -96,6 +96,14 @@
 
     <PreferenceCategory
         android:title="其他">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="others_icon_menu"
+            android:title="右上角菜单显示图标"
+            android:summaryOn="显示（实验性功能）"
+            android:summaryOff="不显示"
+            android:enabled="false"/>
 
         <ListPreference
             android:key="others_darkmode_list"

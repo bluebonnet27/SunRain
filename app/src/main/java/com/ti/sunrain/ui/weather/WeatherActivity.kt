@@ -23,6 +23,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -219,7 +220,39 @@ class WeatherActivity : AppCompatActivity() {
         covidOption?.isVisible = SunRainApplication.settingsPreference
             .getBoolean("covid19_switch",true)
 
+        //dark theme
+        if(isDarkTheme(this)){
+            val settingsOption = menu?.getItem(1)
+            settingsOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_settings_white_24dp)
+            val aboutOption = menu?.getItem(2)
+            aboutOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_sentiment_satisfied_alt_white_24dp)
+            val shareOption = menu?.getItem(3)
+            shareOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_share_white_24dp)
+            val exitOption = menu?.getItem(4)
+            exitOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_power_settings_new_white_24dp)
+        }
+
         return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
+        if(SunRainApplication.settingsPreference.getBoolean("others_icon_menu",true)){
+            if(menu.javaClass.simpleName.equals("MenuBuilder",false)){
+                try {
+                    val method = menu.javaClass.getDeclaredMethod("setOptionalIconsVisible",
+                        Boolean::class.java)
+                    method.isAccessible = true
+                    method.invoke(menu,true)
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu)
     }
 
     /**

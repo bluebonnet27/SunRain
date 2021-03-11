@@ -10,13 +10,16 @@
     <item
         android:id="@+id/coolapkContact"
         android:title="@string/coolapk_contact"
+        android:icon="@drawable/baseline_person_search_black_24dp"
         app:showAsAction="never"/>
     <item
         android:id="@+id/blogContact"
         android:title="@string/blog_contact"
+        android:icon="@drawable/baseline_computer_black_24dp"
         app:showAsAction="never"/>
     <item
         android:id="@+id/moreSay"
         android:title="@string/things_to_say"
+        android:icon="@drawable/baseline_message_black_24dp"
         app:showAsAction="never"/>
 </menu>

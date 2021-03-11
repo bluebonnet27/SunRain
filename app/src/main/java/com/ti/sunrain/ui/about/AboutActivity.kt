@@ -53,7 +53,7 @@ class AboutActivity : AppCompatActivity() {
             emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
             githubIcon.setImageResource(R.drawable.ic_github_white)
             marketIcon.setImageResource(R.drawable.baseline_shop_white_24dp)
-            updateIcon.setImageResource(R.drawable.baseline_update_white_24dp)
+            updateIcon.setImageResource(R.drawable.baseline_find_in_page_white_24dp)
             nowVersionIcon.setImageResource(R.drawable.baseline_info_white_24dp)
 
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
@@ -207,6 +207,22 @@ class AboutActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        //dark theme
+        if(isDarkTheme(this)){
+            val coolapkOption = menu?.getItem(1)
+            coolapkOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_person_search_white_24dp)
+            val blogOption = menu?.getItem(2)
+            blogOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_computer_white_24dp)
+            val messageOption = menu?.getItem(3)
+            messageOption?.icon = ContextCompat
+                .getDrawable(this,R.drawable.baseline_message_white_24dp)
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home -> finish()
@@ -245,6 +261,22 @@ class AboutActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
+        if(SunRainApplication.settingsPreference.getBoolean("others_icon_menu",true)){
+            if(menu.javaClass.simpleName.equals("MenuBuilder",false)){
+                try {
+                    val method = menu.javaClass.getDeclaredMethod("setOptionalIconsVisible",
+                        Boolean::class.java)
+                    method.isAccessible = true
+                    method.invoke(menu,true)
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu)
     }
 
     private fun getRandomForEgg(activity: Activity){

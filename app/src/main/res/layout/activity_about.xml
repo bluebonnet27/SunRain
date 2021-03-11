@@ -115,7 +115,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_update_black_24dp"/>
+                        android:src="@drawable/baseline_find_in_page_black_24dp"/>
 
                     <TextView
                         style="@style/setting_text_left"

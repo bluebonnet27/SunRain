@@ -10,17 +10,21 @@
     <item
         android:id="@+id/settingsIcon"
         android:title="@string/settingsIcon"
+        android:icon="@drawable/baseline_settings_black_24dp"
         app:showAsAction="never"/>
     <item
         android:id="@+id/aboutIcon"
         android:title="@string/aboutIcon"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_sentiment_satisfied_alt_black_24dp"/>
     <item
         android:id="@+id/shareIcon"
         android:title="@string/shareIcon"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_share_black_24dp"/>
     <item
         android:id="@+id/exitIcon"
         android:title="@string/exitIcon"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_power_settings_new_black_24dp"/>
 </menu>
