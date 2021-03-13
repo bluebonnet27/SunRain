@@ -48,6 +48,22 @@ class CovidSpecial : AppCompatActivity() {
         return true
     }
 
+    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
+        if(SunRainApplication.settingsPreference.getBoolean("others_icon_menu",true)){
+            if(menu.javaClass.simpleName.equals("MenuBuilder",false)){
+                try {
+                    val method = menu.javaClass.getDeclaredMethod("setOptionalIconsVisible",
+                        Boolean::class.java)
+                    method.isAccessible = true
+                    method.invoke(menu,true)
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home -> finish()
