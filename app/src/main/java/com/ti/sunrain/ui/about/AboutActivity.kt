@@ -22,11 +22,12 @@ import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_about.*
-import kotlinx.android.synthetic.main.item_about_header.*
 import java.net.URISyntaxException
 import com.ti.sunrain.MainActivity
 
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 
 
 class AboutActivity : AppCompatActivity() {
@@ -71,11 +72,26 @@ class AboutActivity : AppCompatActivity() {
         }
         aboutToolbar.overflowIcon = ContextCompat.getDrawable(this,R.drawable.baseline_more_vert_white_24dp)
 
-        iconImageAbout.setOnClickListener {
-            getRandomForEgg(this)
+        aboutCollapsingToolbarLayout.apply {
+            setCollapsedTitleTextColor(Color.WHITE)
+        }
+        //0315 考虑稳定性，这条暂时去掉
+//        iconImageAbout.setOnClickListener {
+//            getRandomForEgg(this)
+//        }
+
+        aboutFAB.setOnClickListener {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("关于")
+                .setMessage("晴雨：一个开源的 Android 天气预报 APP\n\n"+
+                            "V ${BuildConfig.VERSION_NAME}\n\n"+
+                            "本APP/项目所使用的开源协议不涉及此处背景图片的二次授权。图片版权" +
+                            "仍归原作者绘恋Galgame制作组所有。")
+                .setPositiveButton(R.string.ok,null)
+                .show()
         }
 
-        versionTitleAbout.text = "V" + BuildConfig.VERSION_NAME
+        //versionTitleAbout.text = "V" + BuildConfig.VERSION_NAME
 
         emailMeAbout.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO).apply {

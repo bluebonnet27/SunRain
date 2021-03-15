@@ -36,5 +36,9 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
 
+    <color name="indigo200">#80DEEA</color>
+    <color name="indigo500">#00bcd4</color>
+    <color name="indigo700">#0097a1</color>
+
     <color name="grey50">#fafafa</color>
 </resources>

@@ -81,7 +81,7 @@ private val skyAni = mapOf(
 )
 
 fun getSky(skycon:String):Sky{
-    return sky[skycon]?: sky[SunRainApplication.context.getString(R.string.clear_day)]!!
+    return sky[skycon]?: sky["CLEAR_DAY"]!!
     //判空运算，简化了，详细写法类似于 Java 的
 }
 
