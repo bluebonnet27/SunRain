@@ -28,6 +28,7 @@ import com.ti.sunrain.MainActivity
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.TypedValue
 
 
 class AboutActivity : AppCompatActivity() {
@@ -55,7 +56,6 @@ class AboutActivity : AppCompatActivity() {
             githubIcon.setImageResource(R.drawable.ic_github_white)
             marketIcon.setImageResource(R.drawable.baseline_shop_white_24dp)
             updateIcon.setImageResource(R.drawable.baseline_find_in_page_white_24dp)
-            nowVersionIcon.setImageResource(R.drawable.baseline_info_white_24dp)
 
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)
@@ -73,6 +73,11 @@ class AboutActivity : AppCompatActivity() {
         aboutToolbar.overflowIcon = ContextCompat.getDrawable(this,R.drawable.baseline_more_vert_white_24dp)
 
         aboutCollapsingToolbarLayout.apply {
+            if(isDarkTheme(this@AboutActivity)){
+                setExpandedTitleColor(ContextCompat.getColor(context,R.color.indigo500))
+            }else{
+                setExpandedTitleColor(ContextCompat.getColor(context,R.color.orange500))
+            }
             setCollapsedTitleTextColor(Color.WHITE)
         }
         //0315 考虑稳定性，这条暂时去掉
@@ -124,14 +129,6 @@ class AboutActivity : AppCompatActivity() {
             val updateIntent = Intent(Intent.ACTION_VIEW)
             updateIntent.data = Uri.parse("https://wwa.lanzous.com/b0dwdaush")
             startActivity(updateIntent)
-        }
-
-        nowVersionAbout.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(BuildConfig.VERSION_NAME)
-                .setMessage("1. 关于页若干内容修改\n" +
-                            "2. 空气质量页若干内容修改")
-                .show()
         }
 
         alipayAbout.setOnClickListener {

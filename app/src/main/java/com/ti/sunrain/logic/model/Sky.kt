@@ -39,6 +39,7 @@ private val sky = mapOf(
     "STORM_SNOW" to Sky(SunRainApplication.context.getString(R.string.storm_snow),R.drawable.ic_heavy_snow,R.drawable.bg_snow_storm),
 
     "DUST" to Sky(SunRainApplication.context.getString(R.string.dust),R.drawable.ic_light_haze,R.drawable.bg_dust_new),
+    "SAND" to Sky("沙尘",R.drawable.ic_light_haze,R.drawable.bg_dust_new),
     "WIND" to Sky(SunRainApplication.context.getString(R.string.wind),R.drawable.ic_wind,R.drawable.bg_wind_new),
 
     //以下为书中提到，但彩云天气最新官网并没有提到的，由于map转换并不一定绝对匹配，为了程序的鲁棒性没有去掉
@@ -73,6 +74,7 @@ private val skyAni = mapOf(
     "STORM_SNOW" to WeatherUtil.WeatherType.heavySnow,
 
     "DUST" to WeatherUtil.WeatherType.dusty,
+    "SAND" to WeatherUtil.WeatherType.dusty,
     "WIND" to WeatherUtil.WeatherType.overcast,
 
     "THUNDER_SHOWER" to WeatherUtil.WeatherType.thunder,
