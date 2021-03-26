@@ -2,6 +2,7 @@ package com.ti.sunrain.ui.daily
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
@@ -170,6 +171,8 @@ class DailyinforActivity : AppCompatActivity() {
             othersInfoImg.setImageResource(R.drawable.baseline_filter_vintage_white_24dp)
             rainDailyIcon.setImageResource(R.drawable.baseline_beach_access_white_24dp)
             astroDailyIcon.setImageResource(R.drawable.baseline_brightness_medium_white_24dp)
+            sunriseIcon.setImageResource(R.drawable.ic_sunrise_material_white_48px)
+            sunsetIcon.setImageResource(R.drawable.ic_sunset_material_white_48px)
         }
     }
 

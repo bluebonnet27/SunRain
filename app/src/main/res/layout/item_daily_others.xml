@@ -109,6 +109,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/sunriseIcon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
@@ -131,6 +132,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/sunsetIcon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"

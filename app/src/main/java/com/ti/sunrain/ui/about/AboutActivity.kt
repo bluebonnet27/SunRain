@@ -83,9 +83,9 @@ class AboutActivity : AppCompatActivity() {
             setCollapsedTitleTextColor(Color.WHITE)
         }
         //0315 考虑稳定性，这条暂时去掉
-//        iconImageAbout.setOnClickListener {
-//            getRandomForEgg(this)
-//        }
+        aboutBackgroundImage.setOnClickListener {
+            getRandomForEgg(this)
+        }
 
         aboutFAB.setOnClickListener {
             androidx.appcompat.app.AlertDialog.Builder(this)
@@ -295,7 +295,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun getRandomForEgg(activity: Activity){
-        when((0..2).random()){
+        when((0..100).random()){
             0 -> {
                 androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle(getString(R.string.egg_title))

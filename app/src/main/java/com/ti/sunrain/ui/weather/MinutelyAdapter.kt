@@ -1,5 +1,6 @@
 package com.ti.sunrain.ui.weather
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,19 +37,49 @@ class MinutelyAdapter(private val minutelyItemList: List<MinutelyItem>) :
         val minutelyItem = minutelyItemList[position]
         //fill in
         //time
-        //val minutes60 = arrayOf(1..60)
-        holder.minutelyTimeText.text = "test" //minutes60[position].toString()
+        val minutes60 = mutableListOf(1)
+        for(i in 2..60)
+            minutes60.add(i)
+        holder.minutelyTimeText.text = minutes60[position].toString() + "分钟"
         //icon
-        if(minutelyItem.timeDescription > 0){
-            holder.minutelyTimeIconImage.setImageResource(R.drawable.ic_light_rain)
-        }else{
-            holder.minutelyTimeIconImage.setImageResource(R.drawable.ic_cloudy)
-        }
+        holder.minutelyTimeIconImage.setImageResource(getRainIconDesc(minutelyItem.timeDescription))
         //time description
-        holder.minutelyTimeDescriptionText.text = minutelyItem.timeDescription.toString()
+        holder.minutelyTimeDescriptionText.text = getRainName(minutelyItem.timeDescription)
     }
 
     override fun getItemCount(): Int {
         return minutelyItemList.size
+    }
+
+    fun getRainIconDesc(rainPrecipitation:Float):Int{
+        return if(rainPrecipitation < 0.031){
+            R.drawable.ic_clear_day
+        }else if(rainPrecipitation >= 0.031 && rainPrecipitation < 0.25){
+            R.drawable.ic_light_rain
+        }else if(rainPrecipitation >= 0.25 && rainPrecipitation < 0.35){
+            R.drawable.ic_moderate_rain
+        }else if(rainPrecipitation >= 0.35 && rainPrecipitation < 0.48){
+            R.drawable.ic_heavy_rain
+        }else if(rainPrecipitation >= 0.48){
+            R.drawable.ic_storm_rain
+        }else{
+            R.drawable.ic_cloudy
+        }
+    }
+
+    fun getRainName(rainPrecipitation:Float):String{
+        return if(rainPrecipitation < 0.031){
+            "无雨／雪"
+        }else if(rainPrecipitation >= 0.031 && rainPrecipitation < 0.25){
+            "小雨／雪"
+        }else if(rainPrecipitation >= 0.25 && rainPrecipitation < 0.35){
+            "中雨／雪"
+        }else if(rainPrecipitation >= 0.35 && rainPrecipitation < 0.48){
+            "大雨／雪"
+        }else if(rainPrecipitation >= 0.48){
+            "暴雨／雪"
+        }else{
+            "ERROR"
+        }
     }
 }
