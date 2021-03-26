@@ -13,7 +13,6 @@
         android:layout_height="250dp"
         android:layout_marginTop="0dp">
 
-<!--   app:layout_constraintTop_toTopOf="parent"     -->
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/aboutCollapsingToolbarLayout"
@@ -370,50 +369,6 @@
                 </RelativeLayout>
 
             </LinearLayout>
-
-<!--            <TextView-->
-<!--                style="@style/about_item_head"-->
-<!--                android:text="@string/wordsToSay"/>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_marginBottom="20dp">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="12dp"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    android:text="@string/finalTextLine1"/>-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="12dp"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    android:text="@string/finalTextLine2"/>-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="12dp"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    android:text="@string/finalTextLine3"/>-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="12dp"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    android:text="@string/finalTextLine4"/>-->
-
-<!--            </LinearLayout>-->
 
         </LinearLayout>
 

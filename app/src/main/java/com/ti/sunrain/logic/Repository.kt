@@ -47,26 +47,33 @@ object Repository {
             val deferredHourly = async {
                 SunRainNetWork.getHourlyWeather(lng, lat)
             }
+            val deferredMinutely = async {
+                SunRainNetWork.getMinutelyRain(lng, lat)
+            }
 
             val realtimeResponse = deferredRealtime.await()
             val dailyResponse = deferredDaily.await()
             val hourlyResponse = deferredHourly.await()
+            val minutelyResponse = deferredMinutely.await()
 
             if(realtimeResponse.status == "ok" &&
                 dailyResponse.status == "ok" &&
-                hourlyResponse.status == "ok"){
+                hourlyResponse.status == "ok" &&
+                minutelyResponse.status == "ok"){
                 val weather = Weather(realtimeResponse.result.realtime,
                                         dailyResponse.result.daily,
                                         realtimeResponse,
                                         realtimeResponse.result.realtime.wind,
-                                        hourlyResponse.result.hourly)
+                                        hourlyResponse.result.hourly,
+                                        minutelyResponse.result.minutely)
                 Result.success(weather)
             }else{
                 Result.failure(
                     RuntimeException(
                         "WARNING: realtime status is ${realtimeResponse.status} " +
                                 "WARNING: daily status is ${dailyResponse.status} " +
-                                "WARNING: hourly status is ${hourlyResponse.status} " 
+                                "WARNING: hourly status is ${hourlyResponse.status} " +
+                                "WARNING: hourly status is ${minutelyResponse.status}"
                     )
                 )
             }

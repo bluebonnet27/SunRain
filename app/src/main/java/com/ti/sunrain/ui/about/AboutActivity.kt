@@ -62,6 +62,8 @@ class AboutActivity : AppCompatActivity() {
             adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
 
             privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
+
+            aboutFAB.setImageResource(R.drawable.rainy_weather_100px)
         }
 
         setSupportActionBar(aboutToolbar)

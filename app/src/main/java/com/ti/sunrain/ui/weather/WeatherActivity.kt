@@ -54,6 +54,7 @@ import kotlinx.android.synthetic.main.forecast_chart.*
 import kotlinx.android.synthetic.main.hourly.*
 import kotlinx.android.synthetic.main.item_progress_sun.*
 import kotlinx.android.synthetic.main.life_index.*
+import kotlinx.android.synthetic.main.minutely_rain.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -282,6 +283,7 @@ class WeatherActivity : AppCompatActivity() {
         val responseForRealtime = weather.realtimeResponse
         val windReturn = weather.wind
         val hourlyReturn = weather.hourly
+        val minutelyReturn = weather.minutely
         val serverTime = responseForRealtime.getServerTime()
         val serverTimeText = viewModel.changeUNIXIntoString(serverTime)
 
@@ -505,6 +507,15 @@ class WeatherActivity : AppCompatActivity() {
         hourlyLayout.adapter = adapter
 
         hourlyDescText.text = hourlyReturn.description
+
+        //minutely data
+        val minuteLayoutManager = LinearLayoutManager(this)
+        minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        minutelyLayout.layoutManager = minuteLayoutManager
+        val minuteAdapter = MinutelyAdapter(initMinutelyItemList(minutelyReturn))
+        minutelyLayout.adapter = minuteAdapter
+
+        minutelyDescText.text = minutelyReturn.description
     }
 
     /**
@@ -533,6 +544,9 @@ class WeatherActivity : AppCompatActivity() {
             2 -> resources.getString(R.string.day_after_tomorrow)
             3 -> resources.getString(R.string.day_2after_tomorrow)
             4 -> resources.getString(R.string.day_3after_tomorrow)
+            5 -> "五天后"
+            6 -> "六天后"
+            7 -> "七天后"
             else -> "ERROR"
         }
     }
@@ -550,6 +564,22 @@ class WeatherActivity : AppCompatActivity() {
             hourlyItems.add(HourlyItem(skycon,temperature,wind))
         }
         return hourlyItems
+    }
+
+    /**
+     * fill in minute weather
+     */
+    private fun initMinutelyItemList(minutely:MinutelyResponse.Result.Minutely)
+            :ArrayList<MinutelyItem>{
+        val minutelyItems = ArrayList<MinutelyItem>(minutely.precipitation.size)
+        //If you want to change the type of precipitation, please change the two params
+        for(j in minutely.precipitation.indices){
+            val minuteDescription = minutely.precipitation[j]
+
+            minutelyItems.add(MinutelyItem(minuteDescription))
+        }
+
+        return minutelyItems
     }
 
     /**

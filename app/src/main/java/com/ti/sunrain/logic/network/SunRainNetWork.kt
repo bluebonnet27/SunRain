@@ -42,6 +42,12 @@ object SunRainNetWork {
     suspend fun getHourlyWeather(lng: String,lat: String) =
         weatherService.getHourlyWeather(lng, lat).await()
 
+    /**
+     * Minutely Rain
+     */
+    suspend fun getMinutelyRain(lng: String,lat: String) =
+        weatherService.getMinutelyRain(lng, lat).await()
+
     private suspend fun <T> Call<T>.await():T{
         return suspendCoroutine { continuation ->
             enqueue(object: Callback<T> {
