@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.MainActivity
 import com.ti.sunrain.R
 import com.ti.sunrain.ui.weather.WeatherActivity
@@ -79,5 +80,9 @@ class PlaceFragment:Fragment() {
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
+        
+        searchPlaceLoactionBtn.setOnClickListener { view->
+            Snackbar.make(view,"这个功能还在开发中",Snackbar.LENGTH_SHORT).show()
+        }
     }
 }
