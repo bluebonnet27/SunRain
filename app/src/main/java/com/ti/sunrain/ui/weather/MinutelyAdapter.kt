@@ -1,6 +1,5 @@
 package com.ti.sunrain.ui.weather
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ti.sunrain.R
-import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.MinutelyItem
 
 /**
@@ -29,8 +27,7 @@ class MinutelyAdapter(private val minutelyItemList: List<MinutelyItem>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_minutely_rain,
             parent,false)
-        val viewHolder = ViewHolder(view)
-        return viewHolder
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

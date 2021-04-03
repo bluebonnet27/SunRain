@@ -51,8 +51,9 @@ class DailyinforActivity : AppCompatActivity() {
         val weatherJson = intent.getStringExtra("weather")
         val weather = Gson().fromJson(weatherJson,Weather::class.java)
         val dayIndex = intent.getIntExtra("dayIndex",0)
+        val weekday = intent.getStringExtra("weekday")?:"ERROR"
 
-        initToolBarAndFAB(weather,dayIndex)
+        initToolBarAndFAB(weather,dayIndex,weekday)
         setWeatherDayAndNight(weather,dayIndex)
         setWeatherLifeIndex(weather,dayIndex)
         setOtherWeatherInformation(weather,dayIndex)
@@ -65,12 +66,12 @@ class DailyinforActivity : AppCompatActivity() {
         ActivitySet.removeActivity(this)
     }
 
-    private fun initToolBarAndFAB(weather: Weather, index: Int){
+    private fun initToolBarAndFAB(weather: Weather, index: Int,weekday:String){
         //date
         val dateOrigin = weather.daily.skyconDaylight[index].date
         val humidityOrigin = weather.daily.humidity[index].avgHumidity
         val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
-        supportActionBar?.title = simpleDateFormat.format(dateOrigin) + "(${getDayDesc(index)})"
+        supportActionBar?.title = simpleDateFormat.format(dateOrigin) + "($weekday)"
 
         //temperature
         val temperatureOrigin = weather.daily.temperature[index]
@@ -181,17 +182,6 @@ class DailyinforActivity : AppCompatActivity() {
             android.R.id.home -> finish()
         }
         return true
-    }
-
-    private fun getDayDesc(index:Int):String{
-        return when(index){
-            0 -> resources.getString(R.string.today)
-            1 -> resources.getString(R.string.tomorrow)
-            2 -> resources.getString(R.string.day_after_tomorrow)
-            3 -> resources.getString(R.string.day_2after_tomorrow)
-            4 -> resources.getString(R.string.day_3after_tomorrow)
-            else -> "ERROR"
-        }
     }
 
     private fun getSeason(date: Date):Int{

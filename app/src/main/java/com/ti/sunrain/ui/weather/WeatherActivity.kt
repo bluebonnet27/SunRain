@@ -43,6 +43,7 @@ import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
+import com.ti.sunrain.logic.model.dayforecast.DayForecastItem
 import com.ti.sunrain.ui.about.AboutActivity
 import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.ui.daily.DailyinforActivity
@@ -51,6 +52,8 @@ import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.forecast_chart.*
+import kotlinx.android.synthetic.main.half_item_air.*
+import kotlinx.android.synthetic.main.half_item_minutely_rain.*
 import kotlinx.android.synthetic.main.hourly.*
 import kotlinx.android.synthetic.main.item_progress_sun.*
 import kotlinx.android.synthetic.main.life_index.*
@@ -299,6 +302,7 @@ class WeatherActivity : AppCompatActivity() {
         val currentAQIDescInfor = realtime.airQuality.description.chn
         currentAQIDesc.text = " $currentAQIDescInfor"
 
+        //这行代码是测试天气动态背景的
         //nowAnimation.changeWeather(WeatherUtil.WeatherType.overcast)
         nowAnimation.changeWeather(getSkyAni(realtime.skycon))
 
@@ -320,53 +324,70 @@ class WeatherActivity : AppCompatActivity() {
         //forecast.xml 数据
         forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc +
                 " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
-        forecastLayout.removeAllViews()
+//        forecastLayout.removeAllViews()
         val days = daily.skyconSum.size
 
         val listHigh = ArrayList<Entry>()
         val listLow = ArrayList<Entry>()
 
-        val dateFormatValue = SunRainApplication.settingsPreference
-            .getString("forecastDateFormat_list","0")
+//        val dateFormatValue = SunRainApplication.settingsPreference
+//            .getString("forecastDateFormat_list","0")
 
         for(i in 0 until days){
-            val skycon = daily.skyconSum[i]
+            //val skycon = daily.skyconSum[i]
             val temperature = daily.temperature[i]
-            val view = LayoutInflater.from(this).inflate(R.layout.forecast_item,
-                forecastLayout,false)
+            //val view = LayoutInflater.from(this).inflate(R.layout.forecast_item,
+                //forecastLayout,false)
 
-            val dateInfo = view.findViewById(R.id.dateInfo) as TextView
-            val skyIcon = view.findViewById(R.id.skyIcon) as ImageView
-            val skyInfo = view.findViewById(R.id.skyInfo) as TextView
-            val temperatureInfo = view.findViewById<TextView>(R.id.temperatureInfo)
+            //val dateInfo = view.findViewById(R.id.dateInfo) as TextView
+            //val skyIcon = view.findViewById(R.id.skyIcon) as ImageView
+            //val skyInfo = view.findViewById(R.id.skyInfo) as TextView
+            //val temperatureInfo = view.findViewById<TextView>(R.id.temperatureInfo)
 
-            if(dateFormatValue=="0"){
-                dateInfo.text = getDayDesc(i)
-            }else{
-                val dateOrigin = skycon.date
-                val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
-                dateInfo.text = simpleDateFormat.format(dateOrigin)
-            }
+//            if(dateFormatValue=="0"){
+//                dateInfo.text = getDayDesc(i)
+//            }else{
+//                val dateOrigin = skycon.date
+//                val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
+//                dateInfo.text = simpleDateFormat.format(dateOrigin)
+//            }
 
-            val sky = getSky(skycon.value)
-            skyIcon.setImageResource(sky.weather_icon)
-            skyInfo.text = sky.info
+//            val sky = getSky(skycon.value)
+//            skyIcon.setImageResource(sky.weather_icon)
+//            skyInfo.text = sky.info
 
             listHigh.add(Entry(i.toFloat(),temperature.max))
             listLow.add(Entry(i.toFloat(),temperature.min))
 
-            val tempText = "${temperature.min.toInt()}~${temperature.max.toInt()}℃"
-            temperatureInfo.text = tempText
+//            val tempText = "${temperature.min.toInt()}~${temperature.max.toInt()}℃"
+//            temperatureInfo.text = tempText
 
-            view.setOnClickListener {
-                val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
+//            view.setOnClickListener {
+//                val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
+//                dailyInfoIntent.putExtra("weather",Gson().toJson(weather))
+//                dailyInfoIntent.putExtra("dayIndex",i)
+//                startActivity(dailyInfoIntent)
+//            }
+
+//            forecastLayout.addView(view)
+        }
+
+        //新的预报recyclerview
+        val dayForcastLayoutManager = LinearLayoutManager(this)
+        dayForcastLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        forecastRecyclerLayout.layoutManager = dayForcastLayoutManager
+
+        val dayForecastAdapter = DayForecastAdapter(initDayForecastItems(daily))
+        dayForecastAdapter.setOnItemClickListener(object : DayForecastAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int,weekday:String) {
+                val dailyInfoIntent = Intent(this@WeatherActivity,DailyinforActivity::class.java)
                 dailyInfoIntent.putExtra("weather",Gson().toJson(weather))
-                dailyInfoIntent.putExtra("dayIndex",i)
+                dailyInfoIntent.putExtra("dayIndex",position)
+                dailyInfoIntent.putExtra("weekday",weekday)
                 startActivity(dailyInfoIntent)
             }
-
-            forecastLayout.addView(view)
-        }
+        })
+        forecastRecyclerLayout.adapter = dayForecastAdapter
 
         //天气通知正文
         val rTnotification = showRealtimeWeatherNotification(weather)
@@ -508,7 +529,7 @@ class WeatherActivity : AppCompatActivity() {
 
         hourlyDescText.text = hourlyReturn.description
 
-        //minutely data
+        //分钟降水
         val minuteLayoutManager = LinearLayoutManager(this)
         minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         minutelyLayout.layoutManager = minuteLayoutManager
@@ -516,6 +537,10 @@ class WeatherActivity : AppCompatActivity() {
         minutelyLayout.adapter = minuteAdapter
 
         minutelyDescText.text = minutelyReturn.description
+
+        //首页分钟降水
+        minutelyCardDescIconHS.setImageResource(transferData1MinuteToIcon(getRainData1Minute(minutelyReturn)))
+        minutelyCardIcon.setImageResource(minuteAdapter.getRainIconDesc(getRainData1Minute(minutelyReturn)))
     }
 
     /**
@@ -535,23 +560,6 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     /**
-     * index转换为日期描述，仓库层缺少resources引用所以就直接复制过来了
-     */
-    private fun getDayDesc(index:Int):String{
-        return when(index){
-            0 -> resources.getString(R.string.today)
-            1 -> resources.getString(R.string.tomorrow)
-            2 -> resources.getString(R.string.day_after_tomorrow)
-            3 -> resources.getString(R.string.day_2after_tomorrow)
-            4 -> resources.getString(R.string.day_3after_tomorrow)
-            5 -> "五天后"
-            6 -> "六天后"
-            7 -> "七天后"
-            else -> "ERROR"
-        }
-    }
-
-    /**
      * 填充小时天气的数据
      */
     private fun initHourlyItemList(hourly:HourlyResponse.Result.Hourly):ArrayList<HourlyItem>{
@@ -567,7 +575,7 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     /**
-     * fill in minute weather
+     * 填充分钟降水数据
      */
     private fun initMinutelyItemList(minutely:MinutelyResponse.Result.Minutely)
             :ArrayList<MinutelyItem>{
@@ -582,6 +590,25 @@ class WeatherActivity : AppCompatActivity() {
         return minutelyItems
     }
 
+    private fun getRainData1Minute(minutely: MinutelyResponse.Result.Minutely):Float{
+        return minutely.precipitation[0]
+    }
+
+    private fun transferData1MinuteToIcon(precipitation:Float):Int {
+        val isDarkTheme = isDarkTheme(this)
+        val isPositive = precipitation > 0
+
+        return if(isDarkTheme && isPositive){
+            R.drawable.baseline_sentiment_dissatisfied_white_24dp
+        }else if(!isDarkTheme && isPositive){
+            R.drawable.baseline_sentiment_dissatisfied_black_24dp
+        }else if(isDarkTheme && !isPositive){
+            R.drawable.baseline_sentiment_satisfied_alt_white_24dp
+        }else{
+            R.drawable.baseline_sentiment_satisfied_alt_black_24dp
+        }
+    }
+
     /**
      * 填充空气指数的数据，绘图
      */
@@ -589,7 +616,13 @@ class WeatherActivity : AppCompatActivity() {
         //air.xml 数列写入数据
         airDesc.text = weather.realtime.airQuality.description.chn
 
+        airDescTextHalf.text = weather.realtime.airQuality.description.chn
+
         val aq = weather.realtime.airQuality
+
+        airDescHalfAQI.text = aq.aqi.chn.toInt().toString()
+        airDescHalfAQIProgress.progress = aq.aqi.chn.toInt()
+
         pm25Num.text = "${aq.pm25} μg/m3"
         pm10Num.text = "${aq.pm10} μg/m3"
         no2Num.text = "${aq.no2} μg/m3"
@@ -787,6 +820,17 @@ class WeatherActivity : AppCompatActivity() {
         }else{
             originBackgroundResId
         }
+    }
+
+    private fun initDayForecastItems(daily: DailyResponse.Daily):ArrayList<DayForecastItem>{
+        val dayForecastItemList = ArrayList<DayForecastItem>(daily.temperature.size)
+        for(i in daily.skyconSum.indices){
+            val skycon = daily.skyconSum[i]
+            val temp = daily.temperature[i]
+
+            dayForecastItemList.add(DayForecastItem(skycon,temp))
+        }
+        return dayForecastItemList
     }
 
     class TemperatureChartXAxisFormatter : ValueFormatter() {

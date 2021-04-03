@@ -25,7 +25,7 @@ interface WeatherService {
     /**
      * 未来天气接口，返回DailyResponse，来自logic.model
      */
-    @GET("v2.5/${SunRainApplication.TOKEN}/{lng},{lat}/daily.json")
+    @GET("v2.5/${SunRainApplication.TOKEN}/{lng},{lat}/daily.json?dailysteps=15")
     fun getDailyWeather(@Path("lng")lng:String,
                         @Path("lat")lat:String):Call<DailyResponse>
 
