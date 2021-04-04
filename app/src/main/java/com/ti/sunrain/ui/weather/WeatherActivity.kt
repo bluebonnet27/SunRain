@@ -45,6 +45,7 @@ import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.logic.model.dayforecast.DayForecastItem
 import com.ti.sunrain.ui.about.AboutActivity
+import com.ti.sunrain.ui.air.AirActivity
 import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.ui.daily.DailyinforActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
@@ -519,6 +520,13 @@ class WeatherActivity : AppCompatActivity() {
 
         //air.xml
         initAirPie(weather)
+
+        //空气页面
+        airCard.setOnClickListener {
+            val airActivityIntent = Intent(this,AirActivity::class.java)
+            airActivityIntent.putExtra("weather",Gson().toJson(weather))
+            startActivity(airActivityIntent)
+        }
 
         //hourly 数据
         val layoutManager = LinearLayoutManager(this)

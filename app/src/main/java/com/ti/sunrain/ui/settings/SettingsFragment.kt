@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
@@ -35,6 +36,10 @@ class SettingsFragment : PreferenceFragmentCompat(){
         val notificationMoreInfoPreference : SwitchPreference? = findPreference("notification_moreinfo_switch")
         val notificationCanCancelPreference : SwitchPreference? = findPreference("notification_cancancel_switch")
 
+        val serverAddressPreference : EditTextPreference? = findPreference("webdav_server_address_edit")
+        val accountPreference :EditTextPreference? = findPreference("webdav_account_edit")
+        val passwordPreference:EditTextPreference? = findPreference("webdav_password_edit")
+
         val darkmodePreference : ListPreference? = findPreference("others_darkmode_list")
 
         if(isDarktheme(SunRainApplication.context)){
@@ -48,6 +53,10 @@ class SettingsFragment : PreferenceFragmentCompat(){
             titleRefreshPreference?.icon = getDrawable(context,R.drawable.baseline_title_white_24dp)
 
             notificationSwitchPreference?.icon = getDrawable(context,R.drawable.baseline_notifications_white_24dp)
+
+            serverAddressPreference?.icon = getDrawable(context,R.drawable.baseline_computer_white_24dp)
+            accountPreference?.icon = getDrawable(context,R.drawable.baseline_account_circle_white_24dp)
+            passwordPreference?.icon = getDrawable(context, R.drawable.baseline_password_white_24dp)
 
             darkmodePreference?.icon = getDrawable(context,R.drawable.baseline_brightness_2_white_24dp)
         }

@@ -95,6 +95,37 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="云服务（WebDav）">
+
+        <EditTextPreference
+            android:title="服务器地址"
+            android:icon="@drawable/baseline_computer_black_24dp"
+            android:key="webdav_server_address_edit"
+            android:dialogTitle="服务器地址"/>
+
+        <EditTextPreference
+            android:title="账号"
+            android:icon="@drawable/baseline_account_circle_black_24dp"
+            android:key="webdav_account_edit"
+            android:dialogTitle="账号"/>
+
+        <EditTextPreference
+            android:title="密码"
+            android:icon="@drawable/baseline_password_black_24dp"
+            android:key="webdav_password_edit"
+            android:dialogTitle="密码"/>
+
+        <PreferenceScreen
+            android:title="坚果云WebDav教程">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://help.jianguoyun.com/?p=2064"/>
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="其他">
 
         <SwitchPreference

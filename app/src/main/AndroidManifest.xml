@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ti.sunrain">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:replace="android:allowBackup"
+    <application xmlns:tools="http://schemas.android.com/tools"
         android:name=".SunRainApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SunRain">
-<!--        <receiver android:name=".ui.widget.ForecastWidget">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />-->
-<!--            </intent-filter>-->
-
-<!--            <meta-data-->
-<!--                android:name="android.appwidget.provider"-->
-<!--                android:resource="@xml/forecast_widget_info" />-->
-<!--        </receiver>-->
-
+        android:theme="@style/Theme.SunRain"
+        tools:replace="android:allowBackup">
+        <activity android:name=".ui.minutely.MinutelyActivity"></activity>
+        <activity android:name=".ui.air.AirActivity" /> <!-- <receiver android:name=".ui.widget.ForecastWidget"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.appwidget.action.APPWIDGET_UPDATE" /> -->
+        <!-- </intent-filter> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.appwidget.provider" -->
+        <!-- android:resource="@xml/forecast_widget_info" /> -->
+        <!-- </receiver> -->
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.daily.DailyinforActivity" />
         <activity android:name=".ui.about.AboutActivity" />
