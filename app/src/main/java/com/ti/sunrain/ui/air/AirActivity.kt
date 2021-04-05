@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
 import com.github.mikephil.charting.data.PieData
@@ -70,9 +71,9 @@ class AirActivity : AppCompatActivity() {
 
     private fun initToolBarAndFAB(weather: Weather){
         //标题
-        airActivityToolBar.title = weather.realtime.airQuality.description.chn
+        supportActionBar?.title = weather.realtime.airQuality.description.chn
         //副标题
-        airActivityToolBar.subtitle = "AQI:" + weather.realtime.airQuality.aqi.chn
+        airActivityToolBar.subtitle = "AQI:" + weather.realtime.airQuality.aqi.chn.toInt()
     }
 
     private fun initPieChartAndDirtyProgressBar(weather: Weather){
@@ -113,7 +114,7 @@ class AirActivity : AppCompatActivity() {
         //设置数据的字体大小  （图中的  44     56）
         dirtyDataSet.valueTextSize = 10f
         //设置描述连接线长度
-        dirtyDataSet.valueLinePart1Length = 0f
+        //dirtyDataSet.valueLinePart1Length = 0f
 
         itemAirPieChartChart.apply {
             //实体扇形的空心圆的半径   设置成0时就是一个圆 而不是一个环
@@ -126,6 +127,8 @@ class AirActivity : AppCompatActivity() {
             //animateXY(2000,2000)
             //是否显示右下角描述
             description.isEnabled = false;
+            //百分比
+            setUsePercentValues(true)
         }
 
         //图例
