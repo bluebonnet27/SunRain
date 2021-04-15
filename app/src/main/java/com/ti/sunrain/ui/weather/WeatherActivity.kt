@@ -48,6 +48,7 @@ import com.ti.sunrain.ui.about.AboutActivity
 import com.ti.sunrain.ui.air.AirActivity
 import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.ui.daily.DailyinforActivity
+import com.ti.sunrain.ui.minutely.MinutelyActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
@@ -526,6 +527,13 @@ class WeatherActivity : AppCompatActivity() {
             val airActivityIntent = Intent(this,AirActivity::class.java)
             airActivityIntent.putExtra("weather",Gson().toJson(weather))
             startActivity(airActivityIntent)
+        }
+
+        //分钟降水页面
+        minutelyCard.setOnClickListener {
+            val minutelyActivityIntent = Intent(this,MinutelyActivity::class.java)
+            minutelyActivityIntent.putExtra("weather",Gson().toJson(weather))
+            startActivity(minutelyActivityIntent)
         }
 
         //hourly 数据
