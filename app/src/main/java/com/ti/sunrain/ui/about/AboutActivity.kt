@@ -54,8 +54,8 @@ class AboutActivity : AppCompatActivity() {
         if(isDarkTheme(this)){
             emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
             githubIcon.setImageResource(R.drawable.ic_github_white)
-            marketIcon.setImageResource(R.drawable.baseline_shop_white_24dp)
-            updateIcon.setImageResource(R.drawable.baseline_find_in_page_white_24dp)
+            marketIcon.setImageResource(R.drawable.ic_google_play_white)
+            updateIcon.setImageResource(R.drawable.ic_internet_explorer_white)
 
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)

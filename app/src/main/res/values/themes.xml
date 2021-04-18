@@ -115,4 +115,13 @@
     </style>
 
     <!--  toolbar menu icon  -->
+
+    <!--  通用卡片布局  -->
+    <style name="myCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
 </resources>

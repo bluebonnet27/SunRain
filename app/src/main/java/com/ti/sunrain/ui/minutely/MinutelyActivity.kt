@@ -66,4 +66,12 @@ class MinutelyActivity : AppCompatActivity() {
         minutelyActivityToolBar.subtitle = "2 hours:" +
                 (weather.minutely.precipitation_2h[0]*100).toString() + "%"
     }
+
+    private fun initMinutelyRainMap(weather: Weather){
+
+    }
+
+    private fun initRainChart(weather: Weather){
+
+    }
 }
