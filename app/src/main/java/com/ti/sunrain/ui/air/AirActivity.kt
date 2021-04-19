@@ -108,9 +108,9 @@ class AirActivity : AppCompatActivity() {
             Color.parseColor("#0097a7"),
             Color.parseColor("#e64a19"))
         //设置描述的位置
-        dirtyDataSet.xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+        dirtyDataSet.xValuePosition = PieDataSet.ValuePosition.INSIDE_SLICE
         //设置数据的位置
-        dirtyDataSet.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+        dirtyDataSet.yValuePosition = PieDataSet.ValuePosition.INSIDE_SLICE
         //设置数据的字体大小  （图中的  44     56）
         dirtyDataSet.valueTextSize = 10f
         //设置描述连接线长度
@@ -118,11 +118,17 @@ class AirActivity : AppCompatActivity() {
 
         itemAirPieChartChart.apply {
             //实体扇形的空心圆的半径   设置成0时就是一个圆 而不是一个环
-            holeRadius = 0f
+            holeRadius = 30f
+            //设置中心圆的颜色
+            setHoleColor(Color.parseColor(getAQIColor(aq.aqi.chn.toInt())));
+            //设置中心部分的字  （一般中间白色圆不隐藏的情况下才设置）
+            centerText = weather.realtime.airQuality.aqi.chn.toInt().toString()
+            //设置中心字的字体大小
+            setCenterTextSize(16f);
             //中间半透明白色圆的半径    设置成0时就是隐藏
-            transparentCircleRadius = 0f
+            transparentCircleRadius = 35f
             //设置描述的字体大小
-            setEntryLabelTextSize(10f)
+            setEntryLabelTextSize(15f)
             //XY两轴混合动画
             //animateXY(2000,2000)
             //是否显示右下角描述
@@ -138,5 +144,28 @@ class AirActivity : AppCompatActivity() {
         //数据应用
         val dirtyDataUse = PieData(dirtyDataSet)
         itemAirPieChartChart.data = dirtyDataUse
+    }
+
+    fun getAQIColor(aqiValue:Int):String{
+        when (aqiValue) {
+            in 0..50 -> {
+                return "#7cb342"
+            }
+            in 51..100 -> {
+                return "#ffff8d"
+            }
+            in 101..150 -> {
+                return "#f9a825"
+            }
+            in 151..200 -> {
+                return "#e53935"
+            }
+            in 201..300 -> {
+                return "#880e4f"
+            }
+            else -> {
+                return "#212121"
+            }
+        }
     }
 }
