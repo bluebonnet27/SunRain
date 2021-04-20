@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SunRain"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.minutely.MinutelyActivity"></activity>
+        <activity android:name=".ui.minutely.MinutelyActivity" />
         <activity android:name=".ui.air.AirActivity" /> <!-- <receiver android:name=".ui.widget.ForecastWidget"> -->
         <!-- <intent-filter> -->
         <!-- <action android:name="android.appwidget.action.APPWIDGET_UPDATE" /> -->

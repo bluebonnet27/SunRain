@@ -120,11 +120,11 @@ class AirActivity : AppCompatActivity() {
             //实体扇形的空心圆的半径   设置成0时就是一个圆 而不是一个环
             holeRadius = 30f
             //设置中心圆的颜色
-            setHoleColor(Color.parseColor(getAQIColor(aq.aqi.chn.toInt())));
+            setHoleColor(Color.parseColor(getAQIColor(aq.aqi.chn.toInt())))
             //设置中心部分的字  （一般中间白色圆不隐藏的情况下才设置）
             centerText = weather.realtime.airQuality.aqi.chn.toInt().toString()
             //设置中心字的字体大小
-            setCenterTextSize(16f);
+            setCenterTextSize(16f)
             //中间半透明白色圆的半径    设置成0时就是隐藏
             transparentCircleRadius = 35f
             //设置描述的字体大小
@@ -132,7 +132,7 @@ class AirActivity : AppCompatActivity() {
             //XY两轴混合动画
             //animateXY(2000,2000)
             //是否显示右下角描述
-            description.isEnabled = false;
+            description.isEnabled = false
             //百分比
             setUsePercentValues(true)
         }
