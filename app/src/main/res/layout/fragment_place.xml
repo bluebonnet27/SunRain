@@ -41,12 +41,9 @@
             android:id="@+id/searchPlaceLoactionBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.MaterialComponents.Light"
             android:text="通过定位获取天气信息"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            app:cornerRadius="8dp"
-            app:backgroundTint="@color/blue500"
             app:icon="@drawable/baseline_location_on_white_24dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>

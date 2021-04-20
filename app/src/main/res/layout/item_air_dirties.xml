@@ -20,13 +20,72 @@
             android:text="污染物"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"
-            app:drawableStartCompat="@drawable/ic_airquality"/>
+            app:drawableStartCompat="@drawable/ic_odor_100px"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!--    pm2.5      -->
+            <LinearLayout
+                android:id="@+id/pm25Column"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!--      pm10      -->
+            <LinearLayout
+                android:id="@+id/pm10Column"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!--     o3       -->
+            <LinearLayout
+                android:id="@+id/o3Column"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!--     no2       -->
+            <LinearLayout
+                android:id="@+id/no2Column"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!--     so2       -->
+            <LinearLayout
+                android:id="@+id/so2Column"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!--     co       -->
+            <LinearLayout
+                android:id="@+id/coColumn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

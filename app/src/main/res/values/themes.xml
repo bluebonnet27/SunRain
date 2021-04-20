@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SunRain" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.SunRain" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <!--    12.18 重构APP颜色，日间模式以MD的橙色为主色调，副色为黄色；
         夜间模式以蓝色为主色调，副色为浅蓝色    -->

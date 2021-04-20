@@ -41,6 +41,7 @@
             android:orientation="vertical">
 
             <include layout="@layout/item_air_piechart"/>
+            <include layout="@layout/item_air_dirties"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
