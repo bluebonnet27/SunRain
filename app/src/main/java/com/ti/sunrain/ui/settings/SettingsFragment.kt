@@ -41,6 +41,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
         val passwordPreference:EditTextPreference? = findPreference("webdav_password_edit")
 
         val darkmodePreference : ListPreference? = findPreference("others_darkmode_list")
+        val languagePreference : ListPreference? = findPreference("others_language_list")
 
         if(isDarktheme(SunRainApplication.context)){
             val context = SunRainApplication.context
@@ -59,6 +60,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
             passwordPreference?.icon = getDrawable(context, R.drawable.baseline_password_white_24dp)
 
             darkmodePreference?.icon = getDrawable(context,R.drawable.baseline_brightness_2_white_24dp)
+            languagePreference?.icon = getDrawable(context,R.drawable.baseline_language_white_24dp)
         }
 
         covidPreference?.setOnPreferenceChangeListener { _, _ ->

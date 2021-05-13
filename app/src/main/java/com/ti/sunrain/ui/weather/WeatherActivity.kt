@@ -39,6 +39,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.rainy.weahter_bg_plug.utils.WeatherUtil
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
@@ -305,8 +306,9 @@ class WeatherActivity : AppCompatActivity() {
         currentAQIDesc.text = " $currentAQIDescInfor"
 
         //这行代码是测试天气动态背景的
-        //nowAnimation.changeWeather(WeatherUtil.WeatherType.overcast)
+        //nowAnimation.changeWeather(WeatherUtil.WeatherType.thunder)
         nowAnimation.changeWeather(getSkyAni(realtime.skycon))
+        //middleRainy,heavyRainy,foggy,all snow,all rest
 
         //now.xml 动态背景
         val festivalBackgroundValue = SunRainApplication.settingsPreference
@@ -332,46 +334,10 @@ class WeatherActivity : AppCompatActivity() {
         val listHigh = ArrayList<Entry>()
         val listLow = ArrayList<Entry>()
 
-//        val dateFormatValue = SunRainApplication.settingsPreference
-//            .getString("forecastDateFormat_list","0")
-
         for(i in 0 until days){
-            //val skycon = daily.skyconSum[i]
             val temperature = daily.temperature[i]
-            //val view = LayoutInflater.from(this).inflate(R.layout.forecast_item,
-                //forecastLayout,false)
-
-            //val dateInfo = view.findViewById(R.id.dateInfo) as TextView
-            //val skyIcon = view.findViewById(R.id.skyIcon) as ImageView
-            //val skyInfo = view.findViewById(R.id.skyInfo) as TextView
-            //val temperatureInfo = view.findViewById<TextView>(R.id.temperatureInfo)
-
-//            if(dateFormatValue=="0"){
-//                dateInfo.text = getDayDesc(i)
-//            }else{
-//                val dateOrigin = skycon.date
-//                val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
-//                dateInfo.text = simpleDateFormat.format(dateOrigin)
-//            }
-
-//            val sky = getSky(skycon.value)
-//            skyIcon.setImageResource(sky.weather_icon)
-//            skyInfo.text = sky.info
-
             listHigh.add(Entry(i.toFloat(),temperature.max))
             listLow.add(Entry(i.toFloat(),temperature.min))
-
-//            val tempText = "${temperature.min.toInt()}~${temperature.max.toInt()}℃"
-//            temperatureInfo.text = tempText
-
-//            view.setOnClickListener {
-//                val dailyInfoIntent = Intent(this,DailyinforActivity::class.java)
-//                dailyInfoIntent.putExtra("weather",Gson().toJson(weather))
-//                dailyInfoIntent.putExtra("dayIndex",i)
-//                startActivity(dailyInfoIntent)
-//            }
-
-//            forecastLayout.addView(view)
         }
 
         //新的预报recyclerview
