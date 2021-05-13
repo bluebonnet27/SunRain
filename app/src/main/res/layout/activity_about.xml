@@ -5,12 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".ui.about.AboutActivity">
     
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/aboutToolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:fitsSystemWindows="true"
         android:layout_marginTop="0dp">
 
 
@@ -20,6 +22,7 @@
             android:layout_height="match_parent"
             app:title="@string/aboutIcon"
             app:contentScrim="@color/black"
+            android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -30,6 +33,7 @@
                 android:scaleType="centerCrop"
                 android:clickable="true"
                 android:focusable="true"
+                android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"/>
 
             <androidx.appcompat.widget.Toolbar
