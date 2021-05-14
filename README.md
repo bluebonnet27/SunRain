@@ -9,9 +9,11 @@
 
 ## 下载
 
-1. github 的 release 页有最新的下载。包括开发版和稳定版。
+1. 推荐前往酷安下载最新版[链接](https://www.coolapk.com/apk/com.ti.sunrain)
 
-2. 访问官网的[下载页](https://bluebonnet27.gitee.io/download.html)（只有稳定版）
+2. github 的 release 页有经过测试的稳定版下载，但更新不一定及时。
+
+3. 访问官网的[下载页](https://bluebonnet27.gitee.io/download.html)（更新不一定及时）
 
 ## 反馈
 
