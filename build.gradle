@@ -2,8 +2,16 @@
 buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
+        // 阿里云云效仓库：https://maven.aliyun.com/mvn/guide
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        // 华为开源镜像：https://mirrors.huaweicloud.com
+        maven { url 'https://repo.huaweicloud.com/repository/maven' }
+        // JitPack 远程仓库：https://jitpack.io
+        maven { url 'https://jitpack.io' }
+        // MavenCentral 远程仓库：https://mvnrepository.com
+        mavenCentral()
         google()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
     }
     dependencies {
@@ -17,9 +25,12 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://repo.huaweicloud.com/repository/maven' }
         maven { url 'https://jitpack.io' }
+        mavenCentral()
+        google()
         jcenter()
     }
 }
