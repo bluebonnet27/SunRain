@@ -199,7 +199,8 @@ class AboutActivity : AppCompatActivity() {
                         "第三方接口搜索天气。晴雨会将上一次搜索的记录保存在本地。通过清除软件数据，可" +
                         "以将已保存的数据清除。晴雨不需要其他任何权限。\n"+
                         "2. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
-                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。")
+                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。\n"+
+                        "3. 最后更新版本 V${BuildConfig.VERSION_NAME}")
                 .setPositiveButton(getString(R.string.ok), null)
                 .setNegativeButton("更多"){ _, _ -> run {
                         val morePrivacyIntent = Intent(Intent.ACTION_VIEW)
