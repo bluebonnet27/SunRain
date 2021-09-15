@@ -48,6 +48,7 @@ private val sky = mapOf(
     "HAIL" to Sky(SunRainApplication.context.getString(R.string.hail),R.drawable.ic_hail, R.drawable.bg_snow_moderate_new)
 )
 
+//2021年9月14日18:18:43 此部分内容随rainy插件更新而更新
 private val skyAni = mapOf(
     "CLEAR_DAY" to WeatherUtil.WeatherType.sunny,
     "CLEAR_NIGHT" to WeatherUtil.WeatherType.sunnyNight,

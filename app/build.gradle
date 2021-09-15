@@ -55,10 +55,10 @@ dependencies {
     //implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    //weather animati
+    //weather animation
     //
     // on
-    implementation 'com.github.Rainvvy:Weather_Bg:v1.0'
+    implementation 'com.github.Rainvvy:Weather_Bg:v1.1'
     //glide
     //implementation 'com.github.bumptech.glide:glide:4.8.0'
     // Leak
