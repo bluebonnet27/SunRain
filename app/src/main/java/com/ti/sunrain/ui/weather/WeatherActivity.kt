@@ -806,7 +806,16 @@ class WeatherActivity : AppCompatActivity() {
 
     private fun initDayForecastItems(daily: DailyResponse.Daily):ArrayList<DayForecastItem>{
         val dayForecastItemList = ArrayList<DayForecastItem>(daily.temperature.size)
-        for(i in daily.skyconSum.indices){
+
+//        for(i in daily.skyconSum.indices){
+//            val skycon = daily.skyconSum[i]
+//            val temp = daily.temperature[i]
+//
+//            dayForecastItemList.add(DayForecastItem(skycon,temp))
+//        }
+
+        //使用此处数字约束首页出现的天气预报个数
+        for(i in 0..2){
             val skycon = daily.skyconSum[i]
             val temp = daily.temperature[i]
 

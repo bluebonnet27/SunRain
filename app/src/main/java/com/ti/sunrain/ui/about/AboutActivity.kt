@@ -54,8 +54,8 @@ class AboutActivity : AppCompatActivity() {
         if(isDarkTheme(this)){
             emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
             githubIcon.setImageResource(R.drawable.ic_github_white)
-            marketIcon.setImageResource(R.drawable.ic_google_play_white)
-            updateIcon.setImageResource(R.drawable.ic_internet_explorer_white)
+            marketIcon.setImageResource(R.drawable.baseline_store_white_24dp)
+            updateIcon.setImageResource(R.drawable.baseline_open_in_browser_white_24dp)
 
             wechatIcon.setImageResource(R.drawable.ic_wechat_white)
             alipayIcon.setImageResource(R.drawable.ic_alipay_white)
@@ -129,7 +129,7 @@ class AboutActivity : AppCompatActivity() {
             Toast.makeText(this, "密码是 c7t9", Toast.LENGTH_SHORT).show()
 
             val updateIntent = Intent(Intent.ACTION_VIEW)
-            updateIntent.data = Uri.parse("https://wwa.lanzous.com/b0dwdaush")
+            updateIntent.data = Uri.parse("https://wwa.lanzoux.com/b0dwdaush")
             startActivity(updateIntent)
         }
 

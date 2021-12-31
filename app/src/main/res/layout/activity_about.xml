@@ -112,7 +112,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/ic_google_play_black"/>
+                        android:src="@drawable/baseline_store_black_24dp"/>
 
                     <TextView
                         style="@style/setting_text_left"
@@ -131,7 +131,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
-                        android:src="@drawable/ic_internet_explorer_black"/>
+                        android:src="@drawable/baseline_open_in_browser_black_24dp"/>
 
                     <TextView
                         style="@style/setting_text_left"

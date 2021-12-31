@@ -59,6 +59,7 @@
                 android:id="@+id/airDescHalfAQI"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:layout_marginStart="30dp"
                 android:layout_gravity="end"
                 android:textSize="40sp"/>
 
