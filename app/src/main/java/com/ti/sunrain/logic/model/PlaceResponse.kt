@@ -31,16 +31,19 @@ import com.google.gson.annotations.SerializedName
 /**
  * 应答地点类，从全局 context 来，作为 mvvm 的 model 层
  */
-data class PlaceResponse(val status:String,val places : List<Place>){
+data class PlaceResponse(val status:String,
+                         val places : List<Place>){
 
     /**
      * 名称，定位类，具体地址名字
      */
-    data class Place(val name:String,val location: Location,
+    data class Place(val name:String,
+                     val location: Location,
                      @SerializedName("formatted_address") val address:String)
 
     /**
      * 经度，纬度
      */
-    data class Location(val lng:String,val lat:String)
+    data class Location(val lng:String,
+                        val lat:String)
 }

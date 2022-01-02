@@ -7,7 +7,7 @@ import android.content.SharedPreferences
 /**
  * @author: tihon
  * @date: 2020/12/3
- * @description:这个类的作用是提供全局的context
+ * @description:这个类的作用是提供全局的context，给SunnyWeather项目提供一种全局获取Context的方式。
  */
 class SunRainApplication:Application() {
 
@@ -22,6 +22,9 @@ class SunRainApplication:Application() {
 
         //彩云天气令牌值
         const val TOKEN = "QTeX2n8AQjAhR9BV"
+
+        //百度地图ak值
+        const val TOKEN_AK = "ebUe7BO04taXH6zVOvkPv8WRvxiGWQ5V"
     }
 
     /**

@@ -4,6 +4,8 @@
     package="com.ti.sunrain">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application xmlns:tools="http://schemas.android.com/tools"
         android:name=".SunRainApplication"

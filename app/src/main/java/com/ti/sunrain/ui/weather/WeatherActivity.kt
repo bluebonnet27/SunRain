@@ -815,7 +815,7 @@ class WeatherActivity : AppCompatActivity() {
 //        }
 
         //使用此处数字约束首页出现的天气预报个数
-        for(i in 0..2){
+        for(i in 0..4){
             val skycon = daily.skyconSum[i]
             val temp = daily.temperature[i]
 
