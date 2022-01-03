@@ -33,6 +33,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.jar.Manifest
+import android.R.string.no
+import android.location.Location
 
 
 /**
@@ -108,12 +110,14 @@ class PlaceFragment:Fragment() {
                 .request{allGranted, grantedList, deniedList ->  
                     if(allGranted){
                         try{
-                            val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                            val location = getBestLastKnownLocation(locationManager)
                             if (location != null) {
                                 val activity = this.activity
 
                                 val lng = location.longitude.toString()
                                 val lat = location.latitude.toString()
+
+                                Toast.makeText(this.requireActivity(), "$lat,$lng", Toast.LENGTH_SHORT).show()
 
                                 val locationString = "$lat,$lng"
 
@@ -136,10 +140,8 @@ class PlaceFragment:Fragment() {
                                             val specificPlaceResponse = response.body()
                                             if (specificPlaceResponse != null) {
                                                 activity.viewModel.placeName = specificPlaceResponse.result.detailedAddress
-                                                Toast.makeText(SunRainApplication.context,
-                                                    specificPlaceResponse.result.detailedAddress, Toast.LENGTH_SHORT).show()
                                             }else{
-                                                activity.viewModel.placeName = "地址缺失！"
+                                                activity.viewModel.placeName = ""
                                             }
                                         }
 
@@ -170,10 +172,8 @@ class PlaceFragment:Fragment() {
                                                 val specificPlaceResponse = response.body()
                                                 if (specificPlaceResponse != null) {
                                                     putExtra("place_name",specificPlaceResponse.result.detailedAddress)
-                                                    Toast.makeText(SunRainApplication.context,
-                                                        specificPlaceResponse.result.detailedAddress, Toast.LENGTH_SHORT).show()
                                                 }else{
-                                                    putExtra("place_name","地址缺失！")
+                                                    putExtra("place_name","")
                                                 }
                                             }
 
@@ -189,6 +189,9 @@ class PlaceFragment:Fragment() {
                                     activity?.finish()
                                 }
                             }
+                            else{
+                                Toast.makeText(this.requireActivity(), "location is empty!", Toast.LENGTH_SHORT).show()
+                            }
                         }catch (e:SecurityException){
                             e.stackTrace
                         }
@@ -197,5 +200,22 @@ class PlaceFragment:Fragment() {
                     }
                 }
         }
+    }
+
+    private fun getBestLastKnownLocation(locationManager: LocationManager):Location?{
+        val providers = locationManager.getProviders(true)
+        var bestLocation: Location? = null
+        for (provider in providers){
+            try {
+                val l = locationManager.getLastKnownLocation(provider) ?: continue
+                if(bestLocation == null || l.accuracy < bestLocation.accuracy){
+                    bestLocation = l
+                }
+            }catch (e:SecurityException){
+                e.stackTrace
+            }
+        }
+
+        return bestLocation
     }
 }
