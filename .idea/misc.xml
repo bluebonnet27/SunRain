@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/drawable/baseline_account_circle_black_24dp.xml" value="0.26979166666666665" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/drawable/bg_snow_moderate_new.xml" value="0.26979166666666665" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_air.xml" value="0.13903985507246377" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_dailyinfor.xml" value="0.24048913043478262" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_future_daily.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_main.xml" value="0.24048913043478262" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/forecast_item.xml" value="0.14402173913043478" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_daily_others.xml" value="0.24048913043478262" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_future_daily.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_hourly.xml" value="0.24048913043478262" />
       </map>
     </option>

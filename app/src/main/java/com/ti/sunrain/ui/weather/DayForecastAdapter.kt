@@ -67,7 +67,8 @@ class DayForecastAdapter(val dayForecastList:List<DayForecastItem>):
 
         //点击
         holder.itemView.setOnClickListener {
-            onItemClickListener.onItemClick(holder.itemView,position,holder.dateInfoText.text.toString())
+            onItemClickListener.onItemClick(holder.itemView,position,
+                holder.dateInfoText.text.toString())
         }
     }
 

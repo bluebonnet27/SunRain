@@ -49,6 +49,7 @@ import com.ti.sunrain.ui.about.AboutActivity
 import com.ti.sunrain.ui.air.AirActivity
 import com.ti.sunrain.ui.covid.CovidSpecial
 import com.ti.sunrain.ui.daily.DailyinforActivity
+import com.ti.sunrain.ui.futuredaily.FutureDailyActivity
 import com.ti.sunrain.ui.minutely.MinutelyActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_weather.*
@@ -356,6 +357,13 @@ class WeatherActivity : AppCompatActivity() {
             }
         })
         forecastRecyclerLayout.adapter = dayForecastAdapter
+
+        //未来十五天按钮
+        forecast_15button.setOnClickListener {
+            val futureDailyIntent = Intent(this,FutureDailyActivity::class.java)
+            futureDailyIntent.putExtra("daily",Gson().toJson(daily))
+            startActivity(futureDailyIntent)
+        }
 
         //天气通知正文
         val rTnotification = showRealtimeWeatherNotification(weather)

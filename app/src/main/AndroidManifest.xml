@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application xmlns:tools="http://schemas.android.com/tools"
         android:name=".SunRainApplication"
@@ -16,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SunRain"
         tools:replace="android:allowBackup">
+        <activity
+            android:name=".ui.futuredaily.FutureDailyActivity"
+            android:exported="false" />
         <activity android:name=".ui.minutely.MinutelyActivity" />
         <activity android:name=".ui.air.AirActivity" /> <!-- <receiver android:name=".ui.widget.ForecastWidget"> -->
         <!-- <intent-filter> -->

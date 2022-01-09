@@ -188,6 +188,7 @@ class PlaceFragment:Fragment() {
                                     startActivity(intent)
                                     activity?.finish()
                                 }
+
                             }
                             else{
                                 Toast.makeText(this.requireActivity(), "location is empty!", Toast.LENGTH_SHORT).show()

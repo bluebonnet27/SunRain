@@ -92,7 +92,7 @@
         <item name="appWidgetBackgroundColor">@color/light_blue_600</item>
         <item name="appWidgetTextColor">@color/light_blue_50</item>
     </style>
-    
+
     <!-- toolbar title -->
     <style name="toolbar_title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>
@@ -119,4 +119,10 @@
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_marginTop">8dp</item>
     </style>
+    <style name="Theme.SunRain.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.SunRain.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.SunRain.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

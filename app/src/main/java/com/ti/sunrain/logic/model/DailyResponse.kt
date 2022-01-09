@@ -37,6 +37,7 @@ data class DailyResponse(val status:String,val result: Result){
 
     data class Sunset(@SerializedName("time")val settime: String)
 
+    //value = 天气具体值
     data class Skycon(val date: Date,val value:String)
 
     data class Temperature(val max:Float,val min:Float)
