@@ -162,6 +162,12 @@ class AboutActivity : AppCompatActivity() {
             startActivity(caiyunIntent)
         }
 
+        baiduMapAbout.setOnClickListener {
+            val baidumapIntent = Intent(Intent.ACTION_VIEW)
+            baidumapIntent.data = Uri.parse("https://map.baidu.com")
+            startActivity(baidumapIntent)
+        }
+
         sunnyweatherAbout.setOnClickListener {
             val sunnyweatherIntent = Intent(Intent.ACTION_VIEW)
             sunnyweatherIntent.data = Uri.parse("https://github.com/guolindev/SunnyWeather")

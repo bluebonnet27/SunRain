@@ -264,6 +264,34 @@
 
             <TextView
                 style="@style/about_item_head"
+                android:text="地图反解析数据来源"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/baiduMapAbout"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/baidumap"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="百度地图 (https://lbsyun.baidu.com/)"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/about_item_head"
                 android:text="@string/opensourceThanks"/>
 
             <LinearLayout

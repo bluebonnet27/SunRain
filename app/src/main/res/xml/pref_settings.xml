@@ -39,6 +39,16 @@
             android:enabled="false"
             android:defaultValue="0" />
 
+        <ListPreference
+            android:key="forecastItemsNum_List"
+            android:entries="@array/dailyforecast_items_nums"
+            android:entryValues="@array/dailyforecast_items_nums_values"
+            android:title="首页展示未来天气天数"
+            android:dialogTitle="你想要看见几天的天气（大于5个会难以滑动）"
+            android:summary="选择首页展示的未来天气天数"
+            android:defaultValue="5"
+            android:icon="@drawable/baseline_calendar_view_month_black_24dp"/>
+
         <SwitchPreference
             android:defaultValue="true"
             android:key="festival_bg_switch"
@@ -101,19 +111,22 @@
             android:title="服务器地址"
             android:icon="@drawable/baseline_computer_black_24dp"
             android:key="webdav_server_address_edit"
-            android:dialogTitle="服务器地址"/>
+            android:dialogTitle="服务器地址"
+            android:enabled="false"/>
 
         <EditTextPreference
             android:title="账号"
             android:icon="@drawable/baseline_account_circle_black_24dp"
             android:key="webdav_account_edit"
-            android:dialogTitle="账号"/>
+            android:dialogTitle="账号"
+            android:enabled="false"/>
 
         <EditTextPreference
             android:title="密码"
             android:icon="@drawable/baseline_password_black_24dp"
             android:key="webdav_password_edit"
-            android:dialogTitle="密码"/>
+            android:dialogTitle="密码"
+            android:enabled="false"/>
 
         <PreferenceScreen
             android:title="坚果云WebDav教程">

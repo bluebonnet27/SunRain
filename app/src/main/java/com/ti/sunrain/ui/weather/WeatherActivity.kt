@@ -66,6 +66,7 @@ import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.max
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -823,7 +824,13 @@ class WeatherActivity : AppCompatActivity() {
 //        }
 
         //使用此处数字约束首页出现的天气预报个数
-        for(i in 0..4){
+        var maxNum = SunRainApplication.settingsPreference.getString("forecastItemsNum_List","5")
+            ?.toInt()
+        if (maxNum == null){
+            maxNum = 5
+        }
+        maxNum -= 1
+        for(i in 0..maxNum){
             val skycon = daily.skyconSum[i]
             val temp = daily.temperature[i]
 

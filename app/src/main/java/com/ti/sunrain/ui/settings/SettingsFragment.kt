@@ -29,6 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
 
         val dateFormatPreference : ListPreference? = findPreference("forecastDateFormat_list")
         val festivalBgPreference : SwitchPreference? = findPreference("festival_bg_switch")
+        val dailyForecastNumPreference : ListPreference? = findPreference("forecastItemsNum_List")
         val forecastChartPreference : SwitchPreference? = findPreference("forecast_chart_switch")
         val titleRefreshPreference : SwitchPreference? = findPreference("title_refresh_switch")
 
@@ -49,6 +50,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
             covidPreference?.icon = getDrawable(context,R.drawable.baseline_warning_white_24dp)
 
             dateFormatPreference?.icon = getDrawable(context,R.drawable.baseline_date_range_white_24dp)
+            dailyForecastNumPreference?.icon = getDrawable(context,R.drawable.baseline_calendar_view_month_white_24dp)
             festivalBgPreference?.icon = getDrawable(context,R.drawable.baseline_card_giftcard_white_24dp)
             forecastChartPreference?.icon = getDrawable(context,R.drawable.baseline_show_chart_white_24dp)
             titleRefreshPreference?.icon = getDrawable(context,R.drawable.baseline_title_white_24dp)
@@ -68,6 +70,12 @@ class SettingsFragment : PreferenceFragmentCompat(){
                 .setAction("重启") {
                     restartAllActivities()
                 }
+                .show()
+            true
+        }
+
+        dailyForecastNumPreference?.setOnPreferenceChangeListener { _, _ ->
+            Snackbar.make(requireActivity().findViewById(R.id.settingsLayout),"下次刷新天气生效",Snackbar.LENGTH_SHORT)
                 .show()
             true
         }

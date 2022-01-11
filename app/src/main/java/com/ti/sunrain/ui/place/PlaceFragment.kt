@@ -2,8 +2,7 @@ package com.ti.sunrain.ui.place
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.LocationProvider
+import android.location.Criteria
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,14 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.MainActivity
 import com.ti.sunrain.R
 import com.ti.sunrain.ui.weather.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
 import android.location.LocationManager
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.permissionx.guolindev.PermissionX
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.SpecificPlaceResponse
@@ -32,9 +28,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.jar.Manifest
-import android.R.string.no
 import android.location.Location
+import android.location.LocationListener
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 
 /**
@@ -50,7 +47,8 @@ class PlaceFragment:Fragment() {
 
     private lateinit var adapter: PlaceAdapter
 
-    private val locationManager = SunRainApplication.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    private val locationManager =
+        SunRainApplication.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_place,container,false)
@@ -107,10 +105,21 @@ class PlaceFragment:Fragment() {
             PermissionX.init(this)
                 .permissions(android.Manifest.permission.ACCESS_COARSE_LOCATION,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)
+                .setDialogTintColor(ContextCompat.getColor(SunRainApplication.context,R.color.orange500),
+                    ContextCompat.getColor(SunRainApplication.context,R.color.blue500))
+                .explainReasonBeforeRequest()
+                .onExplainRequestReason { scope, deniedList ->
+                    scope.showRequestReasonDialog(deniedList,"定位权限用于获取经纬度信息，若要定位获取" +
+                            "天气，以下权限是必需的","我知道了","我拒绝授予权限")
+                }
+                .onForwardToSettings {scope, deniedList ->
+                    scope.showForwardToSettingsDialog(deniedList,"您需要手动打开系统的应用" +
+                            "管理界面授予以下权限！","带我去","我拒绝授予权限")
+                }
                 .request{allGranted, grantedList, deniedList ->  
                     if(allGranted){
                         try{
-                            val location = getBestLastKnownLocation(locationManager)
+                            val location = getBestLocation(locationManager)
                             if (location != null) {
                                 val activity = this.activity
 
@@ -191,21 +200,23 @@ class PlaceFragment:Fragment() {
 
                             }
                             else{
-                                Toast.makeText(this.requireActivity(), "location is empty!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this.requireActivity(), "定位功能暂时无法使用，" +
+                                        "请手动搜索地址", Toast.LENGTH_SHORT).show()
                             }
                         }catch (e:SecurityException){
                             e.stackTrace
                         }
                     }else{
-                        Toast.makeText(this.requireActivity(), "你拒绝了权限！", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.requireActivity(), "你拒绝了以下权限：$deniedList", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
     }
 
-    private fun getBestLastKnownLocation(locationManager: LocationManager):Location?{
+    private fun getBestLocation(locationManager: LocationManager):Location?{
         val providers = locationManager.getProviders(true)
         var bestLocation: Location? = null
+
         for (provider in providers){
             try {
                 val l = locationManager.getLastKnownLocation(provider) ?: continue
@@ -216,7 +227,8 @@ class PlaceFragment:Fragment() {
                 e.stackTrace
             }
         }
-
         return bestLocation
     }
+
+
 }

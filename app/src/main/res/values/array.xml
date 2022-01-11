@@ -20,6 +20,21 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="dailyforecast_items_nums">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="dailyforecast_items_nums_values">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
     <!--  others  -->
 
     <string-array name="night_mode">
