@@ -315,6 +315,21 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/permissionXAbout"
+                    android:layout_marginBottom="5dp"
+                    style="@style/about_item">
+
+                    <TextView
+                        style="@style/string_text_left_head"
+                        android:text="guolindev/PermissionX "/>
+
+                    <TextView
+                        style="@style/string_text_left_context"
+                        android:text="@string/apache_2"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/retrofitAbout"
                     android:layout_marginBottom="5dp"
                     style="@style/about_item">

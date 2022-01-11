@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 26,
-      "versionName": "2.0.1.1-beta1",
+      "versionCode": 27,
+      "versionName": "2.0.1.11-beta2",
       "outputFile": "app-release.apk"
     }
   ]

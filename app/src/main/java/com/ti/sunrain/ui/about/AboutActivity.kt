@@ -174,6 +174,12 @@ class AboutActivity : AppCompatActivity() {
             startActivity(sunnyweatherIntent)
         }
 
+        permissionXAbout.setOnClickListener {
+            val permissionXIntent = Intent(Intent.ACTION_VIEW)
+            permissionXIntent.data = Uri.parse("https://github.com/guolindev/PermissionX")
+            startActivity(permissionXIntent)
+        }
+
         retrofitAbout.setOnClickListener {
             val retrofitIntent = Intent(Intent.ACTION_VIEW)
             retrofitIntent.data = Uri.parse("https://github.com/square/retrofit")
