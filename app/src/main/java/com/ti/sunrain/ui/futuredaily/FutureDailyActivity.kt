@@ -63,7 +63,7 @@ class FutureDailyActivity : AppCompatActivity() {
             override fun onItemClick(view: View, position: Int, weekday: String) {
                 //DailyInfor的设计上有重大缺陷（可以用daily传却传了weather），因此此处暂时不写点击方案，
                 //等修正缺陷后再写
-                Toast.makeText(this@FutureDailyActivity, "SUCCESS!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@FutureDailyActivity, "点击功能开发中", Toast.LENGTH_SHORT).show()
             }
         })
         futureDailyActivityRecyclerLayout.adapter = futureDailyAdapter

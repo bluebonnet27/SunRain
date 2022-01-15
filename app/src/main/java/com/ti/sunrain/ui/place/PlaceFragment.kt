@@ -32,6 +32,7 @@ import android.location.Location
 import android.location.LocationListener
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 
 
 /**
@@ -126,7 +127,7 @@ class PlaceFragment:Fragment() {
                                 val lng = location.longitude.toString()
                                 val lat = location.latitude.toString()
 
-                                Toast.makeText(this.requireActivity(), "$lat,$lng", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(SunRainApplication.context, "定位成功", Toast.LENGTH_SHORT).show()
 
                                 val locationString = "$lat,$lng"
 
