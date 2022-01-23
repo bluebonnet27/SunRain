@@ -374,28 +374,12 @@
 
                 </RelativeLayout>
 
-<!--                <RelativeLayout-->
-<!--                    android:id="@+id/brvahAbout"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    style="@style/about_item">-->
-
-<!--                    <TextView-->
-<!--                        style="@style/string_text_left_head"-->
-<!--                        android:text="CymChad/BaseRecyclerViewAdapterHelper"/>-->
-
-<!--                    <TextView-->
-<!--                        style="@style/string_text_left_context"-->
-<!--                        android:text="@string/mit"/>-->
-
-<!--                </RelativeLayout>-->
-
                 <TextView
                     style="@style/about_item_head"
                     android:text="其他"/>
 
                 <RelativeLayout
                     android:id="@+id/privacyAbout"
-                    android:layout_marginBottom="20dp"
                     style="@style/about_item">
 
                     <ImageView
@@ -410,6 +394,25 @@
                     <TextView
                         style="@style/setting_text_left"
                         android:text="隐私政策"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/questionAbout"
+                    android:layout_marginBottom="20dp"
+                    style="@style/about_item">
+
+                    <ImageView
+                        android:id="@+id/questionIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/baseline_help_black_24dp"/>
+
+                    <TextView
+                        style="@style/setting_text_left"
+                        android:text="注意事项"/>
                 </RelativeLayout>
 
             </LinearLayout>

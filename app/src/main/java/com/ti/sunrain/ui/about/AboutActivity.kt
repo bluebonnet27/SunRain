@@ -221,6 +221,16 @@ class AboutActivity : AppCompatActivity() {
                     }
                 }.show()
         }
+
+        questionAbout.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("注意事项")
+                .setMessage("Q1：为什么有时定位查询不到天气？\nA1：晴雨使用原生接口查询天气，没有使" +
+                        "用三方SDK。由于原生接口不完善，以及开发者本人能力所限制，可能出现定位不到天气的情" +
+                        "况。")
+                .setPositiveButton(getString(R.string.ok), null)
+                .show()
+        }
     }
 
     override fun onDestroy() {

@@ -62,7 +62,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
             passwordPreference?.icon = getDrawable(context, R.drawable.baseline_password_white_24dp)
 
             darkmodePreference?.icon = getDrawable(context,R.drawable.baseline_brightness_2_white_24dp)
-            languagePreference?.icon = getDrawable(context,R.drawable.baseline_language_white_24dp)
+            //languagePreference?.icon = getDrawable(context,R.drawable.baseline_language_white_24dp)
         }
 
         covidPreference?.setOnPreferenceChangeListener { _, _ ->

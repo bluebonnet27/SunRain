@@ -167,6 +167,6 @@
             android:title="多语言"
             android:summary="选择晴雨为您提供服务的语言"
             android:defaultValue="0"
-            android:icon="@drawable/baseline_language_black_24dp"/>
+            android:enabled="false" />
     </PreferenceCategory>
 </PreferenceScreen>

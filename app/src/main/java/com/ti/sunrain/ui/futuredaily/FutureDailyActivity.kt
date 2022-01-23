@@ -3,6 +3,7 @@ package com.ti.sunrain.ui.futuredaily
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
@@ -46,6 +47,20 @@ class FutureDailyActivity : AppCompatActivity() {
         //主体
         initToolbar()
         initFutureDailyData(daily)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        //set
+        ActivitySet.removeActivity(this)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> finish()
+        }
+        return true
     }
 
     private fun initToolbar(){
