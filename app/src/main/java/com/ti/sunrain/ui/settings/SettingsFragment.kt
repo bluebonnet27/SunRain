@@ -3,6 +3,7 @@ package com.ti.sunrain.ui.settings
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.preference.EditTextPreference
@@ -48,6 +49,7 @@ class SettingsFragment : PreferenceFragmentCompat(){
             val context = SunRainApplication.context
 
             covidPreference?.icon = getDrawable(context,R.drawable.baseline_warning_white_24dp)
+            Log.d("123","124")
 
             dateFormatPreference?.icon = getDrawable(context,R.drawable.baseline_date_range_white_24dp)
             dailyForecastNumPreference?.icon = getDrawable(context,R.drawable.baseline_calendar_view_month_white_24dp)
