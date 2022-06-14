@@ -54,368 +54,501 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="@string/feedback"/>
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp">
 
-                <RelativeLayout
-                    android:id="@+id/emailMeAbout"
-                    style="@style/about_item">
-
-                    <ImageView
-                        android:id="@+id/emailIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_email_black_24dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/emailFeedback"/>
+                        style="@style/about_item_head"
+                        android:text="@string/feedback"/>
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                <RelativeLayout
-                    android:id="@+id/githubIssuesAbout"
-                    style="@style/about_item">
+                        <RelativeLayout
+                            android:id="@+id/emailMeAbout"
+                            style="@style/about_item">
 
-                    <ImageView
-                        android:id="@+id/githubIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/ic_github_black"/>
+                            <ImageView
+                                android:id="@+id/emailIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baseline_email_black_24dp" />
 
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/githubFeedback"/>
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/emailFeedback" />
 
-                </RelativeLayout>
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="最高效的反馈bug方式，强烈推荐"/>
 
-                <RelativeLayout
-                    android:id="@+id/marketAbout"
-                    style="@style/about_item">
+                        </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/marketIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_store_black_24dp"/>
+                        <RelativeLayout
+                            android:id="@+id/githubIssuesAbout"
+                            style="@style/about_item">
 
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/marketFeedback"/>
+                            <ImageView
+                                android:id="@+id/githubIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_github_black" />
 
-                </RelativeLayout>
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/githubFeedback"/>
 
-                <RelativeLayout
-                    android:id="@+id/updateAbout"
-                    style="@style/about_item">
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="如果你不嫌烦的话，还可以顺便点个star"/>
 
-                    <ImageView
-                        android:id="@+id/updateIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_open_in_browser_black_24dp"/>
+                        </RelativeLayout>
 
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/updateFeedback"/>
+                        <RelativeLayout
+                            android:id="@+id/marketAbout"
+                            style="@style/about_item">
 
-                </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/marketIcon"
+                                android:layout_marginVertical="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baseline_store_black_24dp"/>
 
-            </LinearLayout>
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/marketFeedback"/>
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="@string/donation"/>
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="如果你不嫌烦的话，还可以顺便关注我"/>
 
-            <LinearLayout
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/updateAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/updateIcon"
+                                android:layout_marginVertical="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baseline_open_in_browser_black_24dp"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/updateFeedback" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="蓝奏云密码：c7t9"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp">
 
-                <RelativeLayout
-                    android:id="@+id/alipayAbout"
-                    style="@style/about_item">
-
-                    <ImageView
-                        android:id="@+id/alipayIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/ic_alipay_black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/aliPay"/>
-                </RelativeLayout>
+                        style="@style/about_item_head"
+                        android:text="@string/donation"/>
 
-                <RelativeLayout
-                    android:id="@+id/wechatPayAbout"
-                    style="@style/about_item">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/wechatIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/ic_wechat_black"/>
+                        <RelativeLayout
+                            android:id="@+id/alipayAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/alipayIcon"
+                                android:layout_marginVertical="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_alipay_black"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/aliPay"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="欢迎投喂"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/wechatPayAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/wechatIcon"
+                                android:layout_marginVertical="15dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_wechat_black"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/wechatPay"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="欢迎投喂"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/adAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/adIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baseline_attach_money_black_24dp" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="@string/adpay"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="目前还没有接到广告"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/wechatPay"/>
-                </RelativeLayout>
+                        style="@style/about_item_head"
+                        android:text="支持"/>
 
-                <RelativeLayout
-                    android:id="@+id/adAbout"
-                    style="@style/about_item">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/adIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_attach_money_black_24dp"/>
+                        <RelativeLayout
+                            android:id="@+id/icons8About"
+                            style="@style/about_item">
 
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="@string/adpay"/>
-                </RelativeLayout>
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginVertical="15dp"
+                                android:src="@drawable/ic_icons8"/>
 
-            </LinearLayout>
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="icons8"/>
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="@string/Source_of_icons"/>
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="图标来源"/>
+                        </RelativeLayout>
 
-            <LinearLayout
+                        <RelativeLayout
+                            android:id="@+id/caiyunAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginVertical="15dp"
+                                android:src="@drawable/caiyun"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="彩云天气"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="天气数据来源"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/baiduMapAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baidumap" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="百度地图"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="地图反解析数据来源"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp">
 
-                <RelativeLayout
-                    android:id="@+id/icons8About"
-                    style="@style/about_item">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/ic_icons8"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        style="@style/setting_text_left"
-                        android:text="icons8 (https://icons8.com/)"/>
-                </RelativeLayout>
+                        style="@style/about_item_head"
+                        android:text="@string/opensourceThanks"/>
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="@string/source_of_weather"/>
+                        <RelativeLayout
+                            android:id="@+id/sunnyweatherAbout"
+                            style="@style/about_item">
 
-            <LinearLayout
+                            <ImageView
+                                android:id="@+id/githubIconSunnyWeather"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_github_black" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="guolindev/SunnyWeather" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="@string/apache_2"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/permissionXAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/githubIconPermissionX"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_github_black" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="guolindev/PermissionX "/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="@string/apache_2"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/retrofitAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/githubIconRetrofit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_github_black" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="square/retrofit"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="Apache-2.0 License"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/mPAndroidChartAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/githubIconmPAndroidChart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_github_black" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="PhilJay/MPAndroidChart"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="@string/apache_2"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/weatherAnimationAbout"
+                            style="@style/about_item">
+
+                            <ImageView
+                                android:id="@+id/githubIconWeather_Bg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_github_black" />
+
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="Rainvvy/Weather_Bg"/>
+
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="@string/mit"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp">
 
-                <RelativeLayout
-                    android:id="@+id/caiyunAbout"
-                    style="@style/about_item">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/caiyun"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        style="@style/setting_text_left"
-                        android:text="彩云天气 (http://caiyunapp.com/)"/>
+                        style="@style/about_item_head"
+                        android:text="其他"/>
 
-                </RelativeLayout>
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="地图反解析数据来源"/>
+                        <RelativeLayout
+                            android:id="@+id/privacyAbout"
+                            style="@style/about_item">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/privacyIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baseline_menu_book_black_24dp"/>
 
-                <RelativeLayout
-                    android:id="@+id/baiduMapAbout"
-                    style="@style/about_item">
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="隐私政策"/>
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baidumap"/>
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="了解晴雨需要哪些权限及用途，以及如何处理你的隐私信息"/>
+                        </RelativeLayout>
 
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="百度地图 (https://lbsyun.baidu.com/)"/>
+                        <RelativeLayout
+                            android:id="@+id/questionAbout"
+                            android:layout_marginBottom="20dp"
+                            style="@style/about_item">
 
-                </RelativeLayout>
-            </LinearLayout>
+                            <ImageView
+                                android:id="@+id/questionIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginVertical="15dp"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/baseline_help_black_24dp"/>
 
-            <TextView
-                style="@style/about_item_head"
-                android:text="@string/opensourceThanks"/>
+                            <TextView
+                                style="@style/setting_text_left_new_head"
+                                android:text="注意事项"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                            <TextView
+                                style="@style/setting_text_left_new_bottom"
+                                android:text="其他需要知道的东西"/>
+                        </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/sunnyweatherAbout"
-                    android:layout_marginBottom="5dp"
-                    style="@style/about_item">
+                    </LinearLayout>
 
-                    <TextView
-                        style="@style/string_text_left_head"
-                        android:text="guolindev/SunnyWeather"/>
+                </LinearLayout>
 
-                    <TextView
-                        style="@style/string_text_left_context"
-                        android:text="@string/apache_2"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/permissionXAbout"
-                    android:layout_marginBottom="5dp"
-                    style="@style/about_item">
-
-                    <TextView
-                        style="@style/string_text_left_head"
-                        android:text="guolindev/PermissionX "/>
-
-                    <TextView
-                        style="@style/string_text_left_context"
-                        android:text="@string/apache_2"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/retrofitAbout"
-                    android:layout_marginBottom="5dp"
-                    style="@style/about_item">
-
-                    <TextView
-                        style="@style/string_text_left_head"
-                        android:text="square/retrofit"/>
-
-                    <TextView
-                        style="@style/string_text_left_context"
-                        android:text="Apache-2.0 License"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/mPAndroidChartAbout"
-                    android:layout_marginBottom="5dp"
-                    style="@style/about_item">
-
-                    <TextView
-                        style="@style/string_text_left_head"
-                        android:text="PhilJay/MPAndroidChart"/>
-
-                    <TextView
-                        style="@style/string_text_left_context"
-                        android:text="@string/apache_2"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/weatherAnimationAbout"
-                    android:layout_marginBottom="5dp"
-                    style="@style/about_item">
-
-                    <TextView
-                        style="@style/string_text_left_head"
-                        android:text="Rainvvy/Weather_Bg"/>
-
-                    <TextView
-                        style="@style/string_text_left_context"
-                        android:text="@string/mit"/>
-
-                </RelativeLayout>
-
-                <TextView
-                    style="@style/about_item_head"
-                    android:text="其他"/>
-
-                <RelativeLayout
-                    android:id="@+id/privacyAbout"
-                    style="@style/about_item">
-
-                    <ImageView
-                        android:id="@+id/privacyIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_menu_book_black_24dp"/>
-
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="隐私政策"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/questionAbout"
-                    android:layout_marginBottom="20dp"
-                    style="@style/about_item">
-
-                    <ImageView
-                        android:id="@+id/questionIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/baseline_help_black_24dp"/>
-
-                    <TextView
-                        style="@style/setting_text_left"
-                        android:text="注意事项"/>
-                </RelativeLayout>
-
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
