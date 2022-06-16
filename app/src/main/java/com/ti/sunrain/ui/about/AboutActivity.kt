@@ -63,7 +63,15 @@ class AboutActivity : AppCompatActivity() {
 
             privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
 
+            githubIconSunnyWeather.setImageResource(R.drawable.ic_github_white)
+            githubIconPermissionX.setImageResource(R.drawable.ic_github_white)
+            githubIconRetrofit.setImageResource(R.drawable.ic_github_white)
+            githubIconmPAndroidChart.setImageResource(R.drawable.ic_github_white)
+            githubIconWeather_Bg.setImageResource(R.drawable.ic_github_white)
+
             aboutFAB.setImageResource(R.drawable.rainy_weather_100px)
+            questionIcon.setImageResource(R.drawable.baseline_help_outline_white_24dp)
+            freedomIcon.setImageResource(R.drawable.baseline_eco_white_24dp)
         }
 
         setSupportActionBar(aboutToolbar)
@@ -230,6 +238,12 @@ class AboutActivity : AppCompatActivity() {
                         "况。")
                 .setPositiveButton(getString(R.string.ok), null)
                 .show()
+        }
+
+        freedomAbout.setOnClickListener {
+            val freedomIntent = Intent(Intent.ACTION_VIEW)
+            freedomIntent.data = Uri.parse("https://www.gnu.org/philosophy/free-software-even-more-important.html")
+            startActivity(freedomIntent)
         }
     }
 

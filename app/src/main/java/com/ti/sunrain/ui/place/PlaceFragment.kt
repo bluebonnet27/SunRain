@@ -151,7 +151,7 @@ class PlaceFragment:Fragment() {
                                             if (specificPlaceResponse != null) {
                                                 activity.viewModel.placeName = specificPlaceResponse.result.detailedAddress
                                             }else{
-                                                activity.viewModel.placeName = ""
+                                                activity.viewModel.placeName = "???"
                                             }
                                         }
 
@@ -183,7 +183,7 @@ class PlaceFragment:Fragment() {
                                                 if (specificPlaceResponse != null) {
                                                     putExtra("place_name",specificPlaceResponse.result.detailedAddress)
                                                 }else{
-                                                    putExtra("place_name","")
+                                                    putExtra("place_name","未知地区")
                                                 }
                                             }
 
