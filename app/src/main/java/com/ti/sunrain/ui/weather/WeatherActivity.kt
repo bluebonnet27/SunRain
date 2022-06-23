@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -144,7 +145,12 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         if(viewModel.placeName.isEmpty()){
-            viewModel.placeName = intent.getStringExtra("place_name")?:""
+//            viewModel.placeName = intent.getStringExtra("place_name")?:""
+            if (intent.getStringExtra("place_name")!=null){
+                viewModel.placeName = intent.getStringExtra("place_name")!!
+            }else{
+                viewModel.placeName = "intent null"
+            }
         }
 
         //live data
@@ -540,6 +546,7 @@ class WeatherActivity : AppCompatActivity() {
     private fun initToolBarBasic(title: String, subTitle:String){
         weatherToolBar.title = title
         weatherToolBar.subtitle = subTitle
+        Log.d("WeatherActivity","TOOLBAR初始化成功，数据为$title,$subTitle")
     }
 
     /**

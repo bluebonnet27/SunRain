@@ -30,6 +30,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.location.Location
 import android.location.LocationListener
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
@@ -102,7 +103,7 @@ class PlaceFragment:Fragment() {
             }
         })
         
-        searchPlaceLoactionBtn.setOnClickListener { view->
+        searchPlaceLoactionBtn.setOnClickListener {
             PermissionX.init(this)
                 .permissions(android.Manifest.permission.ACCESS_COARSE_LOCATION,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -126,6 +127,7 @@ class PlaceFragment:Fragment() {
 
                                 val lng = location.longitude.toString()
                                 val lat = location.latitude.toString()
+                                var targetPlace = ""
 
                                 Toast.makeText(SunRainApplication.context, "定位成功", Toast.LENGTH_SHORT).show()
 
@@ -165,7 +167,7 @@ class PlaceFragment:Fragment() {
 
                                     activity.refreshWeather()
                                 }else{
-                                    val intent = Intent(this.context, WeatherActivity::class.java).apply {
+                                    val intent = Intent(context, WeatherActivity::class.java).apply {
                                         putExtra("location_lng",lng)
                                         putExtra("location_lat",lat)
 
@@ -174,6 +176,9 @@ class PlaceFragment:Fragment() {
                                             .addConverterFactory(GsonConverterFactory.create())
                                             .build()
                                         val placeSpecificService = retrofit.create(PlaceSpecificService::class.java)
+
+
+
                                         placeSpecificService.getAddressByLocation(locationString).enqueue(object :Callback<SpecificPlaceResponse>{
                                             override fun onResponse(
                                                 call: Call<SpecificPlaceResponse>,
@@ -181,9 +186,12 @@ class PlaceFragment:Fragment() {
                                             ) {
                                                 val specificPlaceResponse = response.body()
                                                 if (specificPlaceResponse != null) {
-                                                    putExtra("place_name",specificPlaceResponse.result.detailedAddress)
+//                                                    putExtra("place_name",
+//                                                        specificPlaceResponse.result.detailedAddress
+//                                                    )
+                                                    targetPlace = specificPlaceResponse.result.detailedAddress
                                                 }else{
-                                                    putExtra("place_name","未知地区")
+                                                    targetPlace = "未知地区"
                                                 }
                                             }
 
@@ -194,6 +202,8 @@ class PlaceFragment:Fragment() {
                                                 t.stackTrace
                                             }
                                         })
+
+                                        putExtra("place_name",targetPlace)
                                     }
                                     startActivity(intent)
                                     activity?.finish()
