@@ -7,6 +7,14 @@
 开发原因是将 APP 作为软件工程大三的课程设计项目。课程设计结束后，这个 APP 将作为开源项目而维护下去（直到我不想维护了为止）
 官网：[SunRain](https://bluebonnet27.gitee.io/)
 
+### 系统要求
+
+Android 5.0 以上，x64处理器
+
+### 截图
+
+![SunrainScreenshot](https://img1.imgtp.com/2022/07/05/4j4eE9Ji.png)
+
 ## 下载
 
 1. 推荐前往酷安下载最新版[链接](https://www.coolapk.com/apk/com.ti.sunrain)
