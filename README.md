@@ -25,7 +25,7 @@ Android 5.0 以上，x64处理器
 
 ## 反馈
 
-1. github 上提 issues 给我。
+1. github 上提 issue 给我。
 
 2. 发邮件到[我的邮箱](mailto:tihongsheng@foxmail.com)
 
