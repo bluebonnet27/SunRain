@@ -10,7 +10,7 @@ import com.ti.sunrain.R
 import com.ti.sunrain.logic.model.MinutelyItem
 
 /**
- * @author: tihon
+ * @author: tihongsheng
  * @date: 2021/3/25
  * @description:
  */

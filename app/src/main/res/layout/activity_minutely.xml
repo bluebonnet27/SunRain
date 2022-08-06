@@ -40,8 +40,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <include layout="@layout/item_minutely_new_rainminute"/>
             <include layout="@layout/item_minutely_new_rainmap"/>
-            <include layout="@layout/item_minutely_new_acrosschart"/>
 
         </LinearLayout>
 

@@ -501,7 +501,8 @@ class WeatherActivity : AppCompatActivity() {
         weatherLayout.visibility = VISIBLE
 
         //air.xml
-        initAirPie(weather)
+        //initAirPie(weather)
+        initAirHalf(weather)
 
         //空气页面
         airCard.setOnClickListener {
@@ -527,13 +528,13 @@ class WeatherActivity : AppCompatActivity() {
         hourlyDescText.text = hourlyReturn.description
 
         //分钟降水
-        val minuteLayoutManager = LinearLayoutManager(this)
-        minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        minutelyLayout.layoutManager = minuteLayoutManager
+//        val minuteLayoutManager = LinearLayoutManager(this)
+//        minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+//        minutelyLayout.layoutManager = minuteLayoutManager
         val minuteAdapter = MinutelyAdapter(initMinutelyItemList(minutelyReturn))
-        minutelyLayout.adapter = minuteAdapter
-
-        minutelyDescText.text = minutelyReturn.description
+//        minutelyLayout.adapter = minuteAdapter
+//
+//        minutelyDescText.text = minutelyReturn.description
 
         //首页分钟降水
         minutelyCardDescIconHS.setImageResource(transferData1MinuteToIcon(getRainData1Minute(minutelyReturn)))
@@ -605,6 +606,15 @@ class WeatherActivity : AppCompatActivity() {
         }else{
             R.drawable.baseline_sentiment_satisfied_alt_black_24dp
         }
+    }
+
+    private fun initAirHalf(weather: Weather){
+        airDescTextHalf.text = weather.realtime.airQuality.description.chn
+
+        val aq = weather.realtime.airQuality
+
+        airDescHalfAQI.text = aq.aqi.chn.toInt().toString()
+        airDescHalfAQIProgress.progress = aq.aqi.chn.toInt()
     }
 
     /**

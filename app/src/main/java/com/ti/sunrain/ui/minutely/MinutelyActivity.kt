@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
+import com.ti.sunrain.logic.model.MinutelyItem
+import com.ti.sunrain.logic.model.MinutelyResponse
 import com.ti.sunrain.logic.model.Weather
+import com.ti.sunrain.ui.weather.MinutelyAdapter
 import kotlinx.android.synthetic.main.activity_minutely.*
+import kotlinx.android.synthetic.main.item_minutely_new_rainminute.*
 
 class MinutelyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +43,7 @@ class MinutelyActivity : AppCompatActivity() {
         val weather = Gson().fromJson(weatherJson, Weather::class.java)
 
         initToolBarAndFAB(weather)
+        initMinutelyRain(weather)
     }
 
     override fun onDestroy() {
@@ -67,11 +73,35 @@ class MinutelyActivity : AppCompatActivity() {
                 (weather.minutely.precipitation_2h[0]*100).toString() + "%"
     }
 
-    private fun initMinutelyRainMap(weather: Weather){
+    private fun initMinutelyRain(weather: Weather){
+        //分钟降水
+        val minuteLayoutManager = LinearLayoutManager(this)
+        minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        minutelyLayout.layoutManager = minuteLayoutManager
+        val minuteAdapter = MinutelyAdapter(initMinutelyItemList(weather))
+        minutelyLayout.adapter = minuteAdapter
+
+        minutelyDescText.text = weather.minutely.description
+    }
+
+    private fun initRainMap(weather: Weather){
 
     }
 
-    private fun initRainChart(weather: Weather){
+    /**
+     * 填充分钟降水数据
+     */
+    private fun initMinutelyItemList(weather: Weather)
+            :ArrayList<MinutelyItem>{
+        val minutely = weather.minutely
+        val minutelyItems = ArrayList<MinutelyItem>(minutely.precipitation.size)
+        //If you want to change the type of precipitation, please change the two params
+        for(j in minutely.precipitation.indices){
+            val minuteDescription = minutely.precipitation[j]
 
+            minutelyItems.add(MinutelyItem(minuteDescription))
+        }
+
+        return minutelyItems
     }
 }

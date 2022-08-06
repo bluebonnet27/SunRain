@@ -10,11 +10,19 @@
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_dailyinfor.xml" value="0.24048913043478262" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_future_daily.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_main.xml" value="0.24048913043478262" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_minutely.xml" value="0.11302083333333333" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/forecast_item.xml" value="0.14402173913043478" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/fragment_place.xml" value="0.2509057971014493" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/half_item_air.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/half_item_minutely_rain.xml" value="0.1" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_daily_others.xml" value="0.24048913043478262" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_future_daily.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_hourly.xml" value="0.24048913043478262" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_acrosschart.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_rainmap.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_rainminute.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_rain.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/minutely_rain.xml" value="0.11302083333333333" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/place_item.xml" value="0.2509057971014493" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/xml/pref_settings.xml" value="0.264" />
       </map>

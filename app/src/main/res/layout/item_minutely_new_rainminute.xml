@@ -21,12 +21,29 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:text="Raining"
+            android:text="分钟降雨"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"
-            app:drawableStartCompat="@drawable/ic_google_maps"/>
+            />
+<!--        app:drawableStartCompat="@drawable/rainy_weather_100px"-->
 
-        <!--   高德降水地图     -->
+        <TextView
+            android:id="@+id/minutelyDescText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="15sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/minutelyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"/>
 
     </LinearLayout>
 
