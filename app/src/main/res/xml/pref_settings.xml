@@ -29,15 +29,15 @@
             android:defaultValue="0"
             android:icon="@drawable/baseline_date_range_black_24dp"/>
 
-        <ListPreference
-            android:key="forecastDegreeRule_list"
-            android:entries="@array/degree_units"
-            android:entryValues="@array/degree_units_values"
-            android:title="温度单位"
-            android:dialogTitle="你喜欢哪个温标"
-            android:summary="选择首页预报的温度单位"
-            android:enabled="false"
-            android:defaultValue="0" />
+<!--        <ListPreference-->
+<!--            android:key="forecastDegreeRule_list"-->
+<!--            android:entries="@array/degree_units"-->
+<!--            android:entryValues="@array/degree_units_values"-->
+<!--            android:title="温度单位"-->
+<!--            android:dialogTitle="你喜欢哪个温标"-->
+<!--            android:summary="选择首页预报的温度单位"-->
+<!--            android:enabled="false"-->
+<!--            android:defaultValue="0" />-->
 
         <ListPreference
             android:key="forecastItemsNum_List"
@@ -104,50 +104,50 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="云服务（WebDav）">
+<!--    <PreferenceCategory-->
+<!--        android:title="云服务（WebDav）">-->
 
-        <EditTextPreference
-            android:title="服务器地址"
-            android:icon="@drawable/baseline_computer_black_24dp"
-            android:key="webdav_server_address_edit"
-            android:dialogTitle="服务器地址"
-            android:enabled="false"/>
+<!--        <EditTextPreference-->
+<!--            android:title="服务器地址"-->
+<!--            android:icon="@drawable/baseline_computer_black_24dp"-->
+<!--            android:key="webdav_server_address_edit"-->
+<!--            android:dialogTitle="服务器地址"-->
+<!--            android:enabled="false"/>-->
 
-        <EditTextPreference
-            android:title="账号"
-            android:icon="@drawable/baseline_account_circle_black_24dp"
-            android:key="webdav_account_edit"
-            android:dialogTitle="账号"
-            android:enabled="false"/>
+<!--        <EditTextPreference-->
+<!--            android:title="账号"-->
+<!--            android:icon="@drawable/baseline_account_circle_black_24dp"-->
+<!--            android:key="webdav_account_edit"-->
+<!--            android:dialogTitle="账号"-->
+<!--            android:enabled="false"/>-->
 
-        <EditTextPreference
-            android:title="密码"
-            android:icon="@drawable/baseline_password_black_24dp"
-            android:key="webdav_password_edit"
-            android:dialogTitle="密码"
-            android:enabled="false"/>
+<!--        <EditTextPreference-->
+<!--            android:title="密码"-->
+<!--            android:icon="@drawable/baseline_password_black_24dp"-->
+<!--            android:key="webdav_password_edit"-->
+<!--            android:dialogTitle="密码"-->
+<!--            android:enabled="false"/>-->
 
-        <PreferenceScreen
-            android:title="坚果云WebDav教程">
+<!--        <PreferenceScreen-->
+<!--            android:title="坚果云WebDav教程">-->
 
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://help.jianguoyun.com/?p=2064"/>
-        </PreferenceScreen>
+<!--            <intent-->
+<!--                android:action="android.intent.action.VIEW"-->
+<!--                android:data="https://help.jianguoyun.com/?p=2064"/>-->
+<!--        </PreferenceScreen>-->
 
-    </PreferenceCategory>
+<!--    </PreferenceCategory>-->
 
     <PreferenceCategory
         android:title="其他">
 
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="others_icon_menu"
-            android:title="右上角菜单显示图标"
-            android:summaryOn="显示（实验性功能）"
-            android:summaryOff="不显示"
-            android:enabled="false"/>
+<!--        <SwitchPreference-->
+<!--            android:defaultValue="true"-->
+<!--            android:key="others_icon_menu"-->
+<!--            android:title="右上角菜单显示图标"-->
+<!--            android:summaryOn="显示（实验性功能）"-->
+<!--            android:summaryOff="不显示"-->
+<!--            android:enabled="false"/>-->
 
         <ListPreference
             android:key="others_darkmode_list"
@@ -159,14 +159,14 @@
             android:defaultValue="0"
             android:icon="@drawable/baseline_brightness_2_black_24dp"/>
 
-        <ListPreference
-            android:key="others_language_list"
-            android:entries="@array/languages"
-            android:entryValues="@array/language_values"
-            android:dialogTitle="选择一个语言"
-            android:title="多语言"
-            android:summary="选择晴雨为您提供服务的语言"
-            android:defaultValue="0"
-            android:enabled="false" />
+<!--        <ListPreference-->
+<!--            android:key="others_language_list"-->
+<!--            android:entries="@array/languages"-->
+<!--            android:entryValues="@array/language_values"-->
+<!--            android:dialogTitle="选择一个语言"-->
+<!--            android:title="多语言"-->
+<!--            android:summary="选择晴雨为您提供服务的语言"-->
+<!--            android:defaultValue="0"-->
+<!--            android:enabled="false" />-->
     </PreferenceCategory>
 </PreferenceScreen>

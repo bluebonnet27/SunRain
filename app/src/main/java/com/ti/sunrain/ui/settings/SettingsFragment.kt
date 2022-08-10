@@ -43,7 +43,6 @@ class SettingsFragment : PreferenceFragmentCompat(){
         val passwordPreference:EditTextPreference? = findPreference("webdav_password_edit")
 
         val darkmodePreference : ListPreference? = findPreference("others_darkmode_list")
-        val languagePreference : ListPreference? = findPreference("others_language_list")
 
         if(isDarktheme(SunRainApplication.context)){
             val context = SunRainApplication.context

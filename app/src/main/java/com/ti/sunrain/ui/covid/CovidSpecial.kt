@@ -27,7 +27,11 @@ class CovidSpecial : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
-        mainPage.loadUrl("https://voice.baidu.com/act/newpneumonia/newpneumonia")
+        //2022年8月10日 解决mainpage无法加载网页问题
+        val mainPageSettings = mainPage.settings
+        mainPageSettings.javaScriptEnabled = true
+
+        mainPage.loadUrl("https://www.tianditu.gov.cn/coronavirusmap/")
 
         setSupportActionBar(covidToolbar)
         supportActionBar?.let {

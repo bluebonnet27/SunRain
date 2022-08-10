@@ -7,6 +7,7 @@
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/drawable/bg_snow_moderate_new.xml" value="0.26979166666666665" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_about.xml" value="0.3143963847643641" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_air.xml" value="0.13903985507246377" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_covid_special.xml" value="0.10462962962962963" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_dailyinfor.xml" value="0.24048913043478262" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_future_daily.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/activity_main.xml" value="0.24048913043478262" />
@@ -15,11 +16,12 @@
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/fragment_place.xml" value="0.2509057971014493" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/half_item_air.xml" value="0.1" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/half_item_minutely_rain.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_air_dirties.xml" value="0.2" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_daily_others.xml" value="0.24048913043478262" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_future_daily.xml" value="0.23641304347826086" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_hourly.xml" value="0.24048913043478262" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_acrosschart.xml" value="0.1" />
-        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_rainmap.xml" value="0.1" />
+        <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_rainmap.xml" value="0.2" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_new_rainminute.xml" value="0.1" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/item_minutely_rain.xml" value="0.1" />
         <entry key="..\:/AndroidProjectSpace/SunRain/app/src/main/res/layout/minutely_rain.xml" value="0.11302083333333333" />
@@ -28,7 +30,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
