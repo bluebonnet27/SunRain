@@ -41,6 +41,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.rainy.weahter_bg_plug.utils.WeatherUtil
+import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
@@ -96,9 +97,12 @@ class WeatherActivity : AppCompatActivity() {
                 .setTitle("隐私政策")
                 .setMessage("1. 当您使用晴雨时需要提供网络权限，用于将您输入的城市信息使用彩云天气的" +
                         "第三方接口搜索天气。晴雨会将上一次搜索的记录保存在本地。通过清除软件数据，可" +
-                        "以将已保存的数据清除。晴雨不需要其他任何权限。\n"+
-                        "2. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
-                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。")
+                        "以将已保存的数据清除。晴雨不需要其他任何权限。\n\n"+"2. 当您选择使用手机定位功能" +
+                        "获取天气时，晴雨需要将从手机获取的定位数据发送至百度地图获取反解析地址。定位并非" +
+                        "唯一获取天气信息的方式，拒绝定位权限不会影响其他获取天气信息的功能\n\n"+
+                        "3. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
+                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。\n\n"+
+                        "4. 最后更新版本 V${BuildConfig.VERSION_NAME}")
                 .setPositiveButton(getString(R.string.ok)){_,_->run{
                         val settingsEditor = SunRainApplication.settingsPreference.edit()
                         settingsEditor.putBoolean("welcome",false)
