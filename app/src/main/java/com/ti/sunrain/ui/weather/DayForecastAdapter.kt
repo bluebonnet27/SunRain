@@ -94,12 +94,16 @@ class DayForecastAdapter(val dayForecastList:List<DayForecastItem>):
     private fun transferWeekDayToLocalWeekDay(index:Int, language:Int):String{
         val weekDaysCHS = listOf("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
         val weekdaysENG = listOf("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
-        return if(language==0){
-            weekDaysCHS[index]
-        }else if(language==1){
-            weekdaysENG[index]
-        }else{
-            "ERROR"
+        return when (language) {
+            0 -> {
+                weekDaysCHS[index]
+            }
+            1 -> {
+                weekdaysENG[index]
+            }
+            else -> {
+                "ERROR"
+            }
         }
     }
 

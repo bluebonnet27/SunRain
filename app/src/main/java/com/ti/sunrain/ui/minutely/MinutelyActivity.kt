@@ -12,7 +12,6 @@ import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.MinutelyItem
-import com.ti.sunrain.logic.model.MinutelyResponse
 import com.ti.sunrain.logic.model.Weather
 import com.ti.sunrain.ui.weather.MinutelyAdapter
 import kotlinx.android.synthetic.main.activity_minutely.*

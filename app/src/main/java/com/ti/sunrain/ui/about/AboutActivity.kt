@@ -23,12 +23,8 @@ import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import kotlinx.android.synthetic.main.activity_about.*
 import java.net.URISyntaxException
-import com.ti.sunrain.MainActivity
 
-import android.content.DialogInterface
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.util.TypedValue
 
 
 class AboutActivity : AppCompatActivity() {

@@ -2,7 +2,6 @@ package com.ti.sunrain.ui.place
 
 import android.content.Context
 import android.content.Intent
-import android.location.Criteria
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,11 +28,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.location.Location
-import android.location.LocationListener
-import android.util.Log
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
 
 
 /**

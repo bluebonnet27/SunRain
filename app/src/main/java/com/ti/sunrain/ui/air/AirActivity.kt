@@ -1,12 +1,10 @@
 package com.ti.sunrain.ui.air
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
 import com.github.mikephil.charting.data.PieData
@@ -18,7 +16,6 @@ import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.Weather
 import kotlinx.android.synthetic.main.activity_air.*
-import kotlinx.android.synthetic.main.activity_dailyinfor.*
 import kotlinx.android.synthetic.main.item_air_piechart.*
 
 class AirActivity : AppCompatActivity() {

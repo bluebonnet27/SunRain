@@ -11,20 +11,16 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -35,12 +31,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import com.rainy.weahter_bg_plug.utils.WeatherUtil
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
@@ -63,12 +57,10 @@ import kotlinx.android.synthetic.main.half_item_minutely_rain.*
 import kotlinx.android.synthetic.main.hourly.*
 import kotlinx.android.synthetic.main.item_progress_sun.*
 import kotlinx.android.synthetic.main.life_index.*
-import kotlinx.android.synthetic.main.minutely_rain.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.max
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -809,16 +801,22 @@ class WeatherActivity : AppCompatActivity() {
         val df = SimpleDateFormat("HH", Locale.getDefault())
         val hours = Integer.parseInt(df.format(date))
 
-        return if(hours in 0..5){
-            0
-        }else if(hours in 6..11){
-            1
-        }else if(hours == 12){
-            3
-        }else if(hours in 13..18){
-            4
-        }else{
-            5
+        return when (hours) {
+            in 0..5 -> {
+                0
+            }
+            in 6..11 -> {
+                1
+            }
+            12 -> {
+                3
+            }
+            in 13..18 -> {
+                4
+            }
+            else -> {
+                5
+            }
         }
     }
 

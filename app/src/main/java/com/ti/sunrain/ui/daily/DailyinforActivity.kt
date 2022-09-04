@@ -2,13 +2,10 @@ package com.ti.sunrain.ui.daily
 
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
@@ -192,19 +189,25 @@ class DailyinforActivity : AppCompatActivity() {
 
         val calendar = Calendar.getInstance()
         calendar.time = date
-        val month = calendar.get(Calendar.MONTH)
-        return if(month in 0..1){
-            WINTER
-        }else if(month in 2..4){
-            SPRING
-        }else if(month in 5..7){
-            SUMMER
-        }else if(month in 8..10){
-            AUTUMN
-        }else if(month in 11..12){
-            WINTER
-        }else{
-            0
+        return when (calendar.get(Calendar.MONTH)) {
+            in 0..1 -> {
+                WINTER
+            }
+            in 2..4 -> {
+                SPRING
+            }
+            in 5..7 -> {
+                SUMMER
+            }
+            in 8..10 -> {
+                AUTUMN
+            }
+            in 11..12 -> {
+                WINTER
+            }
+            else -> {
+                0
+            }
         }
     }
 

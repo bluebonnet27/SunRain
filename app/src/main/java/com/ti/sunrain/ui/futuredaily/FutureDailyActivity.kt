@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication

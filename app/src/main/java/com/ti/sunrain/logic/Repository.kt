@@ -82,7 +82,7 @@ object Repository {
 
 
     private fun <T> fire(context:CoroutineContext,block:suspend()-> Result<T>): LiveData<Result<T>> {
-        return liveData<Result<T>>(context) {
+        return liveData(context) {
             val result = try {
                 block()
             }catch (e:Exception){
