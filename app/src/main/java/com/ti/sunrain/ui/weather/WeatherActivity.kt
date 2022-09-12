@@ -799,9 +799,8 @@ class WeatherActivity : AppCompatActivity() {
     private fun judgeTimeInDay():Int{
         val date = Date()
         val df = SimpleDateFormat("HH", Locale.getDefault())
-        val hours = Integer.parseInt(df.format(date))
 
-        return when (hours) {
+        return when (Integer.parseInt(df.format(date))) {
             in 0..5 -> {
                 0
             }

@@ -182,31 +182,33 @@ class DailyinforActivity : AppCompatActivity() {
     }
 
     private fun getSeason(date: Date):Int{
-        val SPRING = 1
-        val SUMMER = 2
-        val AUTUMN = 3
-        val WINTER = 4
+        val springNum = 1
+        val summerNum = 2
+        val autumnNum = 3
+        val winterNum = 4
+
+        val seasonErrorNum = 0
 
         val calendar = Calendar.getInstance()
         calendar.time = date
         return when (calendar.get(Calendar.MONTH)) {
             in 0..1 -> {
-                WINTER
+                winterNum
             }
             in 2..4 -> {
-                SPRING
+                springNum
             }
             in 5..7 -> {
-                SUMMER
+                summerNum
             }
             in 8..10 -> {
-                AUTUMN
+                autumnNum
             }
             in 11..12 -> {
-                WINTER
+                winterNum
             }
             else -> {
-                0
+                seasonErrorNum
             }
         }
     }

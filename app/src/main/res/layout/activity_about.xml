@@ -92,7 +92,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="最高效的反馈bug方式，强烈推荐"/>
+                                android:text="@string/emailFeedbackInfo"/>
 
                         </RelativeLayout>
 

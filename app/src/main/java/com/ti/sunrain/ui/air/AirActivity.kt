@@ -143,7 +143,7 @@ class AirActivity : AppCompatActivity() {
         itemAirPieChartChart.data = dirtyDataUse
     }
 
-    fun getAQIColor(aqiValue:Int):String{
+    private fun getAQIColor(aqiValue:Int):String{
         when (aqiValue) {
             in 0..50 -> {
                 return "#7cb342"

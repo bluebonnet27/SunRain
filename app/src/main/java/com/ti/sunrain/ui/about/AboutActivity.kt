@@ -38,7 +38,7 @@ class AboutActivity : AppCompatActivity() {
         //set
         ActivitySet.addActivity(this)
 
-        //darkmode
+        //黑夜模式
         when(SunRainApplication.settingsPreference.getString("others_darkmode_list","0")){
             "0" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
             "1" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
@@ -142,11 +142,11 @@ class AboutActivity : AppCompatActivity() {
         }
 
         wechatPayAbout.setOnClickListener {
-            val wechatqrview = ImageView(this)
-            wechatqrview.setImageResource(R.drawable.wechatqrcode)
+            val wechatQrView = ImageView(this)
+            wechatQrView.setImageResource(R.drawable.wechatqrcode)
             AlertDialog.Builder(this)
                 .setTitle(resources.getString(R.string.cut_screen))
-                .setView(wechatqrview)
+                .setView(wechatQrView)
                 .show()
         }
 

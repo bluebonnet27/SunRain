@@ -180,14 +180,12 @@ class PlaceFragment:Fragment() {
                                                 response: Response<SpecificPlaceResponse>
                                             ) {
                                                 val specificPlaceResponse = response.body()
-                                                if (specificPlaceResponse != null) {
-//                                                    putExtra("place_name",
-//                                                        specificPlaceResponse.result.detailedAddress
-//                                                    )
-                                                    targetPlace = specificPlaceResponse.result.detailedAddress
-                                                }else{
-                                                    targetPlace = "未知地区"
-                                                }
+                                                targetPlace =
+                                                        //                                                    putExtra("place_name",
+                                                        //                                                        specificPlaceResponse.result.detailedAddress
+                                                        //                                                    )
+                                                    specificPlaceResponse?.result?.detailedAddress
+                                                        ?: "未知地区"
                                             }
 
                                             override fun onFailure(

@@ -119,6 +119,7 @@
 
     <string name="feedback">Update and Feedback</string>
     <string name="emailFeedback">Email me</string>
+    <string name="emailFeedbackInfo">Strongly recommend,the most efficient way to re-bug</string>
     <string name="githubFeedback">Post Issues on GitHub</string>
 
     <string name="donation">Donation</string>

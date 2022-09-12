@@ -64,7 +64,7 @@ class MinutelyAdapter(private val minutelyItemList: List<MinutelyItem>) :
         }
     }
 
-    fun getRainName(rainPrecipitation:Float):String{
+    private fun getRainName(rainPrecipitation:Float):String{
         return if(rainPrecipitation < 0.031){
             "无雨／雪"
         }else if(rainPrecipitation >= 0.031 && rainPrecipitation < 0.25){
