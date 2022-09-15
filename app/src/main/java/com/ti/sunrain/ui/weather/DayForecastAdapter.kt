@@ -18,7 +18,7 @@ import java.util.*
  * @date: 2021/4/3
  * @description:
  */
-class DayForecastAdapter(val dayForecastList:List<DayForecastItem>):
+class DayForecastAdapter(private val dayForecastList:List<DayForecastItem>):
     RecyclerView.Adapter<DayForecastAdapter.ViewHolder>(){
 
     private lateinit var onItemClickListener: OnItemClickListener

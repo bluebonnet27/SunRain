@@ -15,7 +15,7 @@ import com.ti.sunrain.logic.model.getWindSpeed
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FutureDailyAdapter(val futureDailyList:List<FutureDailyItem>):
+class FutureDailyAdapter(private val futureDailyList:List<FutureDailyItem>):
     RecyclerView.Adapter<FutureDailyAdapter.ViewHolder>() {
 
     private lateinit var onItemClickListener: OnItemClickListener

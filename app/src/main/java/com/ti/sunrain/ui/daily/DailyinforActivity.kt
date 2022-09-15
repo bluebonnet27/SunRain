@@ -221,14 +221,6 @@ class DailyinforActivity : AppCompatActivity() {
             else -> R.drawable.ic_spring_color
     }
 
-    fun getSeasonColor(season: Int) = when(season){
-        1 -> 0x388e3c
-        2 -> 0xffa000
-        3 -> 0x5d4037
-        4 -> 0x455a64
-        else -> 0xd32f2f
-    }
-
     private fun getAQIDesc(aqiValue:Int):String{
         when (aqiValue) {
             in 0..50 -> {
