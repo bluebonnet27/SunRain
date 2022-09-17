@@ -2,6 +2,7 @@ package com.ti.sunrain.ui.about
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -110,9 +111,16 @@ class AboutActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_SUBJECT,"SunRain反馈")
             }
 
-            if(emailIntent.resolveActivity(packageManager)!=null){
+            //这是Android 11 之前的旧写法，绕开了package权限，却能读取package
+//            if(emailIntent.resolveActivity(packageManager)!=null){
+//                startActivity(emailIntent)
+//            }else{
+//                Snackbar.make(parentLiner,resources.getString(R.string.email_not_found),Snackbar.LENGTH_SHORT).show()
+//            }
+
+            try{
                 startActivity(emailIntent)
-            }else{
+            }catch (exception:ActivityNotFoundException){
                 Snackbar.make(parentLiner,resources.getString(R.string.email_not_found),Snackbar.LENGTH_SHORT).show()
             }
         }
