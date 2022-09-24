@@ -98,7 +98,7 @@ class PlaceFragment:Fragment() {
             }
         })
         
-        searchPlaceLoactionBtn.setOnClickListener {
+        searchPlaceLocationBtn.setOnClickListener {
             PermissionX.init(this)
                 .permissions(android.Manifest.permission.ACCESS_COARSE_LOCATION,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)

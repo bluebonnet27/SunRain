@@ -88,7 +88,7 @@
 
     <!--  Webview About  -->
     <string name="refreshPage">刷新</string>
-    <string name="openPageInBRowser">在浏览器打开</string>
+    <string name="openPageInBrowser">在浏览器打开</string>
     <string name="clearPageCache">清理缓存</string>
 
     <!--  introduction of weather information producer  -->

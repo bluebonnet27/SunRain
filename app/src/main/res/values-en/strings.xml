@@ -86,7 +86,7 @@
 
     <!--  Webview About  -->
     <string name="refreshPage">Refresh</string>
-    <string name="openPageInBRowser">Open in browser</string>
+    <string name="openPageInBrowser">Open in browser</string>
     <string name="clearPageCache">Clear cache</string>
     <string name="wordsToSay">Words to say</string>
     <string name="finalTextLine1">首先感谢《第一行代码》和它的作者郭霖老师。作为我学习Android开发的第一本入门

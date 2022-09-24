@@ -146,7 +146,7 @@ class AboutActivity : AppCompatActivity() {
         }
 
         alipayAbout.setOnClickListener {
-            openAliPay(this)
+            openAliPay()
         }
 
         wechatPayAbout.setOnClickListener {
@@ -209,12 +209,6 @@ class AboutActivity : AppCompatActivity() {
             weatherAnimationIntent.data = Uri.parse("https://github.com/Rainvvy/Weather_Bg")
             startActivity(weatherAnimationIntent)
         }
-
-//        brvahAbout.setOnClickListener {
-//            val brvahIntent = Intent(Intent.ACTION_VIEW)
-//            brvahIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
-//            startActivity(brvahIntent)
-//        }
 
         privacyAbout.setOnClickListener {
             AlertDialog.Builder(this)
@@ -350,7 +344,7 @@ class AboutActivity : AppCompatActivity() {
         }
     }
 
-    private fun openAliPay(activity: Activity){
+    private fun openAliPay() {
         val url = "intent://platformapi/startapp?saId=10000007&" +
                 "clientVersion=3.7.0.0718&qrcode=https%3A%2F%2Fqr.alipay.com%2Ffkx11810qxcirwaicgedwc6%3F_s" +
                 "%3Dweb-other&_t=1472443966571#Intent;" +

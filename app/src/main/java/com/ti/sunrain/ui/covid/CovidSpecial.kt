@@ -27,7 +27,7 @@ class CovidSpecial : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
-        //2022年8月10日 解决mainpage无法加载网页问题
+        //2022年8月10日 解决 main page 无法加载网页问题
         val mainPageSettings = mainPage.settings
         mainPageSettings.javaScriptEnabled = true
 

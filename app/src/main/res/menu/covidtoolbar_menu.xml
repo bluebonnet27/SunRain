@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/openInBrowser"
-        android:title="@string/openPageInBRowser"
+        android:title="@string/openPageInBrowser"
         android:icon="@drawable/baseline_computer_black_24dp"
         app:showAsAction="never"/>
     <item

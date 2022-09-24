@@ -38,7 +38,7 @@
             android:hint="@string/search_hint"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/searchPlaceLoactionBtn"
+            android:id="@+id/searchPlaceLocationBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="通过定位获取天气信息"

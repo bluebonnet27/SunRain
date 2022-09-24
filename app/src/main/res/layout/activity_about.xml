@@ -30,8 +30,7 @@
                 android:scaleType="centerCrop"
                 android:clickable="true"
                 android:focusable="true"
-                app:layout_collapseMode="parallax"
-                android:contentDescription="about page background image" />
+                app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/aboutToolbar"
