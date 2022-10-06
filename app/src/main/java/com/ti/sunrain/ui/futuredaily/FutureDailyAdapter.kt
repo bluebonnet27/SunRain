@@ -19,6 +19,7 @@ class FutureDailyAdapter(private val futureDailyList:List<FutureDailyItem>):
     RecyclerView.Adapter<FutureDailyAdapter.ViewHolder>() {
 
     private lateinit var onItemClickListener: OnItemClickListener
+    private val context = SunRainApplication.context
 
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val dateText:TextView = view.findViewById(R.id.futureDailyDate)
@@ -53,7 +54,7 @@ class FutureDailyAdapter(private val futureDailyList:List<FutureDailyItem>):
 
         if(dateFormatValue=="0"){
             holder.dateText.text =
-                transferWeekDayToLocalWeekDay(transferDateToWeekDay(futureDailyItem.skyconDay.date),0)
+                transferWeekDayToWeekDay(transferDateToWeekDay(futureDailyItem.skyconDay.date))
         }else{
             val dateOrigin = futureDailyItem.skyconDay.date
             val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
@@ -111,20 +112,15 @@ class FutureDailyAdapter(private val futureDailyList:List<FutureDailyItem>):
         return weekdays[weekIndex]
     }
 
-    private fun transferWeekDayToLocalWeekDay(index:Int, language:Int):String{
-        val weekDaysCHS = listOf("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
-        val weekdaysENG = listOf("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
-        return when (language) {
-            0 -> {
-                weekDaysCHS[index]
-            }
-            1 -> {
-                weekdaysENG[index]
-            }
-            else -> {
-                "ERROR"
-            }
-        }
+    private fun transferWeekDayToWeekDay(index:Int):String{
+        val weekDays = listOf(context.getString(R.string.textview_dayforecastadapter_sun),
+            context.getString(R.string.textview_dayforecastadapter_mon),
+            context.getString(R.string.textview_dayforecastadapter_tue),
+            context.getString(R.string.textview_dayforecastadapter_wed),
+            context.getString(R.string.textview_dayforecastadapter_thu),
+            context.getString(R.string.textview_dayforecastadapter_fri),
+            context.getString(R.string.textview_dayforecastadapter_sat))
+        return weekDays[index]
     }
 
     private fun getAQIDesc(aqiValue:Int):String{

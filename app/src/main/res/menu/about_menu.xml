@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mainPageAbout"
-        android:title="Main page"
+        android:title="@string/main_page"
         android:icon="@drawable/baseline_home_white_24dp"
         app:showAsAction="ifRoom"/>
     <item

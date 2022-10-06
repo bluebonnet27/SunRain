@@ -114,7 +114,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="如果你不嫌烦的话，还可以顺便点个star"/>
+                                android:text="@string/star"/>
 
                         </RelativeLayout>
 
@@ -136,7 +136,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="如果你不嫌烦的话，还可以给个五星好评，顺便关注我" />
+                                android:text="@string/star5" />
 
                         </RelativeLayout>
 
@@ -158,7 +158,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="蓝奏云密码：c7t9"/>
+                                android:text="@string/textview_lanzou_info"/>
 
                         </RelativeLayout>
 
@@ -206,7 +206,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="欢迎投喂"/>
+                                android:text="@string/textview_actvity_about_welcomefeed"/>
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -227,7 +227,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="欢迎投喂"/>
+                                android:text="@string/textview_actvity_about_welcomefeed"/>
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -248,7 +248,7 @@
 
                             <TextView
                                 style="@style/setting_text_left_new_bottom"
-                                android:text="目前还没有接到广告"/>
+                                android:text="@string/textview_activity_about_noadinfo"/>
                         </RelativeLayout>
 
                     </LinearLayout>

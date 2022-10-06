@@ -144,4 +144,18 @@
     <string name="blog_contact">My blog</string>
     <string name="marketFeedback">Coolapk Page</string>
     <string name="egg_title">Surprise</string>
+    <string name="main_page">Main page</string>
+    <string name="star">Star to support us!</string>
+    <string name="star5">Give  a 5-star to support us!</string>
+    <string name="textview_lanzou_info">lanzous password is c7t9</string>
+    <string name="textview_actvity_about_welcomefeed">donate us!</string>
+    <string name="textview_activity_about_noadinfo">no ad support now</string>
+
+    <string name="textview_dayforecastadapter_mon">Mon</string>
+    <string name="textview_dayforecastadapter_tue">Tue</string>
+    <string name="textview_dayforecastadapter_wed">Wed</string>
+    <string name="textview_dayforecastadapter_thu">Thu</string>
+    <string name="textview_dayforecastadapter_fri">Fri</string>
+    <string name="textview_dayforecastadapter_sat">Sat</string>
+    <string name="textview_dayforecastadapter_sun">Sun</string>
 </resources>

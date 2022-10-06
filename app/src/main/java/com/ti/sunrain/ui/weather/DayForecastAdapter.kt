@@ -19,9 +19,12 @@ import java.util.*
  * @description:
  */
 class DayForecastAdapter(private val dayForecastList:List<DayForecastItem>):
+
     RecyclerView.Adapter<DayForecastAdapter.ViewHolder>(){
 
     private lateinit var onItemClickListener: OnItemClickListener
+
+    private val context = SunRainApplication.context
 
     inner class ViewHolder(view:View) : RecyclerView.ViewHolder(view){
         val dateInfoText:TextView = view.findViewById(R.id.dateInfo)
@@ -47,7 +50,7 @@ class DayForecastAdapter(private val dayForecastList:List<DayForecastItem>):
 
         if(dateFormatValue=="0"){
             holder.dateInfoText.text =
-                transferWeekDayToLocalWeekDay(transferDateToWeekDay(dayForecastItem.skycon.date),0)
+                transferWeekDayToWeekDay(transferDateToWeekDay(dayForecastItem.skycon.date))
         }else{
             val dateOrigin = dayForecastItem.skycon.date
             val simpleDateFormat = SimpleDateFormat("MM-dd", Locale.getDefault())
@@ -91,20 +94,15 @@ class DayForecastAdapter(private val dayForecastList:List<DayForecastItem>):
         return weekdays[weekIndex]
     }
 
-    private fun transferWeekDayToLocalWeekDay(index:Int, language:Int):String{
-        val weekDaysCHS = listOf("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
-        val weekdaysENG = listOf("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
-        return when (language) {
-            0 -> {
-                weekDaysCHS[index]
-            }
-            1 -> {
-                weekdaysENG[index]
-            }
-            else -> {
-                "ERROR"
-            }
-        }
+    private fun transferWeekDayToWeekDay(index:Int):String{
+        val weekDays = listOf(context.getString(R.string.textview_dayforecastadapter_sun),
+            context.getString(R.string.textview_dayforecastadapter_mon),
+            context.getString(R.string.textview_dayforecastadapter_tue),
+            context.getString(R.string.textview_dayforecastadapter_wed),
+            context.getString(R.string.textview_dayforecastadapter_thu),
+            context.getString(R.string.textview_dayforecastadapter_fri),
+            context.getString(R.string.textview_dayforecastadapter_sat))
+        return weekDays[index]
     }
 
     interface OnItemClickListener {

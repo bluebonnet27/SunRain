@@ -61,11 +61,6 @@ class AirActivity : AppCompatActivity() {
         return true
     }
 
-    private fun isDarkTheme(context: Context):Boolean{
-        val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return flag == Configuration.UI_MODE_NIGHT_YES
-    }
-
     private fun initToolBarAndFAB(weather: Weather){
         //标题
         supportActionBar?.title = weather.realtime.airQuality.description.chn
