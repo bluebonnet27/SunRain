@@ -12,8 +12,8 @@ android {
         applicationId "com.ti.sunrain"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 30
-        versionName "2.0.9.4-beta"
+        versionCode 32
+        versionName "2.0.10.16-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,9 +59,10 @@ dependencies {
     //glide
     //implementation 'com.github.bumptech.glide:glide:4.8.0'
     // Leak
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
     //permissionX
-    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
+    //implementation 'com.permissionx.guolindev:permissionx:1.6.0'
+    implementation 'com.guolindev.permissionx:permissionx:1.6.0'
     // develop end
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
