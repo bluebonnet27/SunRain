@@ -163,4 +163,9 @@
     <string name="textview_dayforecastadapter_fri">星期五</string>
     <string name="textview_dayforecastadapter_sat">星期六</string>
     <string name="textview_dayforecastadapter_sun">星期日</string>
+    <string name="acty_future_daily_textview_future_15">未来十五天天气预报</string>
+    <string name="frat_place_mt_button_getWeatherInfoAccordLocation">通过定位获取天气信息</string>
+    <string name="item_daily_night_textview_night">夜晚</string>
+    <string name="dailyinforActivity_dayWindDirection_text">风向: %s风</string>
+    <string name="dailyinforActivity_dayWindSpeed_text">风速: %s级</string>
 </resources>

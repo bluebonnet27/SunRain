@@ -105,8 +105,12 @@ class DailyinforActivity : AppCompatActivity() {
         val windDirection = weather.daily.wind[index].avgWind.direction
 
         dayWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
-        dayWindDirection.text = "风向: ${getWindDirection(windDirection)}风"
-        dayWindSpeed.text = "风速: ${getWindSpeed(windSpeed)}级"
+        dayWindDirection.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindDirection_text),
+            getWindDirection(windDirection)
+        )
+        dayWindSpeed.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindSpeed_text),
+            getWindSpeed(windSpeed)
+        )
 
         //night-skycon
         val skyconNight = getSky(weather.daily.skyconNight[index].value)
@@ -116,8 +120,12 @@ class DailyinforActivity : AppCompatActivity() {
         //night-wind
         //先将就着用白天的数据吧，等以后有钱了买付费源就换成正式的夜间天气
         nightWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
-        nightWindDirection.text = "风向: ${getWindDirection(windDirection)}风"
-        nightWindSpeed.text = "风速: ${getWindSpeed(windSpeed)}级"
+        nightWindDirection.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindDirection_text),
+            getWindDirection(windDirection)
+        )
+        nightWindSpeed.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindSpeed_text),
+            getWindSpeed(windSpeed)
+        )
 
         //darkTheme
         if(isDarkTheme(this)){

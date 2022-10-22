@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:text="未来15天天气预报"/>
+            android:text="@string/acty_future_daily_textview_future_15"/>
 
         </LinearLayout>
 

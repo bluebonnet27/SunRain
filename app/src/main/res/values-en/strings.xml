@@ -158,4 +158,9 @@
     <string name="textview_dayforecastadapter_fri">Fri</string>
     <string name="textview_dayforecastadapter_sat">Sat</string>
     <string name="textview_dayforecastadapter_sun">Sun</string>
+    <string name="acty_future_daily_textview_future_15">Weather forecast for future 15 days</string>
+    <string name="frat_place_mt_button_getWeatherInfoAccordLocation">Get weather information according location</string>
+    <string name="item_daily_night_textview_night">Night</string>
+    <string name="dailyinforActivity_dayWindDirection_text">WindDirection: %s</string>
+    <string name="dailyinforActivity_dayWindSpeed_text">WindSpeed: %s</string>
 </resources>
