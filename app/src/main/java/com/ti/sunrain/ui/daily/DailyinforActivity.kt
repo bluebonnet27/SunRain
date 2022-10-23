@@ -164,7 +164,8 @@ class DailyinforActivity : AppCompatActivity() {
     private fun setOtherWeatherInformation(weather: Weather,index:Int){
         //rain
         val rainPrecipitation = weather.daily.precipitation[index].avg.toString()
-        rainDailyText.text = rainPrecipitation + "mm/h"
+        rainDailyText.text = String.format(
+            resources.getString(R.string.dailyinforActivity_rainDailyText_text),rainPrecipitation)
         //sun Rise&Set
         val sunRiseTime = weather.daily.astro[index].sunrise.risetime
         val sunSetTime = weather.daily.astro[index].sunset.settime

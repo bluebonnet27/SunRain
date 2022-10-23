@@ -163,4 +163,6 @@
     <string name="item_daily_night_textview_night">Night</string>
     <string name="dailyinforActivity_dayWindDirection_text">WindDirection: %s</string>
     <string name="dailyinforActivity_dayWindSpeed_text">WindSpeed: %s</string>
+    <string name="dailyinforActivity_rainDailyText_text">%s mm/h</string>
+    <string name="futureDailyAdapter_holder_tempMax_text">%f℃</string>
 </resources>

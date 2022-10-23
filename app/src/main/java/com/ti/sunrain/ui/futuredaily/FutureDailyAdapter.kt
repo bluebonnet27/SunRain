@@ -68,7 +68,8 @@ class FutureDailyAdapter(private val futureDailyList:List<FutureDailyItem>):
         holder.dayInfo.text = skyDay.info
 
         //最高温度和最低温度，暂时以摄氏度为标准
-        holder.tempMax.text = "${futureDailyItem.tempTwo.max}℃"
+        holder.tempMax.text = String.format(context.resources.getString(
+            R.string.futureDailyAdapter_holder_tempMax_text),futureDailyItem.tempTwo.max)
         holder.tempMin.text = "${futureDailyItem.tempTwo.min}℃"
 
         //夜晚天气图标，描述
