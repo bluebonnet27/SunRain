@@ -1,7 +1,5 @@
 package com.ti.sunrain.ui.minutely
 
-import android.content.Context
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -76,10 +74,6 @@ class MinutelyActivity : AppCompatActivity() {
         minutelyLayout.adapter = minuteAdapter
 
         minutelyDescText.text = weather.minutely.description
-    }
-
-    private fun initRainMap(weather: Weather){
-
     }
 
     /**

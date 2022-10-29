@@ -591,7 +591,7 @@ class WeatherActivity : AppCompatActivity() {
 
     private fun transferData1MinuteToIcon(precipitation:Float):Int {
         val isDarkTheme = isDarkTheme(this)
-        val isPositive = precipitation > 0
+        val isPositive = (precipitation > 0)
 
         return if(isDarkTheme && isPositive){
             R.drawable.baseline_sentiment_dissatisfied_white_24dp

@@ -1,7 +1,5 @@
 package com.ti.sunrain.ui.air
 
-import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
