@@ -35,7 +35,12 @@
     </option>
   </component>
   <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="com.ti.sunrain.ui.about.AboutActivity viewModel" />
+    </entry_points>
     <pattern value="com.ti.sunrain.ui.about.AboutActivity" method="getRandomForEgg" />
+    <pattern value="com.ti.sunrain.ui.about.AboutActivity" method="openAliPay" />
+    <pattern value="com.ti.sunrain.logic.ActivitySet" method="restartAllActivities" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
