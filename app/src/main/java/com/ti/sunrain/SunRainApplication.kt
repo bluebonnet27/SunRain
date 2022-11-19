@@ -3,6 +3,7 @@ package com.ti.sunrain
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
 
 /**
  * @author: tihon
@@ -36,4 +37,5 @@ class SunRainApplication:Application() {
         settingsPreference = getSharedPreferences("settings",0)
         
     }
+
 }

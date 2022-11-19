@@ -84,20 +84,20 @@ class PlaceFragment:Fragment() {
             }
         }
 
-        viewModel.placeLiveData.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.placeLiveData.observe(viewLifecycleOwner) { result ->
             val places = result.getOrNull()
-            if(places!=null){
+            if (places != null) {
                 recyclerView.visibility = View.VISIBLE
                 bgImageView.visibility = View.GONE
                 viewModel.placeList.clear()
                 viewModel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
-            }else{
+            } else {
                 Toast.makeText(activity, "没能查询到任何地点呢！", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
-        })
-        
+        }
+
         searchPlaceLocationBtn.setOnClickListener {
             PermissionX.init(this)
                 .permissions(android.Manifest.permission.ACCESS_COARSE_LOCATION,

@@ -5,13 +5,13 @@
     "kind": "Directory"
   },
   "applicationId": "com.ti.sunrain",
-  "variantName": "processReleaseResources",
+  "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 32,
-      "versionName": "2.0.10.16-beta",
+      "versionCode": 33,
+      "versionName": "2.0.11.13-beta",
       "outputFile": "app-release.apk"
     }
   ]

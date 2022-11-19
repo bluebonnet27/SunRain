@@ -31,7 +31,7 @@
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.daily.DailyinforActivity" />
         <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.covid.CovidSpecial" />
+        <activity android:name=".ui.covid.CovidSpecialActivity" />
         <activity android:name=".ui.weather.WeatherActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">

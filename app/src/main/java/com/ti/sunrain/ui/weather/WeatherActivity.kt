@@ -25,7 +25,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.components.AxisBase
@@ -43,7 +42,7 @@ import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.logic.model.dayforecast.DayForecastItem
 import com.ti.sunrain.ui.about.AboutActivity
 import com.ti.sunrain.ui.air.AirActivity
-import com.ti.sunrain.ui.covid.CovidSpecial
+import com.ti.sunrain.ui.covid.CovidSpecialActivity
 import com.ti.sunrain.ui.daily.DailyinforActivity
 import com.ti.sunrain.ui.futuredaily.FutureDailyActivity
 import com.ti.sunrain.ui.minutely.MinutelyActivity
@@ -150,16 +149,16 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         //live data
-        viewModel.weatherLiveData.observe(this, Observer{ result->
+        viewModel.weatherLiveData.observe(this) { result ->
             val weather = result.getOrNull()
-            if(weather!=null){
+            if (weather != null) {
                 showWeatherInfo(weather)
-            }else{
+            } else {
                 Toast.makeText(this, "无法获取天气信息啦！", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
             swipeRefresh.isRefreshing = false
-        })
+        }
 
         swipeRefresh.setColorSchemeResources(R.color.blue500)
         refreshWeather()
@@ -190,7 +189,7 @@ class WeatherActivity : AppCompatActivity() {
 
             R.id.COVIDExplorer ->{
                 val covidIntent = Intent(this,
-                    CovidSpecial::class.java)
+                    CovidSpecialActivity::class.java)
                 startActivity(covidIntent)
             }
             R.id.settingsIcon -> {
