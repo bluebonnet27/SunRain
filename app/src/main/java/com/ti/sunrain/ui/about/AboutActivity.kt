@@ -22,19 +22,24 @@ import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
-import kotlinx.android.synthetic.main.activity_about.*
+//import kotlinx.android.synthetic.main.activity_about.*
 import java.net.URISyntaxException
 
 import android.graphics.Color
+import com.ti.sunrain.databinding.ActivityAboutBinding
 
 
 class AboutActivity : AppCompatActivity() {
 
     lateinit var viewModel: AboutViewModel
+    private lateinit var activityAboutBinding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        //使用viewBinding代替ktx插件
+        activityAboutBinding = ActivityAboutBinding.inflate(layoutInflater)
+        val view = activityAboutBinding.root
+        setContentView(view)
 
         //set
         ActivitySet.addActivity(this)
@@ -49,37 +54,37 @@ class AboutActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
 
         if(isDarkTheme(this)){
-            emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
-            githubIcon.setImageResource(R.drawable.ic_github_white)
-            marketIcon.setImageResource(R.drawable.baseline_store_white_24dp)
-            updateIcon.setImageResource(R.drawable.baseline_open_in_browser_white_24dp)
+            activityAboutBinding.emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
+            activityAboutBinding.githubIcon.setImageResource(R.drawable.ic_github_white)
+            activityAboutBinding.marketIcon.setImageResource(R.drawable.baseline_store_white_24dp)
+            activityAboutBinding.updateIcon.setImageResource(R.drawable.baseline_open_in_browser_white_24dp)
 
-            wechatIcon.setImageResource(R.drawable.ic_wechat_white)
-            alipayIcon.setImageResource(R.drawable.ic_alipay_white)
-            adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
+            activityAboutBinding.wechatIcon.setImageResource(R.drawable.ic_wechat_white)
+            activityAboutBinding.alipayIcon.setImageResource(R.drawable.ic_alipay_white)
+            activityAboutBinding.adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
 
-            privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
+            activityAboutBinding.privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
 
-            githubIconSunnyWeather.setImageResource(R.drawable.ic_github_white)
-            githubIconPermissionX.setImageResource(R.drawable.ic_github_white)
-            githubIconRetrofit.setImageResource(R.drawable.ic_github_white)
-            githubIconmPAndroidChart.setImageResource(R.drawable.ic_github_white)
-            githubIconWeather_Bg.setImageResource(R.drawable.ic_github_white)
+            activityAboutBinding.githubIconSunnyWeather.setImageResource(R.drawable.ic_github_white)
+            activityAboutBinding.githubIconPermissionX.setImageResource(R.drawable.ic_github_white)
+            activityAboutBinding.githubIconRetrofit.setImageResource(R.drawable.ic_github_white)
+            activityAboutBinding.githubIconmPAndroidChart.setImageResource(R.drawable.ic_github_white)
+            activityAboutBinding.githubIconWeatherBg.setImageResource(R.drawable.ic_github_white)
 
-            aboutFAB.setImageResource(R.drawable.rainy_weather_100px)
-            questionIcon.setImageResource(R.drawable.baseline_help_outline_white_24dp)
-            freedomIcon.setImageResource(R.drawable.baseline_eco_white_24dp)
+            activityAboutBinding.aboutFAB.setImageResource(R.drawable.rainy_weather_100px)
+            activityAboutBinding.questionIcon.setImageResource(R.drawable.baseline_help_outline_white_24dp)
+            activityAboutBinding.freedomIcon.setImageResource(R.drawable.baseline_eco_white_24dp)
         }
 
-        setSupportActionBar(aboutToolbar)
+        setSupportActionBar(activityAboutBinding.aboutToolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_white_24dp)
         }
-        aboutToolbar.overflowIcon = ContextCompat.getDrawable(this,R.drawable.baseline_more_vert_white_24dp)
+        activityAboutBinding.aboutToolbar.overflowIcon = ContextCompat.getDrawable(this,R.drawable.baseline_more_vert_white_24dp)
 
-        aboutCollapsingToolbarLayout.apply {
+        activityAboutBinding.aboutCollapsingToolbarLayout.apply {
             if(isDarkTheme(this@AboutActivity)){
                 setExpandedTitleColor(ContextCompat.getColor(context,R.color.indigo500))
             }else{
@@ -88,11 +93,11 @@ class AboutActivity : AppCompatActivity() {
             setCollapsedTitleTextColor(Color.WHITE)
         }
         //0315 考虑稳定性，这条暂时去掉
-        aboutBackgroundImage.setOnClickListener {
+        activityAboutBinding.aboutBackgroundImage.setOnClickListener {
             getRandomForEgg(this)
         }
 
-        aboutFAB.setOnClickListener {
+        activityAboutBinding.aboutFAB.setOnClickListener {
             androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle("关于")
                 .setMessage("晴雨：一个开源的 Android 天气预报 APP\n\n"+
@@ -105,7 +110,7 @@ class AboutActivity : AppCompatActivity() {
 
         //versionTitleAbout.text = "V" + BuildConfig.VERSION_NAME
 
-        emailMeAbout.setOnClickListener {
+        activityAboutBinding.emailMeAbout.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:tihongsheng@foxmail.com")
                 putExtra(Intent.EXTRA_SUBJECT,"SunRain反馈")
@@ -121,23 +126,23 @@ class AboutActivity : AppCompatActivity() {
             try{
                 startActivity(emailIntent)
             }catch (exception:ActivityNotFoundException){
-                Snackbar.make(parentLiner,resources.getString(R.string.email_not_found),Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(activityAboutBinding.parentLiner,resources.getString(R.string.email_not_found),Snackbar.LENGTH_SHORT).show()
             }
         }
 
-        githubIssuesAbout.setOnClickListener {
+        activityAboutBinding.githubIssuesAbout.setOnClickListener {
             val githubIntent = Intent(Intent.ACTION_VIEW)
             githubIntent.data = Uri.parse("https://github.com/bluebonnet27/SunRain/issues")
             startActivity(githubIntent)
         }
 
-        marketAbout.setOnClickListener {
+        activityAboutBinding.marketAbout.setOnClickListener {
             val marketIntent = Intent(Intent.ACTION_VIEW)
             marketIntent.data = Uri.parse("https://www.coolapk.com/apk/com.ti.sunrain")
             startActivity(marketIntent)
         }
 
-        updateAbout.setOnClickListener {
+        activityAboutBinding.updateAbout.setOnClickListener {
             Toast.makeText(this, "密码是 c7t9", Toast.LENGTH_SHORT).show()
 
             val updateIntent = Intent(Intent.ACTION_VIEW)
@@ -145,11 +150,11 @@ class AboutActivity : AppCompatActivity() {
             startActivity(updateIntent)
         }
 
-        alipayAbout.setOnClickListener {
+        activityAboutBinding.alipayAbout.setOnClickListener {
             openAliPay()
         }
 
-        wechatPayAbout.setOnClickListener {
+        activityAboutBinding.wechatPayAbout.setOnClickListener {
             val wechatQrView = ImageView(this)
             wechatQrView.setImageResource(R.drawable.wechatqrcode)
             AlertDialog.Builder(this)
@@ -158,59 +163,59 @@ class AboutActivity : AppCompatActivity() {
                 .show()
         }
 
-        adAbout.setOnClickListener { view ->
+        activityAboutBinding.adAbout.setOnClickListener {
             Snackbar.make(view,"目前还没接到广告...",Snackbar.LENGTH_SHORT).show()
         }
 
-        icons8About.setOnClickListener {
+        activityAboutBinding.icons8About.setOnClickListener {
             val icons8Intent = Intent(Intent.ACTION_VIEW)
             icons8Intent.data = Uri.parse("https://icons8.com/")
             startActivity(icons8Intent)
         }
 
-        caiyunAbout.setOnClickListener {
+        activityAboutBinding.caiyunAbout.setOnClickListener {
             val caiyunIntent = Intent(Intent.ACTION_VIEW)
             caiyunIntent.data = Uri.parse("http://caiyunapp.com/")
             startActivity(caiyunIntent)
         }
 
-        baiduMapAbout.setOnClickListener {
+        activityAboutBinding.baiduMapAbout.setOnClickListener {
             val baidumapIntent = Intent(Intent.ACTION_VIEW)
             baidumapIntent.data = Uri.parse("https://map.baidu.com")
             startActivity(baidumapIntent)
         }
 
-        sunnyweatherAbout.setOnClickListener {
+        activityAboutBinding.sunnyweatherAbout.setOnClickListener {
             val sunnyweatherIntent = Intent(Intent.ACTION_VIEW)
             sunnyweatherIntent.data = Uri.parse("https://github.com/guolindev/SunnyWeather")
             startActivity(sunnyweatherIntent)
         }
 
-        permissionXAbout.setOnClickListener {
+        activityAboutBinding.permissionXAbout.setOnClickListener {
             val permissionXIntent = Intent(Intent.ACTION_VIEW)
             permissionXIntent.data = Uri.parse("https://github.com/guolindev/PermissionX")
             startActivity(permissionXIntent)
         }
 
-        retrofitAbout.setOnClickListener {
+        activityAboutBinding.retrofitAbout.setOnClickListener {
             val retrofitIntent = Intent(Intent.ACTION_VIEW)
             retrofitIntent.data = Uri.parse("https://github.com/square/retrofit")
             startActivity(retrofitIntent)
         }
 
-        mPAndroidChartAbout.setOnClickListener {
+        activityAboutBinding.mPAndroidChartAbout.setOnClickListener {
             val mpAndroidChartIntent = Intent(Intent.ACTION_VIEW)
             mpAndroidChartIntent.data = Uri.parse("https://github.com/PhilJay/MPAndroidChart")
             startActivity(mpAndroidChartIntent)
         }
 
-        weatherAnimationAbout.setOnClickListener {
+        activityAboutBinding.weatherAnimationAbout.setOnClickListener {
             val weatherAnimationIntent = Intent(Intent.ACTION_VIEW)
             weatherAnimationIntent.data = Uri.parse("https://github.com/Rainvvy/Weather_Bg")
             startActivity(weatherAnimationIntent)
         }
 
-        privacyAbout.setOnClickListener {
+        activityAboutBinding.privacyAbout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("隐私政策")
                 .setMessage("1. 当您使用晴雨时需要提供网络权限，用于将您输入的城市信息使用彩云天气的" +
@@ -230,7 +235,7 @@ class AboutActivity : AppCompatActivity() {
                 }.show()
         }
 
-        questionAbout.setOnClickListener {
+        activityAboutBinding.questionAbout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("注意事项")
                 .setMessage("Q1：为什么有时定位查询不到天气？\nA1：晴雨使用原生接口查询天气，没有使" +
@@ -240,7 +245,7 @@ class AboutActivity : AppCompatActivity() {
                 .show()
         }
 
-        freedomAbout.setOnClickListener {
+        activityAboutBinding.freedomAbout.setOnClickListener {
             val freedomIntent = Intent(Intent.ACTION_VIEW)
             freedomIntent.data = Uri.parse("https://www.gnu.org/philosophy/free-software-even-more-important.html")
             startActivity(freedomIntent)
@@ -360,10 +365,10 @@ class AboutActivity : AppCompatActivity() {
                 startActivity(intent)
             }catch (e:URISyntaxException){
                 e.printStackTrace()
-                Snackbar.make(parentLiner,"啊哦，似乎出错了",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(activityAboutBinding.parentLiner,"啊哦，似乎出错了",Snackbar.LENGTH_SHORT).show()
             }
         }else{
-            Snackbar.make(parentLiner,"您似乎没有安装支付宝",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(activityAboutBinding.parentLiner,"您似乎没有安装支付宝",Snackbar.LENGTH_SHORT).show()
         }
     }
 

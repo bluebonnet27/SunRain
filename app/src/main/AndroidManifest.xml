@@ -42,5 +42,7 @@
             </intent-filter>
         </activity>
     </application>
-
+    <queries>
+        <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
 </manifest>
