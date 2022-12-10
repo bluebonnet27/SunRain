@@ -83,17 +83,20 @@ class WeatherActivity : AppCompatActivity() {
 
         //welcome
         val welcomeData = SunRainApplication.settingsPreference.getBoolean("welcome",true)
+        val welcomeDialogTitle = "隐私政策"
+        val welcomeDialogMessage = "1. 当您使用晴雨时需要提供网络权限，用于将您输入的城市信息使用彩云天气的" +
+                "第三方接口搜索天气。晴雨会将上一次搜索的记录保存在本地。通过清除软件数据，可" +
+                "以将已保存的数据清除。晴雨不需要其他任何权限。\n\n"+"2. 当您选择使用手机定位功能" +
+                "获取天气时，晴雨需要将从手机获取的定位数据发送至百度地图获取反解析地址。定位并非" +
+                "唯一获取天气信息的方式，拒绝定位权限不会影响其他获取天气信息的功能\n\n"+
+                "3. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
+                "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。\n\n"+
+                "4. 最后更新版本 V${BuildConfig.VERSION_NAME}"
+
         if(welcomeData){
             AlertDialog.Builder(this)
-                .setTitle("隐私政策")
-                .setMessage("1. 当您使用晴雨时需要提供网络权限，用于将您输入的城市信息使用彩云天气的" +
-                        "第三方接口搜索天气。晴雨会将上一次搜索的记录保存在本地。通过清除软件数据，可" +
-                        "以将已保存的数据清除。晴雨不需要其他任何权限。\n\n"+"2. 当您选择使用手机定位功能" +
-                        "获取天气时，晴雨需要将从手机获取的定位数据发送至百度地图获取反解析地址。定位并非" +
-                        "唯一获取天气信息的方式，拒绝定位权限不会影响其他获取天气信息的功能\n\n"+
-                        "3. 如果您对您的隐私有任何疑问或者需要解释的，请通过产品中的反馈方式与开发者" +
-                        "取得联系。 如您不同意本协议或其中的任何条款的，您应停止使用晴雨。\n\n"+
-                        "4. 最后更新版本 V${BuildConfig.VERSION_NAME}")
+                .setTitle(welcomeDialogTitle)
+                .setMessage(welcomeDialogMessage)
                 .setPositiveButton(getString(R.string.ok)){_,_->run{
                         val settingsEditor = SunRainApplication.settingsPreference.edit()
                         settingsEditor.putBoolean("welcome",false)
@@ -140,7 +143,6 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         if(viewModel.placeName.isEmpty()){
-//            viewModel.placeName = intent.getStringExtra("place_name")?:""
             if (intent.getStringExtra("place_name")!=null){
                 viewModel.placeName = intent.getStringExtra("place_name")!!
             }else{
@@ -523,13 +525,7 @@ class WeatherActivity : AppCompatActivity() {
         hourlyDescText.text = hourlyReturn.description
 
         //分钟降水
-//        val minuteLayoutManager = LinearLayoutManager(this)
-//        minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-//        minutelyLayout.layoutManager = minuteLayoutManager
         val minuteAdapter = MinutelyAdapter(initMinutelyItemList(minutelyReturn))
-//        minutelyLayout.adapter = minuteAdapter
-//
-//        minutelyDescText.text = minutelyReturn.description
 
         //首页分钟降水
         minutelyCardDescIconHS.setImageResource(transferData1MinuteToIcon(getRainData1Minute(minutelyReturn)))
@@ -603,6 +599,9 @@ class WeatherActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 初始化天气half
+     */
     private fun initAirHalf(weather: Weather){
         airDescTextHalf.text = weather.realtime.airQuality.description.chn
 
@@ -832,13 +831,6 @@ class WeatherActivity : AppCompatActivity() {
 
     private fun initDayForecastItems(daily: DailyResponse.Daily):ArrayList<DayForecastItem>{
         val dayForecastItemList = ArrayList<DayForecastItem>(daily.temperature.size)
-
-//        for(i in daily.skyconSum.indices){
-//            val skycon = daily.skyconSum[i]
-//            val temp = daily.temperature[i]
-//
-//            dayForecastItemList.add(DayForecastItem(skycon,temp))
-//        }
 
         //使用此处数字约束首页出现的天气预报个数
         var maxNum = SunRainApplication.settingsPreference.getString("forecastItemsNum_List","5")

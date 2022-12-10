@@ -8,13 +8,16 @@ import androidx.fragment.app.Fragment
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.databinding.ActivitySettingsBinding
 import com.ti.sunrain.logic.ActivitySet
-import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
+    lateinit var activitySettingsBinding: ActivitySettingsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        activitySettingsBinding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(activitySettingsBinding.root)
 
         //set
         ActivitySet.addActivity(this)
@@ -45,13 +48,13 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun initToolBar(){
-        setSupportActionBar(settingsToolbar)
+        setSupportActionBar(activitySettingsBinding.settingsToolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_white_24dp)
         }
-        settingsToolbar.subtitle ="SunRain v${BuildConfig.VERSION_NAME}"
+        activitySettingsBinding.settingsToolbar.subtitle ="SunRain v${BuildConfig.VERSION_NAME}"
     }
 
     private fun replaceFragement(fragment: Fragment){

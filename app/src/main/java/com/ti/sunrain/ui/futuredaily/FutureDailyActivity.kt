@@ -11,15 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.databinding.ActivityFutureDailyBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.DailyResponse
 import com.ti.sunrain.logic.model.futuredaily.FutureDailyItem
-import kotlinx.android.synthetic.main.activity_future_daily.*
 
 class FutureDailyActivity : AppCompatActivity() {
+    lateinit var activityFutureDailyBinding: ActivityFutureDailyBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_future_daily)
+        activityFutureDailyBinding = ActivityFutureDailyBinding.inflate(layoutInflater)
+        setContentView(activityFutureDailyBinding.root)
 
         //加入set组，控制全局activity
         ActivitySet.addActivity(this)
@@ -32,7 +35,7 @@ class FutureDailyActivity : AppCompatActivity() {
         }
 
         //toolbar美化
-        setSupportActionBar(futureDailyActivityToolBar)
+        setSupportActionBar(activityFutureDailyBinding.futureDailyActivityToolBar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
@@ -64,13 +67,13 @@ class FutureDailyActivity : AppCompatActivity() {
 
     private fun initToolbar(){
         supportActionBar?.title = "未来十五天天气预报"
-        futureDailyActivityToolBar.subtitle = "以最新预报为准"
+        activityFutureDailyBinding.futureDailyActivityToolBar.subtitle = "以最新预报为准"
     }
 
     private fun initFutureDailyData(daily: DailyResponse.Daily){
         val futureDailyLineLayoutManager = LinearLayoutManager(this)
         futureDailyLineLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        futureDailyActivityRecyclerLayout.layoutManager = futureDailyLineLayoutManager
+        activityFutureDailyBinding.futureDailyActivityRecyclerLayout.layoutManager = futureDailyLineLayoutManager
 
         val futureDailyAdapter = FutureDailyAdapter(initFutureDailyItems(daily))
         futureDailyAdapter.setOnItemClickListener(object :FutureDailyAdapter.OnItemClickListener{
@@ -80,7 +83,7 @@ class FutureDailyActivity : AppCompatActivity() {
                 Toast.makeText(this@FutureDailyActivity, "点击功能开发中", Toast.LENGTH_SHORT).show()
             }
         })
-        futureDailyActivityRecyclerLayout.adapter = futureDailyAdapter
+        activityFutureDailyBinding.futureDailyActivityRecyclerLayout.adapter = futureDailyAdapter
     }
 
     private fun initFutureDailyItems(daily: DailyResponse.Daily):ArrayList<FutureDailyItem>{

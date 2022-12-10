@@ -3,22 +3,29 @@ package com.ti.sunrain.ui.minutely
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.databinding.ActivityMinutelyBinding
+import com.ti.sunrain.databinding.ItemMinutelyNewRainminuteBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.MinutelyItem
 import com.ti.sunrain.logic.model.Weather
 import com.ti.sunrain.ui.weather.MinutelyAdapter
-import kotlinx.android.synthetic.main.activity_minutely.*
-import kotlinx.android.synthetic.main.item_minutely_new_rainminute.*
+//import kotlinx.android.synthetic.main.item_minutely_new_rainminute.*
 
 class MinutelyActivity : AppCompatActivity() {
+    private lateinit var activityMinutelyBinding: ActivityMinutelyBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_minutely)
+        //使用viewBinding代替ktx插件
+        activityMinutelyBinding = ActivityMinutelyBinding.inflate(layoutInflater)
+        setContentView(activityMinutelyBinding.root)
 
         ActivitySet.addActivity(this)
 
@@ -29,7 +36,7 @@ class MinutelyActivity : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
-        setSupportActionBar(minutelyActivityToolBar)
+        setSupportActionBar(activityMinutelyBinding.minutelyActivityToolBar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
@@ -61,7 +68,7 @@ class MinutelyActivity : AppCompatActivity() {
         //Title
         supportActionBar?.title = weather.minutely.description
         //Sub Title
-        minutelyActivityToolBar.subtitle = "2 hours:" +
+        activityMinutelyBinding.minutelyActivityToolBar.subtitle = "2 hours:" +
                 (weather.minutely.precipitation_2h[0]*100).toString() + "%"
     }
 
@@ -69,10 +76,12 @@ class MinutelyActivity : AppCompatActivity() {
         //分钟降水
         val minuteLayoutManager = LinearLayoutManager(this)
         minuteLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val minutelyLayout = findViewById<RecyclerView>(R.id.minutelyLayout)
         minutelyLayout.layoutManager = minuteLayoutManager
         val minuteAdapter = MinutelyAdapter(initMinutelyItemList(weather))
         minutelyLayout.adapter = minuteAdapter
 
+        val minutelyDescText = findViewById<TextView>(R.id.minutelyDescText)
         minutelyDescText.text = weather.minutely.description
     }
 

@@ -30,7 +30,6 @@ import com.ti.sunrain.databinding.ActivityAboutBinding
 
 
 class AboutActivity : AppCompatActivity() {
-
     lateinit var viewModel: AboutViewModel
     private lateinit var activityAboutBinding: ActivityAboutBinding
 
@@ -92,7 +91,8 @@ class AboutActivity : AppCompatActivity() {
             }
             setCollapsedTitleTextColor(Color.WHITE)
         }
-        //0315 考虑稳定性，这条暂时去掉
+
+        //触发彩蛋
         activityAboutBinding.aboutBackgroundImage.setOnClickListener {
             getRandomForEgg(this)
         }
@@ -107,8 +107,6 @@ class AboutActivity : AppCompatActivity() {
                 .setPositiveButton(R.string.ok,null)
                 .show()
         }
-
-        //versionTitleAbout.text = "V" + BuildConfig.VERSION_NAME
 
         activityAboutBinding.emailMeAbout.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
@@ -265,7 +263,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        //dark theme
+        //更换黑暗模式的图标
         if(isDarkTheme(this)){
             val coolapkOption = menu?.getItem(1)
             coolapkOption?.icon = ContextCompat
@@ -298,7 +296,7 @@ class AboutActivity : AppCompatActivity() {
 
             R.id.blogContact -> {
                 val blogIntent = Intent(Intent.ACTION_VIEW)
-                blogIntent.data = Uri.parse("https://blog.bluebonnet27.xyz")
+                blogIntent.data = Uri.parse("https://bluebonnet27.github.io")
                 startActivity(blogIntent)
             }
 
@@ -336,6 +334,11 @@ class AboutActivity : AppCompatActivity() {
         return super.onMenuOpened(featureId, menu)
     }
 
+    /**
+     * 触发彩蛋
+     *
+     * @param activity
+     */
     private fun getRandomForEgg(activity: Activity){
         when((0..100).random()){
             0 -> {
@@ -349,6 +352,10 @@ class AboutActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 打开支付宝
+     *
+     */
     private fun openAliPay() {
         val url = "intent://platformapi/startapp?saId=10000007&" +
                 "clientVersion=3.7.0.0718&qrcode=https%3A%2F%2Fqr.alipay.com%2Ffkx11810qxcirwaicgedwc6%3F_s" +
@@ -372,6 +379,11 @@ class AboutActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 是否安装了支付宝
+     *
+     * @return true 安装了支付宝
+     */
     private fun hasInstalledAlipayClient():Boolean{
         val alipayPackageName = "com.eg.android.AlipayGphone"
         val packageManager = SunRainApplication.context.packageManager
@@ -384,6 +396,12 @@ class AboutActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 检查是否是暗黑模式
+     *
+     * @param context
+     * @return true 是暗黑模式
+     */
     private fun isDarkTheme(context: Context):Boolean{
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return flag == Configuration.UI_MODE_NIGHT_YES
