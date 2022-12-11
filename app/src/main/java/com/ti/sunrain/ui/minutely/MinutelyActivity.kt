@@ -11,12 +11,11 @@ import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.databinding.ActivityMinutelyBinding
-import com.ti.sunrain.databinding.ItemMinutelyNewRainminuteBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.MinutelyItem
 import com.ti.sunrain.logic.model.Weather
 import com.ti.sunrain.ui.weather.MinutelyAdapter
-//import kotlinx.android.synthetic.main.item_minutely_new_rainminute.*
+
 
 class MinutelyActivity : AppCompatActivity() {
     private lateinit var activityMinutelyBinding: ActivityMinutelyBinding

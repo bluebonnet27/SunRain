@@ -11,15 +11,18 @@ import com.github.mikephil.charting.data.PieEntry
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.databinding.ActivityAirBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.Weather
-import kotlinx.android.synthetic.main.activity_air.*
 import kotlinx.android.synthetic.main.item_air_piechart.*
 
 class AirActivity : AppCompatActivity() {
+    lateinit var activityAirBinding: ActivityAirBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_air)
+        activityAirBinding = ActivityAirBinding.inflate(layoutInflater)
+        setContentView(activityAirBinding.root)
 
         //set
         ActivitySet.addActivity(this)
@@ -31,7 +34,7 @@ class AirActivity : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
-        setSupportActionBar(airActivityToolBar)
+        setSupportActionBar(activityAirBinding.airActivityToolBar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
@@ -63,7 +66,7 @@ class AirActivity : AppCompatActivity() {
         //标题
         supportActionBar?.title = weather.realtime.airQuality.description.chn
         //副标题
-        airActivityToolBar.subtitle = "AQI:" + weather.realtime.airQuality.aqi.chn.toInt()
+        activityAirBinding.airActivityToolBar.subtitle = "AQI:" + weather.realtime.airQuality.aqi.chn.toInt()
     }
 
     private fun initPieChartAndDirtyProgressBar(weather: Weather){

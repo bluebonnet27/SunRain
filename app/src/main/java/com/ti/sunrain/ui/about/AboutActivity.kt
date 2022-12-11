@@ -22,9 +22,7 @@ import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
-//import kotlinx.android.synthetic.main.activity_about.*
 import java.net.URISyntaxException
-
 import android.graphics.Color
 import com.ti.sunrain.databinding.ActivityAboutBinding
 
