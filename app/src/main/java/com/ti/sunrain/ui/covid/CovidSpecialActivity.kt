@@ -20,7 +20,7 @@ class CovidSpecialActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //使用viewBinding代替ktx插件
+
         activityCovidSpecialBinding = ActivityCovidSpecialBinding.inflate(layoutInflater)
         setContentView(activityCovidSpecialBinding.root)
 

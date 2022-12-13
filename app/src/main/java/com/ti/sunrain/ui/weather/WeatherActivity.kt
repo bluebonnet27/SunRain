@@ -37,6 +37,7 @@ import com.google.gson.Gson
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.databinding.ActivityWeatherBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
 import com.ti.sunrain.logic.model.dayforecast.DayForecastItem
@@ -47,7 +48,7 @@ import com.ti.sunrain.ui.daily.DailyinforActivity
 import com.ti.sunrain.ui.futuredaily.FutureDailyActivity
 import com.ti.sunrain.ui.minutely.MinutelyActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
-import kotlinx.android.synthetic.main.activity_weather.*
+//import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.air.*
 import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.forecast_chart.*
@@ -66,10 +67,12 @@ class WeatherActivity : AppCompatActivity() {
     //2020-12-14 重构代码，UI层优于逻辑层，重写函数优于自定义函数
     //懒加载 viewmodel
     val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
+    lateinit var activityWeatherBinding: ActivityWeatherBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather)
+        activityWeatherBinding = ActivityWeatherBinding.inflate(layoutInflater)
+        setContentView(activityWeatherBinding.root)
 
         //set
         ActivitySet.addActivity(this)
@@ -113,13 +116,13 @@ class WeatherActivity : AppCompatActivity() {
                 .show()
         }
 
-        setSupportActionBar(weatherToolBar)
+        setSupportActionBar(activityWeatherBinding.weatherToolBar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.baseline_location_city_white_24dp)
         }
 
-        drawerLayout.addDrawerListener(object:DrawerLayout.DrawerListener{
+        activityWeatherBinding.drawerLayout.addDrawerListener(object:DrawerLayout.DrawerListener{
             override fun onDrawerOpened(drawerView: View) {}
 
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
@@ -159,20 +162,20 @@ class WeatherActivity : AppCompatActivity() {
                 Toast.makeText(this, "无法获取天气信息啦！", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
-            swipeRefresh.isRefreshing = false
+            activityWeatherBinding.swipeRefresh.isRefreshing = false
         }
 
-        swipeRefresh.setColorSchemeResources(R.color.blue500)
+        activityWeatherBinding.swipeRefresh.setColorSchemeResources(R.color.blue500)
         refreshWeather()
-        swipeRefresh.setOnRefreshListener {
+        activityWeatherBinding.swipeRefresh.setOnRefreshListener {
             refreshWeather()
-            Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(activityWeatherBinding.swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
         }
 
         if(SunRainApplication.settingsPreference.getBoolean("title_refresh_switch",false)){
-            weatherToolBar.setOnClickListener {
+            activityWeatherBinding.weatherToolBar.setOnClickListener {
                 refreshWeather()
-                Snackbar.make(swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(activityWeatherBinding.swipeRefresh,"已发送刷新",Snackbar.LENGTH_SHORT).show()
             }
         }
 
@@ -187,7 +190,7 @@ class WeatherActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+            android.R.id.home -> activityWeatherBinding.drawerLayout.openDrawer(GravityCompat.START)
 
             R.id.COVIDExplorer ->{
                 val covidIntent = Intent(this,
@@ -272,7 +275,7 @@ class WeatherActivity : AppCompatActivity() {
      */
     fun refreshWeather(){
         viewModel.refreshWeather(viewModel.locationLng,viewModel.locationLat)
-        swipeRefresh.isRefreshing = true
+        activityWeatherBinding.swipeRefresh.isRefreshing = true
     }
 
     /**
@@ -320,11 +323,11 @@ class WeatherActivity : AppCompatActivity() {
             .getBoolean("festival_bg_switch",true)
         val originBackground = (getSky(realtime.skycon).bg)
         if(festivalBackgroundValue){
-            drawerLayout.setBackgroundResource(changeBackgroundByHours(originBackground
+            activityWeatherBinding.drawerLayout.setBackgroundResource(changeBackgroundByHours(originBackground
                 ,judgeTimeInDay()))
         }
         else{
-            drawerLayout.setBackgroundResource(originBackground)
+            activityWeatherBinding.drawerLayout.setBackgroundResource(originBackground)
         }
 
         //progressbar 数据
@@ -495,7 +498,7 @@ class WeatherActivity : AppCompatActivity() {
             Snackbar.make(view,"请前往对应日期页查看",Snackbar.LENGTH_SHORT).show()
         }
 
-        weatherLayout.visibility = VISIBLE
+        activityWeatherBinding.weatherLayout.visibility = VISIBLE
 
         //air.xml
         //initAirPie(weather)
@@ -536,8 +539,8 @@ class WeatherActivity : AppCompatActivity() {
      * 初始化主 toolbar 的标题和副标题
      */
     private fun initToolBarBasic(title: String, subTitle:String){
-        weatherToolBar.title = title
-        weatherToolBar.subtitle = subTitle
+        activityWeatherBinding.weatherToolBar.title = title
+        activityWeatherBinding.weatherToolBar.subtitle = subTitle
         Log.d("WeatherActivity","TOOLBAR初始化成功，数据为$title,$subTitle")
     }
 
