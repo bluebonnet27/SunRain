@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ti.sunrain.R
 import com.ti.sunrain.logic.model.PlaceResponse.Place
 import com.ti.sunrain.ui.weather.WeatherActivity
-import kotlinx.android.synthetic.main.activity_weather.*
 
 /**
  * @author: tihon
@@ -35,7 +34,7 @@ class PlaceAdapter(private val fragment: PlaceFragment,
 
             val activity = fragment.activity
             if(activity is WeatherActivity){
-                activity.drawerLayout.closeDrawers()
+                activity.activityWeatherBinding.drawerLayout.closeDrawers()
 
                 activity.viewModel.locationLng = place.location.lng
                 activity.viewModel.locationLat = place.location.lat

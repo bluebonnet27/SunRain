@@ -14,7 +14,6 @@ import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.databinding.ActivityAirBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.Weather
-import kotlinx.android.synthetic.main.item_air_piechart.*
 
 class AirActivity : AppCompatActivity() {
     lateinit var activityAirBinding: ActivityAirBinding
@@ -109,7 +108,7 @@ class AirActivity : AppCompatActivity() {
         //设置描述连接线长度
         //dirtyDataSet.valueLinePart1Length = 0f
 
-        itemAirPieChartChart.apply {
+        activityAirBinding.itemAirPieChartInclude.itemAirPieChartChart.apply {
             //实体扇形的空心圆的半径   设置成0时就是一个圆 而不是一个环
             holeRadius = 30f
             //设置中心圆的颜色
@@ -131,12 +130,12 @@ class AirActivity : AppCompatActivity() {
         }
 
         //图例
-        val legend = itemAirPieChartChart.legend
+        val legend = activityAirBinding.itemAirPieChartInclude.itemAirPieChartChart.legend
         legend.isEnabled = false
 
         //数据应用
         val dirtyDataUse = PieData(dirtyDataSet)
-        itemAirPieChartChart.data = dirtyDataUse
+        activityAirBinding.itemAirPieChartInclude.itemAirPieChartChart.data = dirtyDataUse
     }
 
     private fun getAQIColor(aqiValue:Int):String{

@@ -39,13 +39,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/item_daily_day"/>
+            <include
+                android:id="@+id/itemDailyDayInclude"
+                layout="@layout/item_daily_day"/>
 
-            <include layout="@layout/item_daily_night"/>
+            <include
+                android:id="@+id/itemDailyNightInclude"
+                layout="@layout/item_daily_night"/>
 
-            <include layout="@layout/item_daily_lifeindex"/>
+            <include
+                android:id="@+id/itemDailyLifeIndexInclude"
+                layout="@layout/item_daily_lifeindex"/>
 
-            <include layout="@layout/item_daily_others"/>
+            <include
+                android:id="@+id/itemDailyOthersInclude"
+                layout="@layout/item_daily_others"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

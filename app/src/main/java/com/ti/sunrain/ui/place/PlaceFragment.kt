@@ -9,19 +9,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ti.sunrain.MainActivity
 import com.ti.sunrain.R
 import com.ti.sunrain.ui.weather.WeatherActivity
-import kotlinx.android.synthetic.main.fragment_place.*
 import android.location.LocationManager
 import com.permissionx.guolindev.PermissionX
 import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.model.SpecificPlaceResponse
 import com.ti.sunrain.logic.network.PlaceSpecificService
-import kotlinx.android.synthetic.main.activity_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +26,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.location.Location
 import androidx.core.content.ContextCompat
+import com.ti.sunrain.databinding.FragmentPlaceBinding
 
 
 /**
@@ -44,11 +42,20 @@ class PlaceFragment:Fragment() {
 
     private lateinit var adapter: PlaceAdapter
 
+    private var _binding: FragmentPlaceBinding? = null
+    private val binding get() = _binding!!
+
     private val locationManager =
         SunRainApplication.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_place,container,false)
+        _binding = FragmentPlaceBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -68,17 +75,17 @@ class PlaceFragment:Fragment() {
         }
 
         val layoutManager = LinearLayoutManager(activity)
-        recyclerView.layoutManager = layoutManager
+        binding.recyclerView.layoutManager = layoutManager
         adapter = PlaceAdapter(this,viewModel.placeList)
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
-        searchPlaceEdit.addTextChangedListener { editable ->
+        binding.searchPlaceEdit.addTextChangedListener { editable ->
             val content = editable.toString()
             if(content.isNotEmpty()){
                 viewModel.searchPlaces(content)
             }else{
-                recyclerView.visibility = View.GONE
-                bgImageView.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+                binding.bgImageView.visibility = View.VISIBLE
                 viewModel.placeList.clear()
                 adapter.notifyDataSetChanged()
             }
@@ -87,8 +94,8 @@ class PlaceFragment:Fragment() {
         viewModel.placeLiveData.observe(viewLifecycleOwner) { result ->
             val places = result.getOrNull()
             if (places != null) {
-                recyclerView.visibility = View.VISIBLE
-                bgImageView.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.bgImageView.visibility = View.GONE
                 viewModel.placeList.clear()
                 viewModel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
@@ -98,7 +105,7 @@ class PlaceFragment:Fragment() {
             }
         }
 
-        searchPlaceLocationBtn.setOnClickListener {
+        binding.searchPlaceLocationBtn.setOnClickListener {
             PermissionX.init(this)
                 .permissions(android.Manifest.permission.ACCESS_COARSE_LOCATION,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -129,7 +136,7 @@ class PlaceFragment:Fragment() {
                                 val locationString = "$lat,$lng"
 
                                 if(activity is WeatherActivity){
-                                    activity.drawerLayout.closeDrawers()
+                                    activity.activityWeatherBinding.drawerLayout.closeDrawers()
 
                                     activity.viewModel.locationLng = lng
                                     activity.viewModel.locationLat = lat

@@ -48,16 +48,6 @@ import com.ti.sunrain.ui.daily.DailyinforActivity
 import com.ti.sunrain.ui.futuredaily.FutureDailyActivity
 import com.ti.sunrain.ui.minutely.MinutelyActivity
 import com.ti.sunrain.ui.settings.SettingsActivity
-//import kotlinx.android.synthetic.main.activity_weather.*
-import kotlinx.android.synthetic.main.air.*
-import kotlinx.android.synthetic.main.forecast.*
-import kotlinx.android.synthetic.main.forecast_chart.*
-import kotlinx.android.synthetic.main.half_item_air.*
-import kotlinx.android.synthetic.main.half_item_minutely_rain.*
-import kotlinx.android.synthetic.main.hourly.*
-import kotlinx.android.synthetic.main.item_progress_sun.*
-import kotlinx.android.synthetic.main.life_index.*
-import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -305,18 +295,20 @@ class WeatherActivity : AppCompatActivity() {
         initToolBarBasic(viewModel.placeName,"$serverTimeText ${resources.getString(R.string.refresh)}")
 
         //now.xml 数据
-        val currentTempText = "${realtime.temperature.toInt()}°"
-        currentTemperature.text = currentTempText
-        currentSky.text = getSky(realtime.skycon).info
-        val currentPM25Text = resources.getString(R.string.airIndex)+" ${realtime.airQuality.aqi.chn.toInt()}"
-        currentAQI.text = currentPM25Text
-        val currentAQIDescInfor = realtime.airQuality.description.chn
-        currentAQIDesc.text = " $currentAQIDescInfor"
+        activityWeatherBinding.nowInclude.let {
+            val currentTempText = "${realtime.temperature.toInt()}°"
+            it.currentTemperature.text = currentTempText
+            it.currentSky.text = getSky(realtime.skycon).info
+            val currentPM25Text = resources.getString(R.string.airIndex)+" ${realtime.airQuality.aqi.chn.toInt()}"
+            it.currentAQI.text = currentPM25Text
+            val currentAQIDescInfor = realtime.airQuality.description.chn
+            it.currentAQIDesc.text = " $currentAQIDescInfor"
 
-        //这行代码是测试天气动态背景的
-        //nowAnimation.changeWeather(WeatherUtil.WeatherType.thunder)
-        nowAnimation.changeWeather(getSkyAni(realtime.skycon))
-        //middleRainy,heavyRainy,foggy,all snow,all rest
+            //这行代码是测试天气动态背景的
+            //nowAnimation.changeWeather(WeatherUtil.WeatherType.thunder)
+            it.nowAnimation.changeWeather(getSkyAni(realtime.skycon))
+            //middleRainy,heavyRainy,foggy,all snow,all rest
+        }
 
         //now.xml 动态背景
         val festivalBackgroundValue = SunRainApplication.settingsPreference
@@ -334,9 +326,9 @@ class WeatherActivity : AppCompatActivity() {
         initProgressBar(daily,serverTimeText)
 
         //forecast.xml 数据
-        forecastDesc.text = "此刻天气" + weather.realtime.lifeIndex.comfort.desc +
-                " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
-//        forecastLayout.removeAllViews()
+        activityWeatherBinding.forecastInclude.forecastDesc.text =
+            "此刻天气" + weather.realtime.lifeIndex.comfort.desc +
+                    " 紫外线" + weather.realtime.lifeIndex.ultraviolet.desc
         val days = daily.skyconSum.size
 
         val listHigh = ArrayList<Entry>()
@@ -351,7 +343,8 @@ class WeatherActivity : AppCompatActivity() {
         //新的预报recyclerview
         val dayForcastLayoutManager = LinearLayoutManager(this)
         dayForcastLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        forecastRecyclerLayout.layoutManager = dayForcastLayoutManager
+        activityWeatherBinding.forecastInclude.forecastRecyclerLayout.layoutManager =
+            dayForcastLayoutManager
 
         val dayForecastAdapter = DayForecastAdapter(initDayForecastItems(daily))
         dayForecastAdapter.setOnItemClickListener(object : DayForecastAdapter.OnItemClickListener{
@@ -363,23 +356,23 @@ class WeatherActivity : AppCompatActivity() {
                 startActivity(dailyInfoIntent)
             }
         })
-        forecastRecyclerLayout.adapter = dayForecastAdapter
+        activityWeatherBinding.forecastInclude.forecastRecyclerLayout.adapter = dayForecastAdapter
 
         //未来十五天按钮
-        forecast_15button.setOnClickListener {
+        activityWeatherBinding.forecastInclude.forecast15button.setOnClickListener {
             val futureDailyIntent = Intent(this,FutureDailyActivity::class.java)
             futureDailyIntent.putExtra("daily",Gson().toJson(daily))
             startActivity(futureDailyIntent)
         }
 
         //天气通知正文
-        val rTnotification = showRealtimeWeatherNotification(weather)
+        val sunrainWeatherNotification = showRealtimeWeatherNotification(weather)
         if(!SunRainApplication.settingsPreference.getBoolean("notification_cancancel_switch",false)){
-            rTnotification.flags = Notification.FLAG_NO_CLEAR
+            sunrainWeatherNotification.flags = Notification.FLAG_NO_CLEAR
         }
         
         if(SunRainApplication.settingsPreference.getBoolean("notification_switch",false)){
-            manager.notify(1,rTnotification)
+            manager.notify(1,sunrainWeatherNotification)
         }else{
             manager.cancel(1)
         }
@@ -388,11 +381,9 @@ class WeatherActivity : AppCompatActivity() {
         //可见性
         val isForecastChartVisible = SunRainApplication.settingsPreference
             .getBoolean("forecast_chart_switch",false)
-        if(isForecastChartVisible){
-            tempChartCard.visibility = VISIBLE
-        }else{
-            tempChartCard.visibility = GONE
-        }
+
+        activityWeatherBinding.forecastChartInclude.tempChartCard.visibility =
+            if(isForecastChartVisible) VISIBLE else GONE
 
         //最高温度
         val setHigh = LineDataSet(listHigh,"High")
@@ -413,106 +404,112 @@ class WeatherActivity : AppCompatActivity() {
         dataSets.add(setHigh)
         dataSets.add(setLow)
         val dataTemp = LineData(dataSets)
-        temperatureChart.data = dataTemp
 
-        //折线图背景
-        temperatureChart.xAxis.setDrawGridLines(false)
-        temperatureChart.axisLeft.setDrawGridLines(false)
+        activityWeatherBinding.forecastChartInclude.temperatureChart.let {
+            it.data = dataTemp
 
-        //右下角英文字母
-        temperatureChart.description.isEnabled = false
+            //折线图背景
+            it.xAxis.setDrawGridLines(false)
+            it.axisLeft.setDrawGridLines(false)
 
-        //图例
-        temperatureChart.legend.isEnabled = false
+            //右下角英文字母
+            it.description.isEnabled = false
 
-        //x轴
-        val xAxis = temperatureChart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.granularity = 1F // 加上这个就不会出现坐标点不对应的情况，但我不知道这是干啥的
-        xAxis.valueFormatter = TemperatureChartXAxisFormatter()
+            //图例
+            it.legend.isEnabled = false
 
-        //y轴
-        temperatureChart.axisRight.isEnabled = false
-        temperatureChart.axisLeft.isEnabled = false
+            //x轴
+            it.xAxis.let {
+                it.position = XAxis.XAxisPosition.BOTTOM
+                // 加上这个就不会出现坐标点不对应的情况，但我不知道这是干啥的
+                it.granularity = 1F
+                it.valueFormatter = TemperatureChartXAxisFormatter()
+            }
 
-        //不允许触摸
-        temperatureChart.setTouchEnabled(false)
+            //y轴
+            it.axisRight.isEnabled = false
+            it.axisLeft.isEnabled = false
+
+            //不允许触摸
+            it.setTouchEnabled(false)
+        }
 
         //lifeindex.xml 数据注入
         val lifeIndex = daily.lifeIndex
-        coldRiskText.text = lifeIndex.coldRisk[0].desc //今天数据就是一组数据里的第一个
-        dressingText.text = lifeIndex.dressing[0].desc
-        ultravioletText.text = lifeIndex.ultraviolet[0].desc
-        carWashingText.text = lifeIndex.carWashing[0].desc
-        comfortText.text = lifeIndex.comfort[0].desc
-        windIndexTextDirection.text = "${getWindDirection(windReturn.direction)}风"
-        windIndexTextLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
+        activityWeatherBinding.lifeIndexInclude.let {
+            it.coldRiskText.text = lifeIndex.coldRisk[0].desc //今天数据就是一组数据里的第一个
+            it.dressingText.text = lifeIndex.dressing[0].desc
+            it.ultravioletText.text = lifeIndex.ultraviolet[0].desc
+            it.carWashingText.text = lifeIndex.carWashing[0].desc
+            it.comfortText.text = lifeIndex.comfort[0].desc
+            it.windIndexTextDirection.text = "${getWindDirection(windReturn.direction)}风"
+            it.windIndexTextLevel.text = "风力${getWindSpeed(windReturn.speed)}级"
 
-        //lifeindex.xml CLick
-        ColdRiskItem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(lifeIndex.coldRisk[0].desc)
-                .setMessage("明天的： ${lifeIndex.coldRisk[1].desc}\n"+
+            //lifeindex.xml CLick
+            it.ColdRiskItem.setOnClickListener {
+                AlertDialog.Builder(this)
+                    .setTitle(lifeIndex.coldRisk[0].desc)
+                    .setMessage("明天的： ${lifeIndex.coldRisk[1].desc}\n"+
                             "后天的： ${lifeIndex.coldRisk[2].desc}\n"+
                             "大后天： ${lifeIndex.coldRisk[3].desc}")
-                .show()
-        }
+                    .show()
+            }
 
-        dressingItem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(lifeIndex.dressing[0].desc)
-                .setMessage("明天的： ${lifeIndex.dressing[1].desc}\n"+
+            it.dressingItem.setOnClickListener {
+                AlertDialog.Builder(this)
+                    .setTitle(lifeIndex.dressing[0].desc)
+                    .setMessage("明天的： ${lifeIndex.dressing[1].desc}\n"+
                             "后天的： ${lifeIndex.dressing[2].desc}\n"+
                             "大后天： ${lifeIndex.dressing[3].desc}")
-                .show()
-        }
+                    .show()
+            }
 
-        ultravioletItem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(lifeIndex.ultraviolet[0].desc)
-                .setMessage("明天的： ${lifeIndex.ultraviolet[1].desc}\n"+
+            it.ultravioletItem.setOnClickListener {
+                AlertDialog.Builder(this)
+                    .setTitle(lifeIndex.ultraviolet[0].desc)
+                    .setMessage("明天的： ${lifeIndex.ultraviolet[1].desc}\n"+
                             "后天的： ${lifeIndex.ultraviolet[2].desc}\n"+
                             "大后天： ${lifeIndex.ultraviolet[3].desc}")
-                .show()
-        }
+                    .show()
+            }
 
-        carWashingItem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(lifeIndex.carWashing[0].desc)
-                .setMessage("明天的： ${lifeIndex.carWashing[1].desc}\n"+
+            it.carWashingItem.setOnClickListener {
+                AlertDialog.Builder(this)
+                    .setTitle(lifeIndex.carWashing[0].desc)
+                    .setMessage("明天的： ${lifeIndex.carWashing[1].desc}\n"+
                             "后天的： ${lifeIndex.carWashing[2].desc}\n"+
                             "大后天： ${lifeIndex.carWashing[3].desc}")
-                .show()
-        }
+                    .show()
+            }
 
-        comfortItem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(lifeIndex.comfort[0].desc)
-                .setMessage("明天的： ${lifeIndex.comfort[1].desc}\n"+
+            it.comfortItem.setOnClickListener {
+                AlertDialog.Builder(this)
+                    .setTitle(lifeIndex.comfort[0].desc)
+                    .setMessage("明天的： ${lifeIndex.comfort[1].desc}\n"+
                             "后天的： ${lifeIndex.comfort[2].desc}\n"+
                             "大后天： ${lifeIndex.comfort[3].desc}")
-                .show()
-        }
+                    .show()
+            }
 
-        windDailyItem.setOnClickListener { view->
-            Snackbar.make(view,"请前往对应日期页查看",Snackbar.LENGTH_SHORT).show()
+            it.windDailyItem.setOnClickListener { view->
+                Snackbar.make(view,"请前往对应日期页查看",Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         activityWeatherBinding.weatherLayout.visibility = VISIBLE
 
         //air.xml
-        //initAirPie(weather)
         initAirHalf(weather)
 
         //空气页面
-        airCard.setOnClickListener {
+        activityWeatherBinding.halfItemAirInclude.airCard.setOnClickListener {
             val airActivityIntent = Intent(this,AirActivity::class.java)
             airActivityIntent.putExtra("weather",Gson().toJson(weather))
             startActivity(airActivityIntent)
         }
 
         //分钟降水页面
-        minutelyCard.setOnClickListener {
+        activityWeatherBinding.halfItemMinutelyRainInclude.minutelyCard.setOnClickListener {
             val minutelyActivityIntent = Intent(this,MinutelyActivity::class.java)
             minutelyActivityIntent.putExtra("weather",Gson().toJson(weather))
             startActivity(minutelyActivityIntent)
@@ -521,18 +518,20 @@ class WeatherActivity : AppCompatActivity() {
         //hourly 数据
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        hourlyLayout.layoutManager = layoutManager
-        val adapter = HourlyAdapter(initHourlyItemList(hourlyReturn))
-        hourlyLayout.adapter = adapter
-
-        hourlyDescText.text = hourlyReturn.description
+        activityWeatherBinding.hourlyInclude.let {
+            it.hourlyLayout.layoutManager = layoutManager
+            it.hourlyLayout.adapter = HourlyAdapter(initHourlyItemList(hourlyReturn))
+            it.hourlyDescText.text = hourlyReturn.description
+        }
 
         //分钟降水
         val minuteAdapter = MinutelyAdapter(initMinutelyItemList(minutelyReturn))
 
         //首页分钟降水
-        minutelyCardDescIconHS.setImageResource(transferData1MinuteToIcon(getRainData1Minute(minutelyReturn)))
-        minutelyCardIcon.setImageResource(minuteAdapter.getRainIconDesc(getRainData1Minute(minutelyReturn)))
+        activityWeatherBinding.halfItemMinutelyRainInclude.let {
+            it.minutelyCardDescIconHS.setImageResource(transferData1MinuteToIcon(getRainData1Minute(minutelyReturn)))
+            it.minutelyCardIcon.setImageResource(minuteAdapter.getRainIconDesc(getRainData1Minute(minutelyReturn)))
+        }
     }
 
     /**
@@ -606,129 +605,13 @@ class WeatherActivity : AppCompatActivity() {
      * 初始化天气half
      */
     private fun initAirHalf(weather: Weather){
-        airDescTextHalf.text = weather.realtime.airQuality.description.chn
+        activityWeatherBinding.halfItemAirInclude.let {
+            it.airDescTextHalf.text = weather.realtime.airQuality.description.chn
 
-        val aq = weather.realtime.airQuality
-
-        airDescHalfAQI.text = aq.aqi.chn.toInt().toString()
-        airDescHalfAQIProgress.progress = aq.aqi.chn.toInt()
-    }
-
-    /**
-     * 填充空气指数的数据，绘图
-     */
-    private fun initAirPie(weather: Weather){
-        //air.xml 数列写入数据
-        airDesc.text = weather.realtime.airQuality.description.chn
-
-        airDescTextHalf.text = weather.realtime.airQuality.description.chn
-
-        val aq = weather.realtime.airQuality
-
-        airDescHalfAQI.text = aq.aqi.chn.toInt().toString()
-        airDescHalfAQIProgress.progress = aq.aqi.chn.toInt()
-
-        pm25Num.text = "${aq.pm25} μg/m3"
-        pm10Num.text = "${aq.pm10} μg/m3"
-        no2Num.text = "${aq.no2} μg/m3"
-        o3Num.text = "${aq.o3} μg/m3"
-        so2Num.text = "${aq.so2} μg/m3"
-        coNum.text = "${aq.co} mg/m3"
-
-        pm25Item.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("PM 2.5")
-                .setMessage("细颗粒物又称细粒、细颗粒、PM2.5。细颗粒物指环境空气中空气动力学当量直径小于" +
-                        "等于 2.5 微米的颗粒物。它能较长时间悬浮于空气中，其在空气中含量浓度越高，就代表空" +
-                        "气污染越严重。虽然PM2.5只是地球大气成分中含量很少的组分，但它对空气质量和能见度等" +
-                        "有重要的影响。与较粗的大气颗粒物相比，PM2.5粒径小，面积大，活性强，易附带有毒、有" +
-                        "害物质（例如，重金属、微生物等），且在大气中的停留时间长、输送距离远，因而对人体健" +
-                        "康和大气环境质量的影响更大。")
-                .setPositiveButton(getString(R.string.ok), null)
-                .show()
+            val aq = weather.realtime.airQuality
+            it.airDescHalfAQI.text = aq.aqi.chn.toInt().toString()
+            it.airDescHalfAQIProgress.progress = aq.aqi.chn.toInt()
         }
-
-        pm10Item.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("PM 10")
-                .setMessage("可吸入颗粒物，通常是指粒径在10微米以下的颗粒物，又称PM10。可吸入颗粒物在" +
-                        "环境空气中持续的时间很长，对人体健康和大气能见度的影响都很大。通常来自在未铺的" +
-                        "沥青、水泥的路面上行驶的机动车、材料的破碎碾磨处理过程以及被风扬起的尘土。可吸入" +
-                        "颗粒物被人吸入后，会积累在呼吸系统中，引发许多疾病，对人类危害大。")
-                .setPositiveButton(getString(R.string.ok), null)
-                .show()
-        }
-
-        o3Item.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("臭氧")
-                .setMessage("当人类生活区周边的臭氧浓度超过一定限值，就将造成灰疆和光化学烟雾等污染，严重" +
-                        "影响正常生产与生活。")
-                .setPositiveButton(getString(R.string.ok), null)
-                .show()
-        }
-
-        no2Item.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("二氧化氮")
-                .setMessage("二氧化氮在臭氧的形成过程中起着重要作用。人为产生的二氧化氮主要来自高温燃烧过" +
-                        "程的释放，比如机动车尾气、锅炉废气的排放等。 二氧化氮还是酸雨的成因之一，所带来的" +
-                        "环境效应多种多样，包括：对湿地和陆生植物物种之间竞争与组成变化的影响，大气能见度" +
-                        "的降低，地表水的酸化、富营养化（由于水中富含氮、磷等营养物藻类大量繁殖而导致缺" +
-                        "氧）以及增加水体中有害于鱼类和其它水生生物的毒素含量。")
-                .setPositiveButton(getString(R.string.ok), null)
-                .show()
-        }
-
-        so2Item.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("二氧化硫")
-                .setMessage("二氧化硫是最常见、最简单、有刺激性的硫氧化物，化学式SO2，无色气体，大气主要" +
-                        "污染物之一。2017年10月27日，世界卫生组织国际癌症研究机构公布的致癌物清单初步整" +
-                        "理参考，二氧化硫在3类致癌物清单中。")
-                .setPositiveButton(getString(R.string.ok), null)
-                .show()
-        }
-
-        coItem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("一氧化碳")
-                .setMessage("一氧化碳（carbon monoxide），一种碳氧化合物，化学式为CO，分子量为28.0101" +
-                        "，通常状况下为是无色、无臭、无味的气体。具有毒性，较高浓度时能使人出现不同程度中" +
-                        "毒症状，危害人体的脑、心、肝、肾、肺及其他组织，甚至电击样死亡，")
-                .setPositiveButton(getString(R.string.ok), null)
-                .show()
-        }
-
-        //air.xml 图绘制
-        val dirtyData = ArrayList<PieEntry>()
-        dirtyData.add(PieEntry(aq.aqi.chn,""))
-        dirtyData.add(PieEntry(600-aq.aqi.chn,""))
-        val dirtyDataSet = PieDataSet(dirtyData,"")
-
-        //air.xml 美化
-        dirtyDataSet.setColors(Color.parseColor(viewModel.getAQIColor(aq.aqi.chn.toInt())),
-            Color.parseColor("#eeeeee"))
-        dirtyDataSet.valueTextSize = 0f
-        airPie.holeRadius = 90f
-        airPie.description.isEnabled = false
-        airPie.transparentCircleRadius = 0f
-        airPie.centerText = aq.aqi.chn.toInt().toString()
-        airPie.setCenterTextSize(20f)
-
-        if(isDarkTheme(SunRainApplication.context)){
-            airPie.setCenterTextColor(Color.WHITE)
-            airPie.setHoleColor(Color.parseColor("#ff3f3f3f"))
-        }else{
-            airPie.setCenterTextColor(Color.BLACK)
-            airPie.setHoleColor(Color.WHITE)
-        }
-
-        airPie.animateXY(4000,4000)
-        airPie.legend.isEnabled = false
-
-        val dirtyDataUse = PieData(dirtyDataSet)
-        airPie.data = dirtyDataUse
     }
 
     /**
@@ -790,11 +673,11 @@ class WeatherActivity : AppCompatActivity() {
         val sunRiseTime = daily.astro[0].sunrise.risetime
         val sunSetTime = daily.astro[0].sunset.settime
 
-        sunRiseTimeProgress.text = "↑$sunRiseTime"
-        sunSetTimeProgress.text = "$sunSetTime↓"
-
-        val result = getSunProgressFromTimes(sunRiseTime,sunSetTime,serverTimeText)
-        sunTimeProgressBar.progress = result
+        activityWeatherBinding.itemProgressSunInclude.let {
+            it.sunRiseTimeProgress.text = "↑$sunRiseTime"
+            it.sunSetTimeProgress.text = "$sunSetTime↓"
+            it.sunTimeProgressBar.progress = getSunProgressFromTimes(sunRiseTime,sunSetTime,serverTimeText)
+        }
     }
 
     private fun judgeTimeInDay():Int{

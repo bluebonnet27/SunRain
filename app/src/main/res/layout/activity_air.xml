@@ -40,8 +40,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/item_air_piechart"/>
-            <include layout="@layout/item_air_dirties"/>
+            <include
+                android:id="@+id/itemAirPieChartInclude"
+                layout="@layout/item_air_piechart"/>
+            <include
+                android:id="@+id/itemAirDirtiesInclude"
+                layout="@layout/item_air_dirties"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

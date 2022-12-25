@@ -86,7 +86,7 @@ object Repository {
             val result = try {
                 block()
             }catch (e:Exception){
-                Result.failure<T>(e)
+                Result.failure(e)
             }
             emit(result)
         }

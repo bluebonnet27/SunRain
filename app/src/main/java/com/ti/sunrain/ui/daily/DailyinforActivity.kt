@@ -12,21 +12,24 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
+import com.ti.sunrain.databinding.ActivityDailyinforBinding
 import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.*
-import kotlinx.android.synthetic.main.activity_dailyinfor.*
-import kotlinx.android.synthetic.main.item_daily_day.*
-import kotlinx.android.synthetic.main.item_daily_lifeindex.*
-import kotlinx.android.synthetic.main.item_daily_night.*
-import kotlinx.android.synthetic.main.item_daily_others.*
+//import kotlinx.android.synthetic.main.activity_dailyinfor.*
+//import kotlinx.android.synthetic.main.item_daily_day.*
+//import kotlinx.android.synthetic.main.item_daily_lifeindex.*
+//import kotlinx.android.synthetic.main.item_daily_night.*
+//import kotlinx.android.synthetic.main.item_daily_others.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class DailyinforActivity : AppCompatActivity() {
+    lateinit var activityDailyinforBinding: ActivityDailyinforBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dailyinfor)
+        activityDailyinforBinding = ActivityDailyinforBinding.inflate(layoutInflater)
+        setContentView(activityDailyinforBinding.root)
 
         //set
         ActivitySet.addActivity(this)
@@ -38,7 +41,7 @@ class DailyinforActivity : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
-        setSupportActionBar(dailyInforToolbar)
+        setSupportActionBar(activityDailyinforBinding.dailyInforToolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
@@ -76,15 +79,15 @@ class DailyinforActivity : AppCompatActivity() {
         val tMinTxt = resources.getString(R.string.min_temp) + ":" + temperatureOrigin.min.toInt()
         val humidityText = (humidityOrigin*100).toString()
         val tempText = "$tMinTxt℃   $tMaxTxt℃   湿度：$humidityText%"
-        dailyInforToolbar.subtitle = tempText
+        activityDailyinforBinding.dailyInforToolbar.subtitle = tempText
 
         //icon season
         val seasonIcon = getSeasonIcon(getSeason(dateOrigin))
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            dailyFAB.setImageIcon(Icon.createWithResource(this,seasonIcon))
+            activityDailyinforBinding.dailyFAB.setImageIcon(Icon.createWithResource(this,seasonIcon))
         }
 
-        dailyFAB.setOnClickListener { view ->
+        activityDailyinforBinding.dailyFAB.setOnClickListener { view ->
             when(getSeason(dateOrigin)){
                 1 -> Snackbar.make(view,"她总会烦恼，总会忧伤",Snackbar.LENGTH_SHORT).show()
                 2 -> Snackbar.make(view,"再美的语言，也需要景色的铺垫",Snackbar.LENGTH_SHORT).show()
@@ -95,42 +98,38 @@ class DailyinforActivity : AppCompatActivity() {
     }
 
     private fun setWeatherDayAndNight(weather: Weather,index:Int){
-        //day-skycon
-        val skyconDay = getSky(weather.daily.skyconDaylight[index].value)
-        daySkyconIcon.setImageResource(skyconDay.weather_icon)
-        daySkyconText.text = skyconDay.info
-
+        //day,night coord information
         //day-wind
         val windSpeed = weather.daily.wind[index].avgWind.speed
         val windDirection = weather.daily.wind[index].avgWind.direction
+        //day-skycon
+        val skyconDay = getSky(weather.daily.skyconDaylight[index].value)
 
-        dayWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
-        dayWindDirection.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindDirection_text),
-            getWindDirection(windDirection)
-        )
-        dayWindSpeed.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindSpeed_text),
-            getWindSpeed(windSpeed)
-        )
+        activityDailyinforBinding.itemDailyDayInclude.let {
+            it.daySkyconIcon.setImageResource(skyconDay.weather_icon)
+            it.daySkyconText.text = skyconDay.info
+
+            it.dayWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
+            it.dayWindDirection.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindDirection_text), getWindDirection(windDirection))
+            it.dayWindSpeed.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindSpeed_text), getWindSpeed(windSpeed))
+        }
 
         //night-skycon
         val skyconNight = getSky(weather.daily.skyconNight[index].value)
-        nightSkyconIcon.setImageResource(skyconNight.weather_icon)
-        nightSkyconText.text = skyconNight.info
 
-        //night-wind
-        //先将就着用白天的数据吧，等以后有钱了买付费源就换成正式的夜间天气
-        nightWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
-        nightWindDirection.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindDirection_text),
-            getWindDirection(windDirection)
-        )
-        nightWindSpeed.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindSpeed_text),
-            getWindSpeed(windSpeed)
-        )
+        activityDailyinforBinding.itemDailyNightInclude.let {
+            it.nightSkyconIcon.setImageResource(skyconNight.weather_icon)
+            it.nightSkyconText.text = skyconNight.info
+
+            it.nightWindIcon.setImageResource(getWindIcon(getWindSpeed(windSpeed)))
+            it.nightWindDirection.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindDirection_text), getWindDirection(windDirection))
+            it.nightWindSpeed.text = String.format(resources.getString(R.string.dailyinforActivity_dayWindSpeed_text), getWindSpeed(windSpeed))
+        }
 
         //darkTheme
         if(isDarkTheme(this)){
-            dayInfoImg.setImageResource(R.drawable.baseline_wb_sunny_white_24dp)
-            nightInforImg.setImageResource(R.drawable.baseline_nights_stay_white_24dp)
+            activityDailyinforBinding.itemDailyDayInclude.dayInfoImg.setImageResource(R.drawable.baseline_wb_sunny_white_24dp)
+            activityDailyinforBinding.itemDailyNightInclude.nightInforImg.setImageResource(R.drawable.baseline_nights_stay_white_24dp)
         }
     }
 
@@ -146,40 +145,44 @@ class DailyinforActivity : AppCompatActivity() {
         val aqiDesc = "空气" + getAQIDesc(weather.daily.aqi.aqiList[index].avg.chn.toInt())
         val pm25Desc = weather.daily.aqi.pm25List[index].avg.toString()
 
-        ultravioletTextItem.text = ultravioletDesc
-        carWashingTextItem.text = carWashingDesc
-        coldRiskTextItem.text = coldRiskDesc
-        dressingTextItem.text = dressingDesc
+        activityDailyinforBinding.itemDailyLifeIndexInclude.let {
+            it.ultravioletTextItem.text = ultravioletDesc
+            it.carWashingTextItem.text = carWashingDesc
+            it.coldRiskTextItem.text = coldRiskDesc
+            it.dressingTextItem.text = dressingDesc
 
-        aqiTextTitleItem.text = aqiValue
-        aqiTextContextItem.text = aqiDesc
-        pm25TextItem.text = pm25Desc
+            it.aqiTextTitleItem.text = aqiValue
+            it.aqiTextContextItem.text = aqiDesc
+            it.pm25TextItem.text = pm25Desc
+        }
 
         //darkmode
         if(isDarkTheme(this)){
-            lifeIndexInfoImg.setImageResource(R.drawable.baseline_nature_people_white_24dp)
+            activityDailyinforBinding.itemDailyLifeIndexInclude.lifeIndexInfoImg.setImageResource(R.drawable.baseline_nature_people_white_24dp)
         }
     }
 
     private fun setOtherWeatherInformation(weather: Weather,index:Int){
         //rain
         val rainPrecipitation = weather.daily.precipitation[index].avg.toString()
-        rainDailyText.text = String.format(
+        activityDailyinforBinding.itemDailyOthersInclude.rainDailyText.text = String.format(
             resources.getString(R.string.dailyinforActivity_rainDailyText_text),rainPrecipitation)
         //sun Rise&Set
         val sunRiseTime = weather.daily.astro[index].sunrise.risetime
         val sunSetTime = weather.daily.astro[index].sunset.settime
 
-        sunriseTimeText.text = sunRiseTime
-        sunsetTimeText.text = sunSetTime
+        activityDailyinforBinding.itemDailyOthersInclude.sunriseTimeText.text = sunRiseTime
+        activityDailyinforBinding.itemDailyOthersInclude.sunsetTimeText.text = sunSetTime
 
         //darkmode
         if(isDarkTheme(this)){
-            othersInfoImg.setImageResource(R.drawable.baseline_filter_vintage_white_24dp)
-            rainDailyIcon.setImageResource(R.drawable.baseline_beach_access_white_24dp)
-            astroDailyIcon.setImageResource(R.drawable.baseline_brightness_medium_white_24dp)
-            sunriseIcon.setImageResource(R.drawable.ic_sunrise_material_white_48px)
-            sunsetIcon.setImageResource(R.drawable.ic_sunset_material_white_48px)
+            activityDailyinforBinding.itemDailyOthersInclude.let {
+                it.othersInfoImg.setImageResource(R.drawable.baseline_filter_vintage_white_24dp)
+                it.rainDailyIcon.setImageResource(R.drawable.baseline_beach_access_white_24dp)
+                it.astroDailyIcon.setImageResource(R.drawable.baseline_brightness_medium_white_24dp)
+                it.sunriseIcon.setImageResource(R.drawable.ic_sunrise_material_white_48px)
+                it.sunsetIcon.setImageResource(R.drawable.ic_sunset_material_white_48px)
+            }
         }
     }
 

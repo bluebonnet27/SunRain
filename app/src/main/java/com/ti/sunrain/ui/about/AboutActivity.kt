@@ -316,6 +316,8 @@ class AboutActivity : AppCompatActivity() {
         return true
     }
 
+
+
     override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
         if(SunRainApplication.settingsPreference.getBoolean("others_icon_menu",true)){
             if(menu.javaClass.simpleName.equals("MenuBuilder",false)){
