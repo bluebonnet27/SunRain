@@ -30,7 +30,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         initToolBar()
-        replaceFragement(SettingsFragment())
+        replaceFragment(SettingsFragment())
     }
 
     override fun onDestroy() {
@@ -57,7 +57,7 @@ class SettingsActivity : AppCompatActivity() {
         activitySettingsBinding.settingsToolbar.subtitle ="SunRain v${BuildConfig.VERSION_NAME}"
     }
 
-    private fun replaceFragement(fragment: Fragment){
+    private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.apply {

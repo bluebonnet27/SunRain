@@ -90,8 +90,6 @@ class FutureDailyAdapter(private val futureDailyList:List<FutureDailyItem>):
         holder.itemView.setOnClickListener {
             onItemClickListener.onItemClick(holder.itemView,position,holder.dateText.text.toString())
         }
-
-        //Log.d("View!","SUCCESS BIND ${holder.tempMax.text}")
     }
 
     override fun getItemCount(): Int {

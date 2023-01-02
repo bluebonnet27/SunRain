@@ -2,7 +2,6 @@ package com.ti.sunrain.ui.futuredaily
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -101,8 +100,6 @@ class FutureDailyActivity : AppCompatActivity() {
             val airQuality = daily.aqi.aqiList[i]
 
             futureDailyItemList.add(FutureDailyItem(skyconDay,skyconNight,tempTwo,wind,airQuality))
-
-            Log.d("Item!","$skyconDay,$skyconNight,$tempTwo,$wind,$airQuality")
         }
 
         return futureDailyItemList

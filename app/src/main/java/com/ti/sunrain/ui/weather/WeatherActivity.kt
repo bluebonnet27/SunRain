@@ -25,7 +25,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -56,7 +56,7 @@ class WeatherActivity : AppCompatActivity() {
 
     //2020-12-14 重构代码，UI层优于逻辑层，重写函数优于自定义函数
     //懒加载 viewmodel
-    val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
+    val viewModel by lazy { ViewModelProvider(this)[WeatherViewModel::class.java] }
     lateinit var activityWeatherBinding: ActivityWeatherBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

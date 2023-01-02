@@ -16,7 +16,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
@@ -24,6 +23,7 @@ import com.ti.sunrain.SunRainApplication
 import com.ti.sunrain.logic.ActivitySet
 import java.net.URISyntaxException
 import android.graphics.Color
+import androidx.lifecycle.ViewModelProvider
 import com.ti.sunrain.databinding.ActivityAboutBinding
 
 
@@ -48,29 +48,30 @@ class AboutActivity : AppCompatActivity() {
             "2" -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         }
 
-        viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
+        viewModel = ViewModelProvider(this)[AboutViewModel::class.java]
 
         if(isDarkTheme(this)){
-            activityAboutBinding.emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
-            activityAboutBinding.githubIcon.setImageResource(R.drawable.ic_github_white)
-            activityAboutBinding.marketIcon.setImageResource(R.drawable.baseline_store_white_24dp)
-            activityAboutBinding.updateIcon.setImageResource(R.drawable.baseline_open_in_browser_white_24dp)
+            activityAboutBinding.let {
+                it.emailIcon.setImageResource(R.drawable.baseline_email_white_24dp)
+                it.githubIcon.setImageResource(R.drawable.ic_github_white)
+                it.marketIcon.setImageResource(R.drawable.baseline_store_white_24dp)
+                it.updateIcon.setImageResource(R.drawable.baseline_open_in_browser_white_24dp)
 
-            activityAboutBinding.wechatIcon.setImageResource(R.drawable.ic_wechat_white)
-            activityAboutBinding.alipayIcon.setImageResource(R.drawable.ic_alipay_white)
-            activityAboutBinding.adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
+                it.wechatIcon.setImageResource(R.drawable.ic_wechat_white)
+                it.alipayIcon.setImageResource(R.drawable.ic_alipay_white)
+                it.adIcon.setImageResource(R.drawable.baseline_attach_money_white_24dp)
+                it.privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
 
-            activityAboutBinding.privacyIcon.setImageResource(R.drawable.baseline_menu_book_white_24dp)
+                it.githubIconSunnyWeather.setImageResource(R.drawable.ic_github_white)
+                it.githubIconPermissionX.setImageResource(R.drawable.ic_github_white)
+                it.githubIconRetrofit.setImageResource(R.drawable.ic_github_white)
+                it.githubIconmPAndroidChart.setImageResource(R.drawable.ic_github_white)
+                it.githubIconWeatherBg.setImageResource(R.drawable.ic_github_white)
 
-            activityAboutBinding.githubIconSunnyWeather.setImageResource(R.drawable.ic_github_white)
-            activityAboutBinding.githubIconPermissionX.setImageResource(R.drawable.ic_github_white)
-            activityAboutBinding.githubIconRetrofit.setImageResource(R.drawable.ic_github_white)
-            activityAboutBinding.githubIconmPAndroidChart.setImageResource(R.drawable.ic_github_white)
-            activityAboutBinding.githubIconWeatherBg.setImageResource(R.drawable.ic_github_white)
-
-            activityAboutBinding.aboutFAB.setImageResource(R.drawable.rainy_weather_100px)
-            activityAboutBinding.questionIcon.setImageResource(R.drawable.baseline_help_outline_white_24dp)
-            activityAboutBinding.freedomIcon.setImageResource(R.drawable.baseline_eco_white_24dp)
+                it.aboutFAB.setImageResource(R.drawable.rainy_weather_100px)
+                it.questionIcon.setImageResource(R.drawable.baseline_help_outline_white_24dp)
+                it.freedomIcon.setImageResource(R.drawable.baseline_eco_white_24dp)
+            }
         }
 
         setSupportActionBar(activityAboutBinding.aboutToolbar)
@@ -111,14 +112,6 @@ class AboutActivity : AppCompatActivity() {
                 data = Uri.parse("mailto:tihongsheng@foxmail.com")
                 putExtra(Intent.EXTRA_SUBJECT,"SunRain反馈")
             }
-
-            //这是Android 11 之前的旧写法，绕开了package权限，却能读取package
-//            if(emailIntent.resolveActivity(packageManager)!=null){
-//                startActivity(emailIntent)
-//            }else{
-//                Snackbar.make(parentLiner,resources.getString(R.string.email_not_found),Snackbar.LENGTH_SHORT).show()
-//            }
-
             try{
                 startActivity(emailIntent)
             }catch (exception:ActivityNotFoundException){

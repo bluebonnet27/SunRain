@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ti.sunrain.MainActivity
 import com.ti.sunrain.R
@@ -26,6 +25,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.location.Location
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.ti.sunrain.databinding.FragmentPlaceBinding
 
 
@@ -37,7 +37,7 @@ import com.ti.sunrain.databinding.FragmentPlaceBinding
 class PlaceFragment:Fragment() {
 
     val viewModel by lazy {
-        ViewModelProviders.of(this).get(PlaceViewModel::class.java)
+        ViewModelProvider(this)[PlaceViewModel::class.java]
     }
 
     private lateinit var adapter: PlaceAdapter
@@ -48,7 +48,7 @@ class PlaceFragment:Fragment() {
     private val locationManager =
         SunRainApplication.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPlaceBinding.inflate(inflater, container, false)
         return binding.root
     }
