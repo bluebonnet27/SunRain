@@ -188,9 +188,6 @@ class PlaceFragment:Fragment() {
                                             ) {
                                                 val specificPlaceResponse = response.body()
                                                 targetPlace =
-                                                        //                                                    putExtra("place_name",
-                                                        //                                                        specificPlaceResponse.result.detailedAddress
-                                                        //                                                    )
                                                     specificPlaceResponse?.result?.detailedAddress
                                                         ?: "未知地区"
                                             }

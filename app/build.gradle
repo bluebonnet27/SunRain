@@ -11,8 +11,8 @@ android {
         applicationId "com.ti.sunrain"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 35
-        versionName "2.0.11.26-beta"
+        versionCode 36
+        versionName "2.1.1.21-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

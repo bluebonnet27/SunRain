@@ -9,5 +9,4 @@ import androidx.lifecycle.ViewModel
  */
 class AboutViewModel : ViewModel() {
 
-    //val wechatQRCode = ImageView(SunRainApplication.context)
 }
