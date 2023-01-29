@@ -72,7 +72,7 @@ dependencies {
     // Leak
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
     //permissionX
-    implementation 'com.guolindev.permissionx:permissionx:1.6.0'
+    implementation 'com.guolindev.permissionx:permissionx:1.7.0'
     // develop end
 
     //compose childs

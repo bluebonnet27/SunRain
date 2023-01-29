@@ -34,6 +34,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.permissionx.guolindev.PermissionX
 import com.ti.sunrain.BuildConfig
 import com.ti.sunrain.R
 import com.ti.sunrain.SunRainApplication
@@ -372,7 +373,21 @@ class WeatherActivity : AppCompatActivity() {
         }
         
         if(SunRainApplication.settingsPreference.getBoolean("notification_switch",false)){
-            manager.notify(1,sunrainWeatherNotification)
+            PermissionX.init(this)
+                .permissions(PermissionX.permission.POST_NOTIFICATIONS)
+                .onExplainRequestReason{ scope, deniedList ->
+                    val message = "通知权限用于发送天气通知，您已经在APP设置中打开通知开关，此处需要您授予以下权限"
+                    scope.showRequestReasonDialog(deniedList, message, "同意", "拒绝")
+                }
+                .request { allGranted, grantedList, deniedList ->
+                    if (allGranted) {
+                        Toast.makeText(this, "天气通知发送成功", Toast.LENGTH_SHORT).show()
+                        manager.notify(1,sunrainWeatherNotification)
+                    } else {
+                        Toast.makeText(this, "天气通知发送失败，因为您拒绝了如下权限：$deniedList", Toast.LENGTH_SHORT).show()
+                        manager.cancel(1)
+                    }
+                }
         }else{
             manager.cancel(1)
         }
