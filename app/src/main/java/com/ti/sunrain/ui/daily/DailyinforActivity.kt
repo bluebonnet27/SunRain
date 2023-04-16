@@ -25,7 +25,7 @@ import java.util.*
 
 
 class DailyinforActivity : AppCompatActivity() {
-    lateinit var activityDailyinforBinding: ActivityDailyinforBinding
+    private lateinit var activityDailyinforBinding: ActivityDailyinforBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityDailyinforBinding = ActivityDailyinforBinding.inflate(layoutInflater)

@@ -16,7 +16,7 @@ import com.ti.sunrain.logic.ActivitySet
 import com.ti.sunrain.logic.model.Weather
 
 class AirActivity : AppCompatActivity() {
-    lateinit var activityAirBinding: ActivityAirBinding
+    private lateinit var activityAirBinding: ActivityAirBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

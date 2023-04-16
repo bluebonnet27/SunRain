@@ -420,7 +420,7 @@ class WeatherActivity : AppCompatActivity() {
         dataSets.add(setLow)
         val dataTemp = LineData(dataSets)
 
-        activityWeatherBinding.forecastChartInclude.temperatureChart.let {
+        activityWeatherBinding.forecastChartInclude.temperatureChart.let { it ->
             it.data = dataTemp
 
             //折线图背景

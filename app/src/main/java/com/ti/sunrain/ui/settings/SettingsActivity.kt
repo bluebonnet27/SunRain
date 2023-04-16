@@ -12,7 +12,7 @@ import com.ti.sunrain.databinding.ActivitySettingsBinding
 import com.ti.sunrain.logic.ActivitySet
 
 class SettingsActivity : AppCompatActivity() {
-    lateinit var activitySettingsBinding: ActivitySettingsBinding
+    private lateinit var activitySettingsBinding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +61,7 @@ class SettingsActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.apply {
-            replace(R.id.settingsLayout,SettingsFragment())
+            replace(R.id.settingsLayout,fragment)
             commit()
         }
     }

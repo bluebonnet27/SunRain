@@ -16,7 +16,7 @@ import com.ti.sunrain.logic.model.DailyResponse
 import com.ti.sunrain.logic.model.futuredaily.FutureDailyItem
 
 class FutureDailyActivity : AppCompatActivity() {
-    lateinit var activityFutureDailyBinding: ActivityFutureDailyBinding
+    private lateinit var activityFutureDailyBinding: ActivityFutureDailyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
