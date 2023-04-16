@@ -30,6 +30,7 @@
                 android:scaleType="centerCrop"
                 android:clickable="true"
                 android:focusable="true"
+                android:contentDescription="Sunrain Backgraound Image"
                 app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
@@ -582,6 +583,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/sun_100px"
         android:backgroundTint="@color/blue500"
+        android:contentDescription="About the application"
         app:maxImageSize="40dp"
         app:layout_anchor="@id/aboutToolbarLayout"
         app:layout_anchorGravity="bottom|end"/>
